@@ -26,6 +26,30 @@ Experience
 • Developed workflows integrating SAP CM with SAP CC and CI for rating, rerating, and CIT upload. 
 • Built data migration flows between SAP HANA and AWS Redshift
 
+
+
+Interview practice questions:
+1.SAP CM Arch.(Acccess/Control/Execution)
+2.Why we neeed multiple EZ
+3.Batch Vs Realtime.
+4.Decoding and Encoding process
+5.Explain the blocks in analysis agent(Lifecycle of a record)
+6.cancleBAtch blocks
+7.Batch vs Udr deduplication strategy
+8.DB connectivity
+9.DB agent vs Sql agent
+10.Purpose of auditing
+11.Keep files in archiving
+12.Explain aggregation
+13.Explain ECS
+14.BRIM integration(CC/CI/SOM)
+16.RFC
+17.SAP CC Vs Webservice agent
+18.How to create APIs in CM(Rest/Http2)
+19.Event Notification(Log/DB/Email)
+20.Realtime agent and batch agent you worked on
+21.Difference between IWF and WFB
+
 • Configured SAP Convergent Mediation (CM) for real-time and batch data processing in telecom billing. 
 • Developed mediation rules for event validation, filtering, and enrichment. 
 • Integrated SAP CM with TIBCO and SAP CC web services. 
