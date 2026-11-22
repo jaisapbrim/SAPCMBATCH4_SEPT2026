@@ -1,0 +1,62 @@
+{
+  "Key": "DR1795287310395",
+  "Name": "PRF_FS_GIT",
+  "Type": "File System Profile",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_FILESYSTEM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "token": {
+      "password": "DR-4-8E547074636071775D441BD74CD622EF2AE00C1039BE18A868566563E1325150498017E617FDC6BE641B52CF73B79A64",
+      "secrets_alias": "",
+      "$Version": 1.0
+    },
+    "cloned": false,
+    "File System type": "Git",
+    "Connection Params": [
+      {
+        "Key": "repoUrl",
+        "Value": {
+          "$Value": "https://github.com/jaisapbrim/SAPCMBATCH4.git",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": "provider",
+        "Value": {
+          "$Value": "GitHub",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": "branch",
+        "Value": {
+          "$Value": "main",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": "username",
+        "Value": {
+          "$Value": "",
+          "$Type": "string"
+        }
+      }
+    ],
+    "Secret Connection Params": [],
+    "$Type": "dr.GitFileSystemProfileData",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Dynamic Parameters": [],
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": "Successfully cloned"
+}

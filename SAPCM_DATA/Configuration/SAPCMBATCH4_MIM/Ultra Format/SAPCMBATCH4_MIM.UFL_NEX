@@ -1,0 +1,47 @@
+{
+  "Key": "DR1792244995215",
+  "Name": "UFL_NEX",
+  "Type": "Ultra Format",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_MIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal NexRu{
+\tstring Tower_Type;
+\tstring Sub_Category;
+\tstring Service_Name;
+\tstring Resource_ID;
+\tstring Owner_ID;
+\tstring Company_Code;
+\tstring Qty;
+\tstring UOM;
+\tstring WBS_Code;
+\tstring Period;
+\tstring Detail_Alpha;
+\tstring Detail_Beta;
+\tstring Detail_Gamma;
+\tstring Volume_Type;
+};
+
+internal jsonFile{
+    int id;
+    string name;    
+};
+
+internal summary{
+    string sum;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

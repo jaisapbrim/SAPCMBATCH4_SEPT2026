@@ -1,0 +1,395 @@
+{
+  "Key": "DR1794726370792",
+  "Name": "WFL_BIT_CREATE_TEST",
+  "Type": "Workflow",
+  "Version": 7,
+  "Folder": "SAPCMBATCH4_BRIM_CC",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Pulse_1",
+        "ID": 33159177,
+        "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+            "Data": {
+              "center": 1.0,
+              "data": "",
+              "dataEntered": true,
+              "dataRandomData": false,
+              "dataRandomOrderSeq": false,
+              "dataRangeEnd": 10,
+              "dataRangeStart": 0,
+              "dataSequentialOrder": true,
+              "dataSequentialRange": false,
+              "dataSize": 1,
+              "dataUnit": "Bytes",
+              "intervalFixed": 1,
+              "intervalType": "Fixed",
+              "poissonRate": 1.0,
+              "rate": 1,
+              "start": 1,
+              "stop": 10,
+              "unit": "HOURS",
+              "width": 1.0,
+              "$Type": "dr.PulseData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 130,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_BIT_CREATE;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_BIT_CREATE.subUdr;
+
+consume {
+
+    // 1. Main UDR
+    _1FE_ZEVC_BIT_CREATE_API_UDR rfc = udrCreate(_1FE_ZEVC_BIT_CREATE_API_UDR);
+    rfc.isTwoPhaseCommit = false;
+
+    // 2. Import parameters
+    importParams__1FE_ZEVC_BIT_CREATE_API ip = udrCreate(importParams__1FE_ZEVC_BIT_CREATE_API);
+    ip.I_TEST       = \"\";      // test run: validates only, nothing is saved. Use \"\" for the real run
+    ip.I_FIRST_CALL = \"X\";
+    ip.I_LAST_CALL  = \"X\";
+    ip.I_MANDT      = \"100\";    // <-- your SAP client
+    rfc.importParams = ip;
+
+    // 3. BIT row
+    _1FE_1ZEVC0IT_API row = udrCreate(_1FE_1ZEVC0IT_API);
+
+    row.SRCTATYPE    = \"CCCIT\";
+    row.SRCTAID      = \"195026\";
+    row.CITCAT       = \"ZEVC\";
+    row.CITID        = (string)uuidCreateRandom();//\"0000000000000000000000000002F9D2\";
+    row.CITIDTYPE    = \"CCCIT\";
+
+    row.VKONT        = \"200000000300\";
+    row.GPART        = \"0001007120\";
+    row.VTREF        = \"00000000000700000192\";
+    row.SUBAP        = \"P\";
+
+    strToDate(row.BITDATE,\"2026-11-09 02:10:10\", \"yyyy-MM-dd HH:mm:ss\");
+    strToDate(row.BITTIME,\"2026-11-06 12:00:00\", \"yyyy-MM-dd HH:mm:ss\");
+    strToDate(row.BITDATE_FROM,\"2026-11-01 11:00:00\", \"yyyy-MM-dd HH:mm:ss\");
+    strToDate(row.BITDATE_TO,\"2026-11-30 12:00:00\", \"yyyy-MM-dd HH:mm:ss\");
+    strToDate(row.BITTIME_FROM,\"2026-11-01 11:00:00\", \"yyyy-MM-dd HH:mm:ss\");
+    strToDate(row.BITTIME_TO,\"2026-11-30 12:00:00\", \"yyyy-MM-dd HH:mm:ss\");
+
+    row.BIT_AMOUNT   = 150;
+    row.BIT_CURR     = \"USD\";
+    row.BIT_QUANTITY = 2.0;
+    row.BIT_QTY_UNIT = \"KWH\";
+
+    // SAP flags: true -> \"X\", false -> \"\"
+    row.PREPAID      = \"\";
+    row.POSTREL      = \"X\";
+    row.PRINTREL     = \"X\";
+    row.TAX_INCLUDED = \"\";
+    row.TAX_DET_TYPE = \"01\";
+    row.XANZA        = \"\";
+    row.SUBPROCESS = \"ZEVC\";
+    row.BITTYPE = \"ZEVU\";
+
+    // 4. Table parameters
+    tableParams__1FE_ZEVC_BIT_CREATE_API tp = udrCreate(tableParams__1FE_ZEVC_BIT_CREATE_API);
+
+    list<_1FE_1ZEVC0IT_API> rows = listCreate(_1FE_1ZEVC0IT_API);
+    listAdd(rows, row);
+    tp.IT_BIT_IT = rows;
+    rfc.tableParams = tp;
+
+    // 5. Check the request, then send it to the SAP RFC agent
+    debug(rfc);
+    udrRoute(rfc);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_BIT_CREATE._1FE_ZEVC_BIT_CREATE_API_UDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "PulseUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 280,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "SAP_RFC_Processor_1",
+        "ID": 190809790,
+        "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+            "Data": {
+              "cacheExpiry": 120,
+              "cacheSize": 1000,
+              "enableConnectionPool": false,
+              "enableImmediateStop": false,
+              "executorSize": 5,
+              "jCoPeakLimit": 10,
+              "jCoPoolCapacity": 2,
+              "queueSize": 1000,
+              "rfcProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794725779914",
+                "name": "PRF_RFC_BIT_CREATE",
+                "type": "SAP RFC Profile",
+                "$Version": 1.0
+              },
+              "$Type": "rfc.agent.contract",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 430,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_BIT_CREATE._1FE_ZEVC_BIT_CREATE_API_UDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 600,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 33159177,
+        "stroke": [
+          {
+            "x": 160,
+            "y": 190,
+            "$Version": 1.0
+          },
+          {
+            "x": 190,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 220,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 250,
+            "y": 190,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 190809790,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 310,
+            "y": 190,
+            "$Version": 1.0
+          },
+          {
+            "x": 340,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 371,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 401,
+            "y": 191,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 186233777,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 190809790,
+        "stroke": [
+          {
+            "x": 460,
+            "y": 192,
+            "$Version": 1.0
+          },
+          {
+            "x": 497,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 533,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 570,
+            "y": 192,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

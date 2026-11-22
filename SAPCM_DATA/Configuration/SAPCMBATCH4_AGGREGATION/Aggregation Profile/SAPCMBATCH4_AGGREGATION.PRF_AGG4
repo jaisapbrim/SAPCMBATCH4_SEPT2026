@@ -1,0 +1,91 @@
+{
+  "Key": "DR1794058370642",
+  "Name": "PRF_AGG4",
+  "Type": "Aggregation Profile",
+  "Version": 4,
+  "Folder": "SAPCMBATCH4_AGGREGATION",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Association config": [
+      {
+        "UDR type": {
+          "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.Netflow",
+          "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+          "$Type": "dr.UltraClientInfo",
+          "$Version": 1.0
+        },
+        "Association rules": [
+          {
+            "Primary expression": "",
+            "ID field list": [
+              "source_ip"
+            ],
+            "Additional expression": "",
+            "Create session on failure": false,
+            "$Version": 1.0
+          },
+          {
+            "Primary expression": "",
+            "ID field list": [
+              "destination_ip"
+            ],
+            "Additional expression": "",
+            "Create session on failure": false,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "UDR type": {
+          "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.Radius",
+          "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+          "$Type": "dr.UltraClientInfo",
+          "$Version": 1.0
+        },
+        "Association rules": [
+          {
+            "Primary expression": "input.acct_status_type == \"1\" || input.acct_status_type == \"2\"",
+            "ID field list": [
+              "framed_ip_address"
+            ],
+            "Additional expression": "",
+            "Create session on failure": true,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "Storage config": {
+      "Directory": "/opt/mz/SAPCM-BATCH4/AGGREGATION/storage",
+      "Partial File Count": 10,
+      "Max Session Count": 100000,
+      "Instance Unique Storage": false,
+      "This Version": 1.0,
+      "ExtRef Version": 1.0,
+      "ExtRef Map": [],
+      "$Type": "dr.FileStorageConfiguratorExtRef",
+      "$Version": 2.0
+    },
+    "UDR Type": {
+      "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.SessionIp",
+      "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+      "$Type": "dr.UltraClientInfo",
+      "$Version": 1.0
+    },
+    "$Type": "dr.AggregationProfileConfig",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Dynamic Parameters": [],
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

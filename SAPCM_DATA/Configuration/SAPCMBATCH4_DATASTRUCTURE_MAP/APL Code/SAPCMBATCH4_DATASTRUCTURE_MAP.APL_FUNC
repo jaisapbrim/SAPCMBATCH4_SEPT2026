@@ -1,0 +1,56 @@
+{
+  "Key": "DR1792313954601",
+  "Name": "APL_FUNC",
+  "Type": "APL Code",
+  "Version": 8,
+  "Folder": "SAPCMBATCH4_DATASTRUCTURE_MAP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "import ultra.SAPCMBATCH4_DATASTRUCTURE_MAP.UFL_Ecom;
+
+map<string,long> mpCustThr;
+   
+void initializeMaps(){
+    mpCustThr = mapCreate(string,long);
+    mapSet(mpCustThr,\"C101\",1000);   
+    mapSet(mpCustThr,\"C102\",500);   
+    mapSet(mpCustThr,\"C103\",1000);   
+    mapSet(mpCustThr,\"C104\",200);
+}
+
+EcomExclusion createExcRec(EcomOrd ip,string errCode){
+    EcomExclusion exc = udrCreate(EcomExclusion);
+    exc.Customer_ID = ip.Customer_ID;
+    exc.Order_Amount = ip.Order_Amount;
+    exc.Order_ID = ip.Order_ID;
+    exc.Product_Category = ip.Product_Category;
+    exc.ErrorCode = errCode;
+    exc.Status = ip.Status;
+    return exc;
+}
+
+
+EcomOut createEcomOut(EcomOrd ecom,long total,long thres,string deci){
+    EcomOut out = udrCreate(EcomOut);
+    out.Customer = ecom.Customer_ID;
+    out.Decision = deci;
+    out.Threshold = thres;
+    out.TotalSpending = total;    
+    return out;
+}
+
+",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

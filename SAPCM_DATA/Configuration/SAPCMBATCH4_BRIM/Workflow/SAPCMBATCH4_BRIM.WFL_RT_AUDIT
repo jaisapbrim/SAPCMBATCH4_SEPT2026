@@ -1,0 +1,654 @@
+{
+  "Key": "DR1793886659374",
+  "Name": "WFL_RT_AUDIT",
+  "Type": "Workflow",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Inter_Workflow_1",
+        "ID": 497243367,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+            "Data": {
+              "deactivateOnIdle": true,
+              "myAgeOfOldestBatch": 0,
+              "myMergeType": 1,
+              "myNumberOfBatches": 0,
+              "myNumberOfBytes": 0,
+              "myProfile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793884876775",
+                "name": "PRF_IWF_RT_ADT",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.InterWFInputData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    input.auditStartTime = dateCreateNow();
+    udrRoute(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.Forw_Realtime_Audit_Int",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 340,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "RT_ADT",
+        "ID": 68127630,
+        "Classname": "com.digitalroute.wfc.dbforw.DBForwInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.dbforw.DBForwInsp",
+            "Data": {
+              "assignments": [
+                {
+                  "Column information": {
+                    "Name": "WORKFLOW_NAME",
+                    "Column type": {
+                      "Type in JDBC": -9,
+                      "Name for DBMS": "NVARCHAR",
+                      "$Version": 1.0
+                    },
+                    "Column size": 255,
+                    "Allow null": true,
+                    "Ordinal Position": 1,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "workflowName",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "OUTPUT_KEY",
+                    "Column type": {
+                      "Type in JDBC": -9,
+                      "Name for DBMS": "NVARCHAR",
+                      "$Version": 1.0
+                    },
+                    "Column size": 255,
+                    "Allow null": true,
+                    "Ordinal Position": 2,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "outputKey",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "AUDIT_START_TIME",
+                    "Column type": {
+                      "Type in JDBC": 93,
+                      "Name for DBMS": "TIMESTAMP",
+                      "$Version": 1.0
+                    },
+                    "Column size": 27,
+                    "Allow null": true,
+                    "Ordinal Position": 3,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "auditStartTime",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 11,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "AUDIT_END_TIME",
+                    "Column type": {
+                      "Type in JDBC": 93,
+                      "Name for DBMS": "TIMESTAMP",
+                      "$Version": 1.0
+                    },
+                    "Column size": 27,
+                    "Allow null": true,
+                    "Ordinal Position": 4,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "auditEndTime",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 11,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "AUDIT_DURATION",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": true,
+                    "Ordinal Position": 5,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "auditDuration",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 4,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "DESTINATION_SYSTEM",
+                    "Column type": {
+                      "Type in JDBC": -9,
+                      "Name for DBMS": "NVARCHAR",
+                      "$Version": 1.0
+                    },
+                    "Column size": 100,
+                    "Allow null": true,
+                    "Ordinal Position": 6,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "destinationSystem",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "INPUT_UDR_COUNT",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": true,
+                    "Ordinal Position": 7,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "inputUdrCount",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 4,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "SENT_SUCCESS_UDR_COUNT",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": true,
+                    "Ordinal Position": 8,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "sentSuccessUdrCount",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 4,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "SENT_FAILED_UDR_COUNT",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": true,
+                    "Ordinal Position": 9,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "sentFailedUdrCount",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 4,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "AUDIT_TIME",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": true,
+                    "Ordinal Position": 10,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "auditDuration",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 4,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                }
+              ],
+              "colForTxnId": {
+                "Name": "TXN_ID",
+                "Column type": {
+                  "Type in JDBC": -5,
+                  "Name for DBMS": "BIGINT",
+                  "$Version": 1.0
+                },
+                "Column size": 19,
+                "Allow null": true,
+                "Ordinal Position": 11,
+                "Is Unique Key": false,
+                "$Version": 1.0
+              },
+              "dbProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1792919963496",
+                "name": "PRF_DB_SAPHANA",
+                "type": "Database Profile",
+                "$Version": 1.0
+              },
+              "method": 1,
+              "noOfRowsPerCommit": 1000,
+              "tab": {
+                "Name": "ADT_FORW_REALTIME_AUDIT",
+                "Catalog": "",
+                "Schema": "SAPCMUSER14",
+                "Object type": 1,
+                "Include Cat In Prefix": true,
+                "$Version": 1.1
+              },
+              "udrTypeIdentifier": {
+                "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.Forw_Realtime_Audit_Int",
+                "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                "$Type": "dr.UltraClientInfo",
+                "$Version": 1.0
+              },
+              "useSchemaFromDB": false,
+              "$Type": "dr.DBForwDataExt",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 470,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decoder_1",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "outputTypes": [
+                  {
+                    "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.Forw_Realtime_Audit_Int",
+                    "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                    "$Type": "dr.UltraClientInfo",
+                    "$Version": 1.0
+                  }
+                ],
+                "$Type": "dr.MZTaggedDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "MZ Tagged Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 220,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1576094480,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 497243367,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 188,
+            "$Version": 1.0
+          },
+          {
+            "x": 149,
+            "y": 179,
+            "$Version": 1.0
+          },
+          {
+            "x": 167,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 190,
+            "y": 189,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1939312021,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 250,
+            "y": 175,
+            "$Version": 1.0
+          },
+          {
+            "x": 273,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 294,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 176,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 68127630,
+        "id": -6,
+        "name": "r_5",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 370,
+            "y": 179,
+            "$Version": 1.0
+          },
+          {
+            "x": 393,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 417,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 440,
+            "y": 179,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

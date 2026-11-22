@@ -1,0 +1,77 @@
+{
+  "Key": "DR1793811500730",
+  "Name": "UFL_RIDE",
+  "Type": "Ultra Format",
+  "Version": 18,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "
+
+session sessKafka{
+    string id;
+    long lastOffset;
+    long timestamp;
+};
+
+internal RideArchiveInt{
+    long Offset;
+    long Timestamp; 
+    string Payload;      
+};
+
+internal RawPayload{
+    string payload;
+};
+
+internal EV_Cons{
+\tstring VehicleId;
+\tstring TotalChargingHrs;
+\tstring ChargingStartTime;
+\tstring ChargingEndTime;
+\tstring ChargingLocation;
+    date dtChSt : optional;
+    date dtChEd : optional;
+};
+
+internal errorUdr{
+    string errorCode;
+    string errorMessage;
+    drudr udr;    
+};
+
+internal CI_Int{
+    string key;
+    string ecsErrorCode;
+    boolean isResent;
+    long inputUdrCount;
+    date sentDate;
+    string rfcErrorMessage;
+    SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE._1FC_BT18_CIT_CREATE_API_UDR CiUdr;
+};
+
+internal Forw_Realtime_Audit_Int{
+\tstring workflowName;
+\tstring outputKey;
+\tdate auditStartTime;
+\tdate auditEndTime;
+\tlong auditDuration;
+\tstring destinationSystem;
+\tlong inputUdrCount;
+\tlong sentSuccessUdrCount;
+\tlong sentFailedUdrCount;   
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,62 @@
+{
+  "Key": "DR1792854286425",
+  "Name": "PRF_DupUdr_SFC2",
+  "Type": "Duplicate UDR Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_DUPCHECK_UDR",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Cache max age": 30,
+    "Cache max size": 5000,
+    "UDR type": {
+      "TypeName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck.SFC_Volumes",
+      "FormatName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck",
+      "$Type": "dr.UltraClientInfo",
+      "$Version": 1.0
+    },
+    "Indexing field": "RecordSequenceNumber",
+    "Checked fields": [
+      "UsageRecordID"
+    ],
+    "Date Index": false,
+    "useCacheTime": false,
+    "instanceUniqueStorage": true,
+    "Storage type": "SQL_STORAGE",
+    "databaseProfile": {
+      "folder": "SAPCMBATCH4_COMMON",
+      "key": "DR1792307286445",
+      "name": "PRF_DB_POSTGRES",
+      "type": "Database Profile",
+      "$Version": 1.0
+    },
+    "advancedProperties": "# Properties controlling the SQL storage can be customized here.
+
+
+# Number of rows to retrieve with each query round trip. If the value specified is zero, then the property is ignored. Default value is 1000.
+mz.sql.dupUDR.query.fetch.size 1000
+
+# Number of rows to write at a time into SQL storage. If the value specified is zero, that means there is no limit. Default value is 5000.
+mz.sql.dupUDR.bulk.writes.size 5000
+
+# Maximum time in seconds to wait for queries to SQL storage. If the value specified is zero, that means there is no limit. Default value is 0.
+mz.sql.dupUDR.query.timeout 0
+
+",
+    "EXT_REF_VERSION": 0.1,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.DupUDR2ProfileConfigExtRef",
+    "$Version": 5.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

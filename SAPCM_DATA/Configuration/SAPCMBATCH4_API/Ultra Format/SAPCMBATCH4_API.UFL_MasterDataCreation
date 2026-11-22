@@ -1,0 +1,97 @@
+{
+  "Key": "DR1794128273708",
+  "Name": "UFL_MasterDataCreation",
+  "Type": "Ultra Format",
+  "Version": 13,
+  "Folder": "SAPCMBATCH4_API",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "// ---------- types ----------
+internal BP_Role          { string BusinessPartnerRole; };
+internal BP_Email         { string EmailAddress; };
+internal BP_SalesArea {
+    string SalesOrganization;
+    string DistributionChannel;
+    string Division;
+    string Currency;
+    string CustomerPaymentTerms;
+    string CustomerPricingProcedure;
+    string ShippingCondition;
+};
+internal BP_RoleList      { list<BP_Role> results; };
+internal BP_EmailList     { list<BP_Email> results; };
+internal BP_SalesAreaList { list<BP_SalesArea> results; };
+internal BP_Address {
+    string Country;
+    string Region;
+    string CityName;
+    string PostalCode;
+    string StreetName;
+    string HouseNumber;
+    string TaxJurisdiction;
+    string Language;
+    BP_EmailList to_EmailAddress;
+};
+internal BP_AddressList   { list<BP_Address> results; };
+internal BP_Customer {
+    string CustomerAccountGroup;
+    BP_SalesAreaList to_CustomerSalesArea;
+};
+internal BP_Root {
+    string BusinessPartnerGrouping;
+    string BusinessPartnerCategory;
+    string FirstName;
+    string LastName;
+    string SearchTerm1;
+    string CorrespondenceLanguage;
+    BP_RoleList    to_BusinessPartnerRole;
+    BP_AddressList to_BusinessPartnerAddress;
+    BP_Customer    to_Customer;
+};
+
+internal BP_Raw{
+\tstring firstName;
+\tstring lastName;
+\tstring country;
+\tstring region;
+\tstring cityName;
+    string streetName;
+\tstring postalCode;
+\tstring houseNumber;\t
+};
+
+internal ResponseBp{
+    string BP;
+    string message;
+    string status;    
+};
+
+internal HttpContext{
+    drudr originalReq;    
+    BP_Raw bpRaw;
+    BP_Root bpRoot;
+};
+
+internal BP{
+    string BusinessPartner;
+};
+internal Person{
+    string name;
+};
+internal PersonResponse{
+    string message;
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

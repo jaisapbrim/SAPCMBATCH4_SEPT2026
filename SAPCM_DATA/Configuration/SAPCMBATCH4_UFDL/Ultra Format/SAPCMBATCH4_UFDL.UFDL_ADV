@@ -1,0 +1,152 @@
+{
+  "Key": "DR1791036537502",
+  "Name": "UFDL_ADV",
+  "Type": "Ultra Format",
+  "Version": 21,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "All",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+    84    05   41 42 43
+    84    06   41 42 43 44 
+    84    04   41 42
+[ID] [LEN] [DATA]     [ID] [LEN] [DATA] 
+*/
+
+external DynamicSizeRecord : identified_by(recId == 0x84){
+    int recId : static_size(1);
+    int recLength : static_size(1);  
+    ascii payload : dynamic_size(recLength-2);
+};
+
+in_map iMap1 : external(DynamicSizeRecord),target_internal(DynamicSizeRecordTI){automatic;};
+decoder dec1 : in_map(iMap1);
+/*
+[header]+[payload/body]+[trailer]
+[header]-->identifier+length
+
+05 41 42 43 05 67 68 69 05 12 34 45
+*/
+
+external DynamicSizeRecord1 : identified_by(recId == 0x05){
+    int recId : static_size(1); 
+    ascii payload : static_size(3);
+};
+
+in_map iMap2 : external(DynamicSizeRecord1),target_internal(DynamicSizeRecord1TI){automatic;};
+decoder dec2 : in_map(iMap2);
+
+/*
+
+1. Delimited CSV with Padding, Type Casting & trailing_optional
+Parses newline-terminated CSV records where values are stripped of padding, converted to internal types (int, double), and handle optional trailing columns(trailing_optional).
+
+Raw Incoming Stream:
+01,  9876543210,00120,45.50,PROMO_OK
+01,  9876543211,00030,12.00
+*/
+
+external DelimitedCsvExt :terminated_by(0xA), identified_by(recType == \"01\"){
+    ascii recType : terminated_by(\",\");
+    ascii phone :  align(right),padded_with(\" \"),terminated_by(\",\");
+    ascii duration :  align(right),padded_with(\"0\"),terminated_by(\",\");   
+    ascii amount :  terminated_by(\",\"),double; 
+    ascii promo : dynamic_size(remaining_size) ,trailing_optional;
+};
+
+internal DelimitedCsvInt{
+    string recType; 
+    string phone1;  
+    int duration1; 
+    double amount1;
+    string promo1; 
+};
+in_map iMap3 : external(DelimitedCsvExt),internal(DelimitedCsvInt){
+    //automatic{
+        e:phone and i:phone1;
+        e:duration and i:duration1;
+        e:amount and i:amount1;
+        e:promo and i:promo1;
+        automatic;
+    //;
+        
+};
+decoder dec3 : in_map(iMap3);
+
+/*
+4. Record with complex type
+Parses records where a header field specifies the exact count of repeating structured items.
+
+Raw Incoming Stream:
+
+Plaintext
+02:003:ID1010045
+02: Record Type
+003: Number of elements (3 sub-records)
+Substructure: 5-byte id + 4-byte volume
+*/
+external ItemRecord : terminated_by(0xA){
+    ascii recType :terminated_by(\":\");//02
+    ascii element : int(base10),terminated_by(\":\");  //003 
+    Item item :dynamic_size(remaining_size);
+};
+external Item : terminated_by(0xA){
+    ascii id : static_size(5);//ID101
+    ascii volume : static_size(4); //0045              
+};
+
+in_map iMap4 : external(ItemRecord),target_internal(ItemRecordTI){//parent in_map
+    automatic{
+        Item : using in_map iMapItem;        
+    };
+};
+in_map iMapItem : external(Item),target_internal(ItemTI){automatic;};//child in_map
+decoder dec4 : in_map(iMap4);
+
+/*
+4. Record with Dynamic list Elements
+Parses records where a header field specifies the exact count of repeating structured items.
+
+Raw Incoming Stream:
+
+Plaintext
+02:003:ID1010045ID1020010ID1030120
+02: Record Type
+003: Number of elements (3 sub-records)
+Repeating blocks: 5-byte id + 4-byte volume
+*/
+
+external ItemRecord1 : terminated_by(0xA){
+    ascii recType :terminated_by(\":\");
+    ascii element : int(base10),terminated_by(\":\");   
+    list<Item1> itemLi :element_count(element);
+};
+
+in_map iMap5 : external(ItemRecord1),target_internal(ItemRecord1TI){
+    automatic{
+        Item1 : using in_map iMapItem1;        
+    };
+};
+in_map iMapItem1 : external(Item1),target_internal(Item1TI){automatic;};
+
+external Item1 {
+    ascii id : static_size(5);
+    ascii volume : static_size(4);           
+};
+
+decoder dec5 : in_map(iMap5);
+",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

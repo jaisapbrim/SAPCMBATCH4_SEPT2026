@@ -1,0 +1,31 @@
+{
+  "Key": "DR1792307286445",
+  "Name": "PRF_DB_POSTGRES",
+  "Type": "Database Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "dbDriverClassName": "com.digitalroute.wfc.db.postgresql.PostgreSQLDatabaseDriver",
+    "dbName": "postgres",
+    "genericConnection": false,
+    "hostName": "192.168.2.100",
+    "password": "DR-4-227EF007E21A40D778495CFE5DFC87A9",
+    "port": 5432,
+    "type": 7,
+    "userName": "postgres",
+    "$Type": "dr.DRDBProfileExtRef",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

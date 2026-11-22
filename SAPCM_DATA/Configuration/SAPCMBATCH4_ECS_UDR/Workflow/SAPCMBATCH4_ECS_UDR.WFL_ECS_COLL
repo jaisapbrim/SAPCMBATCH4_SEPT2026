@@ -1,0 +1,206 @@
+{
+  "Key": "DR1794065598550",
+  "Name": "WFL_ECS_COLL",
+  "Type": "Workflow",
+  "Version": 7,
+  "Folder": "SAPCMBATCH4_ECS_UDR",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "ECS_1",
+        "ID": 1894806705,
+        "Classname": "com.digitalroute.wfc.ecscollector.EcsCollectorInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ecscollector.EcsCollectorInsp",
+            "Data": {
+              "collectionMode": "Reprocessing Group",
+              "group": {
+                "Id": 88853,
+                "Name": "AGG_UNMATCHED_GRP",
+                "Type": 0,
+                "$Version": 2.0
+              },
+              "routedTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+                  "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "sqlBulkSize": 20,
+              "udrBatchSize": 5000,
+              "$Type": "dr.EcsCollectorConfigExt",
+              "$Version": 10.2
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 230,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+    debug(\"Code:\"+udrGetErrorCodes(input));
+    debug(\"Message:\"+udrGetErrorMessages(input));
+    
+    sleep(100);
+    udrClearErrors(input);
+    sleep(100);
+    debug(\"Code:\"+udrGetErrorCodes(input));
+    debug(\"Message:\"+udrGetErrorMessages(input));
+    
+    
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+                  "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1939312021,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1894806705,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 215,
+            "$Version": 1.0
+          },
+          {
+            "x": 181,
+            "y": 202,
+            "$Version": 1.0
+          },
+          {
+            "x": 231,
+            "y": 204,
+            "$Version": 1.0
+          },
+          {
+            "x": 280,
+            "y": 222,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

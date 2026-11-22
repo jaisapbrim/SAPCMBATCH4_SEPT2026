@@ -1,0 +1,53 @@
+{
+  "Key": "DR1793813872623",
+  "Name": "PRF_ARCH_RIDE",
+  "Type": "Archive Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Base directories": [
+      "/opt/mz/SAPCM-BATCH4/BRIM/RIDE/ARCHIVE/"
+    ],
+    "Switch policy": 0,
+    "Template tokens": [
+      {
+        "Special token": 0,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 1,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 2,
+        "$Version": 1.0
+      }
+    ],
+    "Purge entry": 30,
+    "Keep files": false,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.ArchiveConfig",
+    "$Version": 2.2
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

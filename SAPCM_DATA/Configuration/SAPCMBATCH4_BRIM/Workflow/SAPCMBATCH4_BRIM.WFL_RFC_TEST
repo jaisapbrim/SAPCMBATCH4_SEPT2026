@@ -1,0 +1,314 @@
+{
+  "Key": "DR1793722238266",
+  "Name": "WFL_RFC_TEST",
+  "Type": "Workflow",
+  "Version": 26,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": false,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Pulse_1",
+        "ID": 33159177,
+        "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+            "Data": {
+              "center": 1.0,
+              "data": "",
+              "dataEntered": true,
+              "dataRandomData": false,
+              "dataRandomOrderSeq": false,
+              "dataRangeEnd": 10,
+              "dataRangeStart": 0,
+              "dataSequentialOrder": true,
+              "dataSequentialRange": false,
+              "dataSize": 1,
+              "dataUnit": "Bytes",
+              "intervalFixed": 10,
+              "intervalType": "Fixed",
+              "poissonRate": 1.0,
+              "rate": 1,
+              "start": 1,
+              "stop": 10,
+              "unit": "MINUTES",
+              "width": 1.0,
+              "$Type": "dr.PulseData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE.subUdr;
+
+consume {
+    try {
+        if (instanceOf(input, PulseUDR)) {
+            Z_CUSTOM_DATE_STRING_ECHO_UDR rfc = udrCreate(Z_CUSTOM_DATE_STRING_ECHO_UDR);
+            rfc.importParams = udrCreate(importParams_Z_CUSTOM_DATE_STRING_ECHO);
+            
+            // 1. Get the current date numbers
+           //4. Force assign the raw memory byte array directly into the date parameter field
+            // This bypasses the buggy com.digitalroute.picomega.types.Date marshaling logic
+            strToDate(rfc.importParams.IV_DATE,\"20261103\",\"yyyyMMdd\");
+            
+            rfc.importParams.IV_STRING = \"SAPCM TEXT MSG\"; 
+            
+            debug(rfc);
+            udrRoute(rfc);
+        } else {
+            debug(\"response:\" + input);
+        }
+    } catch (ExceptionDetails e) {
+        debug(e);   
+    }
+}",
+              "udrTypes": [
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE._1FC_BT18_CIT_CREATE_API_UDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "PulseUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE.Z_CUSTOM_DATE_STRING_ECHO_UDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 260,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "SAP_RFC_Processor_1",
+        "ID": 190809790,
+        "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+            "Data": {
+              "cacheExpiry": 120,
+              "cacheSize": 1000,
+              "enableConnectionPool": true,
+              "enableImmediateStop": true,
+              "executorSize": 5,
+              "jCoPeakLimit": 10,
+              "jCoPoolCapacity": 2,
+              "queueSize": 1000,
+              "rfcProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1793507234873",
+                "name": "PRF_RFC_CIT_CREATE",
+                "type": "SAP RFC Profile",
+                "$Version": 1.0
+              },
+              "$Type": "rfc.agent.contract",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 480,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 33159177,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 203,
+            "$Version": 1.0
+          },
+          {
+            "x": 230,
+            "y": 203,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -540133671,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 190809790,
+        "stroke": [
+          {
+            "x": 451,
+            "y": 223,
+            "$Version": 1.0
+          },
+          {
+            "x": 396,
+            "y": 237,
+            "$Version": 1.0
+          },
+          {
+            "x": 343,
+            "y": 234,
+            "$Version": 1.0
+          },
+          {
+            "x": 290,
+            "y": 214,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 190809790,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 290,
+            "y": 196,
+            "$Version": 1.0
+          },
+          {
+            "x": 345,
+            "y": 182,
+            "$Version": 1.0
+          },
+          {
+            "x": 399,
+            "y": 184,
+            "$Version": 1.0
+          },
+          {
+            "x": 451,
+            "y": 203,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

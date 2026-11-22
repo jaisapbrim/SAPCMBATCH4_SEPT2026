@@ -1,0 +1,87 @@
+{
+  "Key": "DR1793546630865",
+  "Name": "PRF_AGG_2",
+  "Type": "Aggregation Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_AGGREGATION",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Association config": [
+      {
+        "UDR type": {
+          "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+          "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+          "$Type": "dr.UltraClientInfo",
+          "$Version": 1.0
+        },
+        "Association rules": [
+          {
+            "Primary expression": "input.service_type == \"VOICE\" || input.service_type == \"SMS\" || input.service_type == \"DATA\"",
+            "ID field list": [
+              "subscriber_id",
+              "service_type"
+            ],
+            "Additional expression": "",
+            "Create session on failure": true,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "Storage config": {
+      "profile": {
+        "folder": "SAPCMBATCH4_COMMON",
+        "key": "DR1792307286445",
+        "name": "PRF_DB_POSTGRES",
+        "type": "Database Profile",
+        "$Version": 1.0
+      },
+      "advancedProperties": "# Properties controlling the SQL storage can be customized here.
+
+
+# Number of sessions to retrieve with each query round trip. Default value is 1000.
+mz.sql.agg.fetch.size 1000
+
+# Number of sessions to write at a time to sql. Default value is 5000.
+mz.sql.agg.bulk.writes.size 5000
+
+# Number of sessions to delete at a time from sql. Default value is 10000.
+mz.sql.agg.bulk.deletes.size 10000
+
+# Maximum number of session ids in a single search query. Default value is 100.
+mz.sql.agg.search.size 100
+
+# Number of threads in db query thread pool. Default value is 8.
+mz.sql.agg.search.threadpool_size 8
+
+# Maximum time in milliseconds to wait for search queries from sql. Default value is 30000.
+mz.sql.agg.search.timeout 30000
+
+",
+      "fields": [],
+      "$Type": "dr.SqlStorageConfig",
+      "$Version": 6.0
+    },
+    "UDR Type": {
+      "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.sessionTelUsg1",
+      "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+      "$Type": "dr.UltraClientInfo",
+      "$Version": 1.0
+    },
+    "$Type": "dr.AggregationProfileConfig",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Dynamic Parameters": [],
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

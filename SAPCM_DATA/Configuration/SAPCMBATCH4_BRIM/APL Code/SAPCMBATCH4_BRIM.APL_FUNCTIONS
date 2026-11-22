@@ -1,0 +1,101 @@
+{
+  "Key": "DR1793857414856",
+  "Name": "APL_FUNCTIONS",
+  "Type": "APL Code",
+  "Version": 4,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+import apl.SAPCMBATCH4_BRIM.APL_CONSTANTS;
+
+EV_Cons decodeEvRawCsv(RawPayload ip){
+    list<string> liData = strSplit(ip.payload,\",\");
+    EV_Cons rawIp = udrCreate(EV_Cons);
+    int i = 0;
+    for(UDRFieldInfo udrFieldInfo : udrGetFields(rawIp)){            
+        if(!udrFieldInfo.isOptional && !udrFieldInfo.isReadOnly && udrFieldInfo.fieldName != \"OriginalData\"){
+            udrSetValue(rawIp, udrFieldInfo.fieldName,listGet(liData,i));
+            i++;
+        }
+    }
+    debug(\"EV_Cons:\"+rawIp);
+    return rawIp;
+}
+
+errorUdr validateEvRec(EV_Cons rawIp){
+    string errorCode,errorMsg;
+    
+    //validate for empty/null check
+    if(isEmpty(rawIp.VehicleId)){
+        errorCode = ERR_INVALID_VEH_ID;
+        errorMsg = ERR_INVALID_CHG_ST;
+    }else if(isEmpty(rawIp.ChargingStartTime)){
+        errorCode = ERR_INVALID_CHG_ST;
+        errorMsg = ERR_MSG_CHG_ST;
+    }else if(isEmpty(rawIp.ChargingEndTime)){
+        errorCode = ERR_INVALID_CHG_ED;
+        errorMsg = ERR_MSG_CHG_ED;
+    }else if(isEmpty(rawIp.ChargingLocation)){
+        errorCode = ERR_INVALID_CHG_LOC;
+        errorMsg = ERR_MSG_CHG_LOC;
+    }else if(isEmpty(rawIp.TotalChargingHrs)){
+        errorCode = ERR_INVALID_CHG_HRS;
+        errorMsg = ERR_MSG_CHG_HRS;
+    }
+    
+    //validate start date and endate
+    if(isEmpty(errorCode) && isEmpty(errorMsg)){
+        //2026-08-01 07:15:00
+        if(strToDate(rawIp.dtChSt,rawIp.ChargingStartTime,\"yyyy-MM-dd HH:mm:ss\") 
+        && strToDate(rawIp.dtChEd,rawIp.ChargingEndTime,\"yyyy-MM-dd HH:mm:ss\")){
+            if(dateDiff(rawIp.dtChSt,rawIp.dtChEd) > 0){
+                //start date is greater then end date, invalid
+                errorCode = ERR_INVALID_CHG_ST;
+                errorMsg = ERR_MSG_CHG_ST;
+            }
+        }else{
+            //start date or end date not in valid format
+            errorCode = ERR_INVALID_CHG_ST;
+            errorMsg = ERR_MSG_CHG_ST;
+        }
+    }
+    
+    //validate location
+    //Assignment: check if the location from input data exist in table : TB_CHG_LOCATION_MASTER
+    //If data available in table, consider it valid or invalid
+    
+    if(!isEmpty(errorCode) && !isEmpty(errorMsg)){        
+        return createErrUdr(errorCode,errorMsg,rawIp);
+    }
+    return null;//no error
+}
+
+errorUdr createErrUdr(string code,string msg, drudr udr){
+    errorUdr err = udrCreate(errorUdr);
+    err.errorCode = code;
+    err.errorMessage = msg;
+    err.udr = udr;
+    
+    return err;
+}
+
+boolean isEmpty(string value){
+    return value == \"\" || value == null;
+}
+
+",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,600 @@
+{
+  "Key": "DR1793885189662",
+  "Name": "WFL_CI_FORWARDING_EV",
+  "Type": "Workflow",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "FromProc",
+        "ID": -2024313060,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFInputRTInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFInputRTInsp",
+            "Data": {
+              "myProfile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793879384263",
+                "name": "PRF_IWF_CI",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.InterWFInputRTData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.wfc.ultra.server.service.RealtimeDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "outputTypes": [
+                  {
+                    "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.CI_Int",
+                    "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                    "$Type": "dr.UltraClientInfo",
+                    "$Version": 1.0
+                  }
+                ],
+                "$Type": "dr.MZTaggedDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "MZ Tagged Format",
+              "doFullDecode": false,
+              "$Type": "dr.RealtimeDecoderConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Logic",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS_CI;
+string wflName;
+initialize {
+    wflName = (string) mimGet(\"Workflow\", \"Workflow Name\");    
+}
+ 
+consume {
+    if (instanceOf(input, CI_Int)) {
+        //Sent data to CI for CIT creation
+        CI_Int req = (CI_Int) input;
+        req.sentDate = dateCreateNow();
+        debug(\"Tx req:\" + req);
+        CI_Int reqClone = udrClone(req);
+        req.CiUdr.context = reqClone;
+        udrRoute(req.CiUdr, \"toCI\");    
+        
+    } else if (instanceOf(input, NewFileUDR)) {
+        NewFileUDR  nwu = (NewFileUDR) input;
+        debug(\"NewFileUDR  nwu:\" + nwu);          
+    } else if (instanceOf(input, RfcErrorUDR)) {
+        RfcErrorUDR rfcErrorUdr = (RfcErrorUDR) input;
+        debug(\"rfcErrorUdr:\" + rfcErrorUdr);
+        //send error data to ECS
+        _1FC_BT18_CIT_CREATE_API_UDR ciUdr = (_1FC_BT18_CIT_CREATE_API_UDR )rfcErrorUdr.inputUDR;
+        CI_Int oriReq = (CI_Int)ciUdr.context;
+        oriReq.rfcErrorMessage = rfcErrorUdr.errorMessage;
+        udrRoute(oriReq, \"toECSEncoder\");
+        
+        //send for auditing
+        Forw_Realtime_Audit_Int aud = setToCIAudit(oriReq, wflName, false);
+        udrRoute(aud, \"toAuditEncoder\");       
+    } else if (instanceOf(input, _1FC_BT18_CIT_CREATE_API_UDR)) {
+        _1FC_BT18_CIT_CREATE_API_UDR resp = (_1FC_BT18_CIT_CREATE_API_UDR) input;
+        CI_Int oriReq = (CI_Int) resp.context;
+        debug(\"Rx resp:\" + resp);   
+        
+        boolean isSuccess = true;
+        if(resp.tableParams.ET_MESSAGES != null && listSize(resp.tableParams.ET_MESSAGES)>0){
+            isSuccess = checkCitStatus(resp);
+        }
+        if(!isSuccess){
+            udrRoute(oriReq, \"toECSEncoder\");
+        }
+        Forw_Realtime_Audit_Int aud = setToCIAudit(oriReq, wflName, isSuccess);
+        udrRoute(aud, \"toAuditEncoder\");
+    } else {
+        debug(\"unknown\");
+    }    
+}",
+              "udrTypes": [
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE._1FC_BT18_CIT_CREATE_API_UDR",
+                  "$Version": 1.0
+                },
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.CI_Int",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "InterWorkflow.NewFileUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 220,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "CI",
+        "ID": 190809790,
+        "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+            "Data": {
+              "cacheExpiry": 120,
+              "cacheSize": 1000,
+              "enableConnectionPool": false,
+              "enableImmediateStop": false,
+              "executorSize": 5,
+              "jCoPeakLimit": 10,
+              "jCoPoolCapacity": 2,
+              "queueSize": 1000,
+              "rfcProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1793507234873",
+                "name": "PRF_RFC_CIT_CREATE",
+                "type": "SAP RFC Profile",
+                "$Version": 1.0
+              },
+              "$Type": "rfc.agent.contract",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_1",
+        "ID": -510667452,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 220,
+          "y": 110,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_2",
+        "ID": 1511027063,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 220,
+          "y": 330,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ECS",
+        "ID": 726155694,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+            "Data": {
+              "byteCount": -1,
+              "enableWorkerThread": true,
+              "includeOutstanding": false,
+              "myMIMs": [],
+              "profile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793884899489",
+                "name": "PRF_IWF_ECS",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "queueSize": 10000,
+              "sendResponseUdr": false,
+              "streamId": "default",
+              "timeout": 10,
+              "udrCount": 1,
+              "$Type": "dr.InterWFOutputRTData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 110,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Audit",
+        "ID": -181232240,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+            "Data": {
+              "byteCount": -1,
+              "enableWorkerThread": true,
+              "includeOutstanding": false,
+              "myMIMs": [],
+              "profile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793884876775",
+                "name": "PRF_IWF_RT_ADT",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "queueSize": 10000,
+              "sendResponseUdr": false,
+              "streamId": "default",
+              "timeout": 10,
+              "udrCount": 1,
+              "$Type": "dr.InterWFOutputRTData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 330,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "toLogic",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -2024313060,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 213,
+            "$Version": 1.0
+          },
+          {
+            "x": 190,
+            "y": 213,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -540133671,
+        "id": -3,
+        "name": "resp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 190809790,
+        "stroke": [
+          {
+            "x": 331,
+            "y": 227,
+            "$Version": 1.0
+          },
+          {
+            "x": 302,
+            "y": 237,
+            "$Version": 1.0
+          },
+          {
+            "x": 278,
+            "y": 236,
+            "$Version": 1.0
+          },
+          {
+            "x": 250,
+            "y": 225,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 190809790,
+        "id": -4,
+        "name": "toCI",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 250,
+            "y": 205,
+            "$Version": 1.0
+          },
+          {
+            "x": 279,
+            "y": 197,
+            "$Version": 1.0
+          },
+          {
+            "x": 304,
+            "y": 193,
+            "$Version": 1.0
+          },
+          {
+            "x": 331,
+            "y": 201,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -510667452,
+        "id": -5,
+        "name": "toECSEncoder",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 207,
+            "y": 187,
+            "$Version": 1.0
+          },
+          {
+            "x": 196,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 195,
+            "y": 149,
+            "$Version": 1.0
+          },
+          {
+            "x": 203,
+            "y": 129,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1511027063,
+        "id": -6,
+        "name": "toAuditEncoder",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 232,
+            "y": 239,
+            "$Version": 1.0
+          },
+          {
+            "x": 241,
+            "y": 258,
+            "$Version": 1.0
+          },
+          {
+            "x": 242,
+            "y": 277,
+            "$Version": 1.0
+          },
+          {
+            "x": 235,
+            "y": 297,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -181232240,
+        "id": -7,
+        "name": "Audit",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1511027063,
+        "stroke": [
+          {
+            "x": 250,
+            "y": 314,
+            "$Version": 1.0
+          },
+          {
+            "x": 283,
+            "y": 303,
+            "$Version": 1.0
+          },
+          {
+            "x": 307,
+            "y": 304,
+            "$Version": 1.0
+          },
+          {
+            "x": 330,
+            "y": 310,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 726155694,
+        "id": -8,
+        "name": "ECS",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -510667452,
+        "stroke": [
+          {
+            "x": 250,
+            "y": 92,
+            "$Version": 1.0
+          },
+          {
+            "x": 276,
+            "y": 82,
+            "$Version": 1.0
+          },
+          {
+            "x": 303,
+            "y": 84,
+            "$Version": 1.0
+          },
+          {
+            "x": 330,
+            "y": 91,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

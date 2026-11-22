@@ -1,0 +1,72 @@
+{
+  "Key": "DR1793808877985",
+  "Name": "PRF_KAFKA",
+  "Type": "Kafka2 Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Brokers": [
+      {
+        "Host": "192.168.2.100",
+        "Port": 19092,
+        "$Version": 1.0
+      }
+    ],
+    "Producer Properties": "# **************************************************************************************** 
+# Properties for kafka producer agents.
+# For additional properties see kafka documentation.
+# **************************************************************************************** 
+
+# The maximum size of a request. This is also effectively a cap on the maximum record size.
+max.request.size=1048576
+
+# The total bytes of memory the producer can use to buffer records waiting to be sent to the server.
+buffer.memory=67108864
+
+# **************************************************************************************** 
+# Custom properties for kafka producer agents.
+# **************************************************************************************** 
+
+# Enabling security protocol.Before configuring fields check https://www.cloudera.com/documentation/kafka/latest/topics/kafka_security.html 
+# security.protocol=SSL / PLAINTEXT / SASL_PLAINTEXT / SASL_SSL
+
+# Path to the KERBEROS configuration file. For additional info check https://www.cloudera.com/documentation/kafka/latest/topics/kafka_security.html 
+# java.security.auth.login.config=/etc/kafka/kafka_client_jaas.conf
+
+# Use sasl.jaas.config instead of java.security.auth.login.config to run multiple Kafka workflows against different Kafka brokers on the same EC/ECSA
+# sasl.jaas.config=<SASL Login Module>
+
+# SASL Mechanism
+# sasl.mechanism=PLAIN / SCRAM / GSSAPI
+",
+    "Consumer Properties": "# **************************************************************************************** 
+# Properties for kafka consumer agents.
+# **************************************************************************************** 
+
+# java.security.auth.login.config=/etc/kafka/kafka_client_jaas.conf
+
+# Use sasl.jaas.config instead of java.security.auth.login.config to run multiple Kafka workflows against different Kafka brokers on the same EC/ECSA
+# sasl.jaas.config=<SASL Login Module>
+
+# SASL Mechanism
+# sasl.mechanism=PLAIN / SCRAM / GSSAPI
+
+",
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.kafka2ProfileConfig",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,130 @@
+{
+  "Key": "DR1793473674467",
+  "Name": "UFL_Aggregation",
+  "Type": "Ultra Format",
+  "Version": 6,
+  "Folder": "SAPCMBATCH4_AGGREGATION",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "//First example to perform aggregation on consumption for each key(subscriber_id+service_type) combination
+internal telcoUsg{
+    string subscriber_id;
+    string service_type;
+    long consumption;
+};
+
+session sessionTelUsg1{
+    telcoUsg rec;
+};
+
+//Second example to perform aggregation on consumption for 2 key combination which ever is available
+//key1:subsId+serviceType
+//key2:msisdn+serviceType
+internal telcoUsage2{
+    string subsId;
+    string msisdn;
+    string serviceType;
+    long consumption;   
+};
+
+session sessionTelUsg2{
+    telcoUsage2 rec;
+};
+
+
+//Third example to deduplicate data using aggregation
+//key:Customer_ID+Subscription_ID+Product_Code+Usage_Date (string)
+internal Netstream{
+\tstring Record_ID;
+\tstring Customer_ID;
+\tstring Subscription_ID;
+\tstring Service_Type;
+\tstring Plan_Type;
+\tstring Product_Code;
+\tstring Usage_Date;
+\tstring Billing_Period;
+\tstring Usage_Units;
+\tstring Unit_Price;
+\tstring Total_Amount;
+\tstring Currency;
+\tstring Status;
+\tstring Region;
+\tstring Session_ID;
+};
+
+session sessionNetstream{
+    boolean isUnique;
+    string sessionId;    
+};
+
+//Fourth example to perform corelation
+//Radius record will create the session for acct_status_type as \"1\" or \"2\"
+//Netflow record will be used to aggregate the data
+external RadiusExt : identified_by(udrType == \"RADIUS\"){
+    ascii udrType : terminated_by(\",\");
+    ascii user_name : terminated_by(\",\");
+    ascii framed_ip_address : terminated_by(\",\");//key
+    ascii acct_session_id : terminated_by(\",\");
+    ascii acct_status_type : terminated_by(\",\");
+    ascii event_time : terminated_by(\"\\n\");
+};
+internal Radius{
+    string udrType;
+    string user_name;
+    string framed_ip_address;//key
+    string acct_session_id;
+    string acct_status_type;
+    string event_time;
+};
+
+internal Netflow{
+   string udrType;
+   string source_ip;//key
+   string destination_ip;
+   long bytes_in_flow;
+   string start_time;
+   string end_time;
+   long protocol;        
+};
+external NetflowExt : identified_by(udrType == \"NETFLOW\"){
+   ascii udrType : terminated_by(\",\");
+   ascii source_ip : terminated_by(\",\");//key
+   ascii destination_ip : terminated_by(\",\");
+   ascii bytes_in_flow : terminated_by(\",\");
+   ascii start_time : terminated_by(\",\");
+   ascii end_time : terminated_by(\",\");
+   ascii protocol : terminated_by(\"\\n\");        
+} ;
+
+in_map ipAMap1 : external(RadiusExt),internal(Radius){automatic;};
+in_map ipAMap2 : external(NetflowExt),internal(Netflow){automatic;};
+
+decoder decIp : in_map(ipAMap1),in_map(ipAMap2);
+session SessionIp { 
+   string user; 
+   string IPAddress; 
+   string sessionID; 
+   long downloadedBytes; 
+   long uploadedBytes; 
+};
+
+internal OutputUDR{
+   string user;
+   string IPAddress;
+   long downloadedBytes; 
+   long uploadedBytes;   
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

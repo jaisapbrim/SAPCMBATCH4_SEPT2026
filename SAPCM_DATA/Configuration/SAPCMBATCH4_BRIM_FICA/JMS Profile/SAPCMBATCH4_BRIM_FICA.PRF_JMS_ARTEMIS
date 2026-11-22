@@ -1,0 +1,67 @@
+{
+  "Key": "DR1794240980726",
+  "Name": "PRF_JMS_ARTEMIS",
+  "Type": "JMS Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_BRIM_FICA",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Destination": "dynamicQueues/DLQ",
+    "Connection": "ConnectionFactory",
+    "Context": [
+      {
+        "Key": {
+          "$Value": "java.naming.factory.initial",
+          "$Type": "string"
+        },
+        "Value": {
+          "$Value": "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": {
+          "$Value": "java.naming.provider.url",
+          "$Type": "string"
+        },
+        "Value": {
+          "$Value": "tcp://192.168.2.100:61616",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": {
+          "$Value": "java.naming.security.credentials",
+          "$Type": "string"
+        },
+        "Value": {
+          "$Value": "adminsecurepass",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": {
+          "$Value": "java.naming.security.principal",
+          "$Type": "string"
+        },
+        "Value": {
+          "$Value": "admin",
+          "$Type": "string"
+        }
+      }
+    ],
+    "$Type": "dr.JMSSettings",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

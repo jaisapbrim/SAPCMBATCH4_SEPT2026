@@ -1,0 +1,57 @@
+{
+  "Key": "DR1792936148674",
+  "Name": "UFL_INS",
+  "Type": "Ultra Format",
+  "Version": 5,
+  "Folder": "SAPCMBATCH4_DATABASE-OP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal InsRefData{
+    string PolicyholderID;
+    string ContractAccount;
+    string PolicyNumber;
+    string CoverageItem;
+    string ProductCode;
+    string PolicyType;
+    string MonthlyPremium;
+    string Currency;
+    string PolicyStatus;
+};
+
+internal AllIndHealth{
+\tstring BusinessPartner;
+\tstring ContractAccount;
+\tstring CAContract;
+\tstring CAProviderContractItemNumber;
+\tstring CACnsmpnItmID;
+\tstring CACnsmpnItmConsumptionDateTime;
+\tstring CACnsmpnItmQty;
+\tstring CACnsmpnItmQuantityUnit;
+\tstring CACnsmpnItmIDType;
+};
+
+internal Usage{
+    string name;    
+    string usageId;
+};
+
+internal consumptionLog{
+    string deviceId;
+    date readTime;
+    double consKwh;
+    string status;
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,188 @@
+{
+  "Key": "DR1794064296294",
+  "Name": "WFL_ECS_COLLECTION",
+  "Type": "Workflow",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_ECS_BATCH",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "ECS_1",
+        "ID": 1894806705,
+        "Classname": "com.digitalroute.wfc.ecscollector.EcsCollectorInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ecscollector.EcsCollectorInsp",
+            "Data": {
+              "collectionMode": "Reprocessing Group",
+              "group": {
+                "Id": 12019,
+                "Name": "RG_BATCH_4_1",
+                "Type": 1,
+                "UDR Type": "SAPCMBATCH4_ECS_BATCH.UFL_ECS.Fileinfo",
+                "$Version": 2.0
+              },
+              "sqlBulkSize": 20,
+              "udrBatchSize": 5000,
+              "$Type": "dr.EcsCollectorConfigExt",
+              "$Version": 10.2
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 90,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "bytearray",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 270,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1939312021,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1894806705,
+        "stroke": [
+          {
+            "x": 120,
+            "y": 192,
+            "$Version": 1.0
+          },
+          {
+            "x": 160,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 200,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 240,
+            "y": 192,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,110 @@
+{
+  "Key": "DR1795288840477",
+  "Name": "FS_GIT_S3",
+  "Type": "File System Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_FILESYSTEM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Amazon Profile": {
+      "folder": "SAPCMBATCH4_AWS",
+      "key": "DR1792244816831",
+      "name": "PRF_AWS",
+      "type": "Amazon Profile",
+      "$Version": 1.0
+    },
+    "File System type": "Amazon S3",
+    "Connection Params": [
+      {
+        "Key": "bucket",
+        "Value": {
+          "$Value": "",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": "advancedProperties",
+        "Value": {
+          "$Value": "# ****************************************************************************************
+# Properties for Amazon S3 File System client.
+# ****************************************************************************************
+
+# Canned ACL properties. For details see: https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl
+
+# Owner gets FULL_CONTROL. No one else has access rights (default).
+# s3.create.canned_acl=Private
+
+# Owner gets FULL_CONTROL. The AllUsers group (see Who Is a Grantee?) gets READ access.
+# s3.create.canned_acl=PublicRead
+
+# Owner gets FULL_CONTROL. The AllUsers group gets READ and WRITE access. Granting this on a bucket is generally not recommended.
+# s3.create.canned_acl=PublicReadWrite
+
+# Owner gets FULL_CONTROL. Amazon EC2 gets READ access to GET an Amazon Machine Image (AMI) bundle from Amazon S3.
+# s3.create.canned_acl=AwsExecRead
+
+# Owner gets FULL_CONTROL. The AuthenticatedUsers group gets READ access.
+# s3.create.canned_acl=AuthenticatedRead
+
+# Object owner gets FULL_CONTROL. Bucket owner gets READ access. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it.
+# s3.create.canned_acl=BucketOwnerRead
+
+# Both the object owner and the bucket owner get FULL_CONTROL over the object. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it.
+# s3.create.canned_acl=BucketOwnerFullControl
+
+# The LogDelivery group gets WRITE and READ_ACP permissions on the bucket. For more information about logs, see (Amazon S3 Server Access Logging).
+# s3.create.canned_acl=LogDeliveryWrite
+
+# ****************************************************************************************
+# Properties for Amazon S3 bucket object reader.
+# ****************************************************************************************
+
+# Bucket object input stream read buffer size (byte). Default read buffer size is 10485760 bytes, uncomment the following to override the value.
+# s3.read.buffer_size=10485760
+",
+          "$Type": "string"
+        }
+      },
+      {
+        "Key": "use_amazon_profile",
+        "Value": {
+          "$Value": true,
+          "$Type": "boolean"
+        }
+      },
+      {
+        "Key": "region",
+        "Value": {
+          "$Value": "",
+          "$Type": "string"
+        }
+      }
+    ],
+    "Secret Connection Params": [
+      {
+        "Key": "secretKey",
+        "Value": "DR-4-017BB0B8FB061C1876D43DD75468AA40"
+      },
+      {
+        "Key": "accessKey",
+        "Value": "DR-4-017BB0B8FB061C1876D43DD75468AA40"
+      }
+    ],
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.AmazonS3FileSystemProfileData",
+    "$Version": 1.1
+  },
+  "documentation": "",
+  "Dynamic Parameters": [],
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

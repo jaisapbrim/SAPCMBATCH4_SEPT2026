@@ -1,0 +1,4021 @@
+{
+  "Key": "DR1794725779914",
+  "Name": "PRF_RFC_BIT_CREATE",
+  "Type": "SAP RFC Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "HOST": "192.168.2.100",
+    "USERNAME": "SAPCMUSER14",
+    "CLIENT": "100",
+    "PASSWORD": {
+      "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+      "secrets_alias": "",
+      "$Version": 1.0
+    },
+    "SYSTEM": 0,
+    "RFCDATA": [
+      {
+        "Name": "/1FE/ZEVC_BIT_CREATE_API",
+        "RfcFieldInfo": [
+          {
+            "NAME": "context",
+            "TYPE": {
+              "IsPrimitive": true,
+              "PrimitiveType": 101,
+              "$Version": 1.0
+            },
+            "ORIGINAL_NAME": "context",
+            "$Version": 1.1
+          }
+        ],
+        "isTable": false,
+        "childField": [
+          {
+            "Name": "importParams",
+            "RfcFieldInfo": [
+              {
+                "NAME": "I_EXTERNAL_LOG",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_EXTERNAL_LOG",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_EXT_LOGNUMBER",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_EXT_LOGNUMBER",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_FIRST_CALL",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_FIRST_CALL",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_LAST_CALL",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_LAST_CALL",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_MANDT",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_MANDT",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_MAX_PROBCL",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_MAX_PROBCL",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_NO_COMMIT_WORK",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_NO_COMMIT_WORK",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_NO_SUMMARY_MSG",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_NO_SUMMARY_MSG",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "I_TEST",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "I_TEST",
+                "$Version": 1.1
+              }
+            ],
+            "isTable": false,
+            "childField": [
+              {
+                "Name": "IT_ADD_PARAMS",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "NAME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NAME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VALUE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VALUE",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "FKKBIX_ADD_PARAM_TAB",
+                "sanitizedName": "IT_ADD_PARAMS",
+                "$Version": 1.1
+              }
+            ],
+            "isParent": false,
+            "udrName": "importParams_/1FE/ZEVC_BIT_CREATE_API",
+            "$Version": 1.1
+          },
+          {
+            "Name": "tableParams",
+            "RfcFieldInfo": [],
+            "isTable": false,
+            "childField": [
+              {
+                "Name": "ET_BIT0_IT",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "MANDT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MANDT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKUUID",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKUUID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKCNO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKCNO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKNUM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 2,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKNUM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITSTATUS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITSTATUS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBPROCESS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBPROCESS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PREPAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PREPAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RELTYPE_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RELTYPE_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "APPLK",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "APPLK",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MDCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MDCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTPOS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTPOS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_BASEDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_BASEDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_FIRST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_FIRST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRMODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRMODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATAPACKID",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATAPACKID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_CURR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_CURR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QUANTITY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QUANTITY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_UNIT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_UNIT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KEYPP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KEYPP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXCHIST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXCHIST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CHHIST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CHHIST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTA_CORRCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTA_CORRCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "POSTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "POSTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "NOT_BPREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NOT_BPREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINT_SUBSTITUTE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINT_SUBSTITUTE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUKRS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUKRS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GSBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GSBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEGMT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEGMT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRCTR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRCTR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "HVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "HVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KOFIZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KOFIZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_INCLUDED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_INCLUDED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DET_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DET_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DATE_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DATE_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "XANZA",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "XANZA",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "STAKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STAKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PYMET",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PYMET",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREF32",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREF32",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEPARATE_INV",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEPARATE_INV",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SIMULATED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SIMULATED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXCREASON",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXCREASON",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKCNO_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKCNO_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITIDTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITIDTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ACCTGRP_PROD",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ACCTGRP_PROD",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIS_CHANNEL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIS_CHANNEL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIVISION",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIVISION",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ITEM_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ITEM_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_SALES_ORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_SALES_ORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DITRSN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DITRSN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 14,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATY_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATY_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF_PRIMARY",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "/1FE/0ZEVC0IT",
+                "sanitizedName": "ET_BIT0_IT",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_BIT2_IT",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "MANDT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MANDT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKUUID",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKUUID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKCNO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKCNO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKNUM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 2,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKNUM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITSTATUS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITSTATUS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBPROCESS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBPROCESS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PREPAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PREPAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RELTYPE_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RELTYPE_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "APPLK",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "APPLK",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MDCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MDCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTPOS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTPOS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_BASEDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_BASEDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_FIRST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_FIRST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCRMODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCRMODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATAPACKID",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATAPACKID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTRDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTRDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTRTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTRTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_CURR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_CURR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QUANTITY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QUANTITY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_UNIT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_UNIT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KEYPP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KEYPP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXCHIST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXCHIST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CHHIST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CHHIST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTA_CORRCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTA_CORRCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILLDOCNO_PRE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILLDOCNO_PRE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "POSTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "POSTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "NOT_BPREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NOT_BPREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINT_SUBSTITUTE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINT_SUBSTITUTE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUKRS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUKRS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GSBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GSBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEGMT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEGMT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRCTR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRCTR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "HVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "HVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KOFIZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KOFIZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_INCLUDED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_INCLUDED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DET_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DET_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DATE_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DATE_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "XANZA",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "XANZA",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "STAKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STAKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PYMET",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PYMET",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREF32",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREF32",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEPARATE_INV",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEPARATE_INV",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SIMULATED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SIMULATED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKCNO_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKCNO_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITIDTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITIDTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ITEM_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ITEM_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DITRSN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DITRSN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 14,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATY_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATY_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF_PRIMARY",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "/1FE/0ZEVC2IT",
+                "sanitizedName": "ET_BIT2_IT",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_BIT4KEY_BILLED",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "MANDT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MANDT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKUUID",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKUUID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPACKCNO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPACKCNO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILLDOCNO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILLDOCNO",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "FKKBIXBIT4_BILLED",
+                "sanitizedName": "ET_BIT4KEY_BILLED",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_BIT_IT_ERROR",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBPROCESS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBPROCESS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PREPAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PREPAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RELTYPE_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RELTYPE_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "APPLK",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "APPLK",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTPOS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTPOS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_BASEDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_BASEDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_FIRST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_FIRST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_CURR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_CURR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QUANTITY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QUANTITY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_UNIT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_UNIT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTA_CORRCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTA_CORRCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "POSTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "POSTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "NOT_BPREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NOT_BPREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINT_SUBSTITUTE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINT_SUBSTITUTE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUKRS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUKRS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GSBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GSBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEGMT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEGMT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRCTR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRCTR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "HVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "HVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KOFIZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KOFIZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_INCLUDED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_INCLUDED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DET_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DET_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DATE_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DATE_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "XANZA",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "XANZA",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "STAKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STAKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PYMET",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PYMET",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREF32",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREF32",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SIMULATED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SIMULATED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKCNO_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKCNO_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITIDTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITIDTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ACCTGRP_PROD",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ACCTGRP_PROD",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIS_CHANNEL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIS_CHANNEL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIVISION",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIVISION",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ITEM_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ITEM_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_SALES_ORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_SALES_ORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DITRSN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DITRSN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 14,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATY_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATY_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF_PRIMARY",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "/1FE/1ZEVC0IT_API",
+                "sanitizedName": "ET_BIT_IT_ERROR",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_BIT_SRCTA_BIT0",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "FKKBIXBIT_SRCTA",
+                "sanitizedName": "ET_BIT_SRCTA_BIT0",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_BIT_SRCTA_BIT2",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "FKKBIXBIT_SRCTA",
+                "sanitizedName": "ET_BIT_SRCTA_BIT2",
+                "$Version": 1.1
+              },
+              {
+                "Name": "ET_MESSAGES",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "MSGID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGTY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGTY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGNO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGNO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGV1",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGV1",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGV2",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGV2",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGV3",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGV3",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGV4",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGV4",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MSGTX",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MSGTX",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "FKKBIX_API_MSG",
+                "sanitizedName": "ET_MESSAGES",
+                "$Version": 1.1
+              },
+              {
+                "Name": "IT_BIT_IT",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "SRCTATYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBPROCESS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBPROCESS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PREPAID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PREPAID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RELTYPE_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RELTYPE_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "APPLK",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "APPLK",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTPOS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTPOS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_BASEDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_BASEDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BILL_FIRST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BILL_FIRST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITDATE_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITDATE_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_CURR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_CURR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QUANTITY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QUANTITY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_UNIT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_UNIT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_QTY_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_QTY_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BIT_TAX_AMT_MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BIT_TAX_AMT_MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREVERSAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREVERSAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTA_CORRCAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTA_CORRCAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "POSTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "POSTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINTREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINTREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "NOT_BPREL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NOT_BPREL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRINT_SUBSTITUTE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRINT_SUBSTITUTE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SPART",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SPART",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUKRS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUKRS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GSBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GSBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEGMT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEGMT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PRCTR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PRCTR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "HVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "HVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TVORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TVORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "KOFIZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "KOFIZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_INCLUDED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_INCLUDED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DET_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DET_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_DATE_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_DATE_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXT_TAX_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXT_TAX_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "XANZA",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "XANZA",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "STAKZ",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STAKZ",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PYMET",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PYMET",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITREF32",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITREF32",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SIMULATED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SIMULATED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKCNO_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKCNO_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITPKID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": false,
+                      "PrimitiveType": 0,
+                      "TypeName": "bytearray",
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITPKID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BITTIME_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BITTIME_TO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CITIDTYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CITIDTYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ACCTGRP_PROD",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ACCTGRP_PROD",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIS_CHANNEL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIS_CHANNEL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_DIVISION",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_DIVISION",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_ITEM_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_ITEM_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CRM_SALES_ORG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CRM_SALES_ORG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DITRSN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DITRSN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ERMWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ERMWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "GPART_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "GPART_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MWSKZ_B2B",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MWSKZ_B2B",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGDATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGDATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RATINGID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 14,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RATINGID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTAID_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTAID_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTASUBID_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTASUBID_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATYPE_CORR",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATYPE_CORR",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SRCTATY_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SRCTATY_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBAP_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBAP_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VKONT_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VKONT_PRIMARY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VTREF_PRIMARY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VTREF_PRIMARY",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "/1FE/1ZEVC0IT_API",
+                "sanitizedName": "IT_BIT_IT",
+                "$Version": 1.1
+              }
+            ],
+            "isParent": false,
+            "udrName": "tableParams_/1FE/ZEVC_BIT_CREATE_API",
+            "$Version": 1.1
+          }
+        ],
+        "isParent": true,
+        "sanitizedName": "/1FE/ZEVC_BIT_CREATE_API",
+        "$Version": 1.1
+      }
+    ],
+    "FUNCTIONS": [
+      "/1FE/ZEVC_BIT_CREATE_API"
+    ],
+    "CONFIGHASH": "826076643",
+    "ENABLE_LOADBALANCE": false,
+    "SYSTEMID": "",
+    "MESSAGESERVERHOST": "",
+    "MESSAGESERVERPORT": 0,
+    "GROUPNAME": "",
+    "ENABLE_SNC_MODE": false,
+    "SNC_LIB_PATH": "",
+    "SNC_LVL_PROTECTION": 3,
+    "SNC_NAME": "",
+    "SNC_PARTNER_NAME": "",
+    "ENABLE_SNC_SSO": false,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "com.digitalroute.mz.rfc.profile.RfcProfileData",
+    "$Version": 1.4
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

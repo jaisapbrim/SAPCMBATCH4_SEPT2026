@@ -1,0 +1,30 @@
+{
+  "Key": "DR1792919963496",
+  "Name": "PRF_DB_SAPHANA",
+  "Type": "Database Profile",
+  "Version": 5,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "dbDriverClassName": "com.digitalroute.wfc.db.saphana.SapHanaDatabaseDriver",
+    "dbName": "HDB",
+    "genericConnection": false,
+    "hostName": "192.168.2.100",
+    "password": "DR-4-B580C761B546B34CB9FCA90A9A61FD86",
+    "port": 30213,
+    "type": 7,
+    "userName": "SAPCMUSER14",
+    "$Type": "dr.DRDBProfileExtRef",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

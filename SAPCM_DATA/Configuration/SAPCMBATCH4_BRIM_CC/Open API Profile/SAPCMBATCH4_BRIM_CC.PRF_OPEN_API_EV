@@ -1,0 +1,72 @@
+{
+  "Key": "DR1794289201011",
+  "Name": "PRF_OPEN_API_EV",
+  "Type": "Open API Profile",
+  "Version": 6,
+  "Folder": "SAPCMBATCH4_BRIM_CC",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "scheme": "openapi: 3.0.0
+info:
+  title: EV Charging API
+  version: 1.0.0
+paths:
+  /evcharging:
+    post:
+      summary: Submit EV Charging consumption data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvChCons'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargingResp'
+components:
+  schemas:
+    EvChCons:
+      type: object
+      properties:
+        VehicleId:
+          type: string
+        TotalChargingHrs:
+          type: string
+        ChargingStartTime:
+          type: string
+        ChargingEndTime:
+          type: string
+        ChargingLocation:
+          type: string
+    ChargingResp:
+      type: object
+      properties:
+        status:
+          type: string
+        amount:
+          type: number
+          format: double
+        message:
+          type: string",
+    "fileName": "OpenAPI_EV.yaml",
+    "ext_refs_files": [],
+    "ignore_readonly": true,
+    "enable_additional_properties": false,
+    "$Type": "dr.OpenApiProfileData",
+    "$Version": 1.2
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

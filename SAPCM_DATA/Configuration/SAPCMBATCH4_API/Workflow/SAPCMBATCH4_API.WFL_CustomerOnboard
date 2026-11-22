@@ -1,0 +1,735 @@
+{
+  "Key": "DR1794128426612",
+  "Name": "WFL_CustomerOnboard",
+  "Type": "Workflow",
+  "Version": 29,
+  "Folder": "SAPCMBATCH4_API",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "GetToken",
+        "ID": 41227984,
+        "Classname": "com.digitalroute.http2.client.agent.Http2ClientInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.client.agent.Http2ClientInsp",
+            "Data": {
+              "authenticationType": "Basic",
+              "clientAuthType": "client_secret_basic",
+              "expirationOverride": 0,
+              "grantType": "Client Credentials",
+              "maxPushedConcurrentStreams": 1000,
+              "maxRequestsQueuedPerDestination": 20000,
+              "minConnectionCheckInterval": 30,
+              "minConnections": 0,
+              "monitorPingInterval": 10,
+              "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+              "queueFullMaxRetries": 10,
+              "queueFullRetryInterval": 50,
+              "requestTimeout": 30,
+              "routeErrorUdr": false,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": false,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": false,
+              "useSSLNRF": false,
+              "useServerMonitor": false,
+              "username": "sapcmuser14",
+              "$Type": "dr.HTTP2ClientData",
+              "$Version": 22.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 460,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "BPCreateReq",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.http;
+import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+import apl.SAPCMBATCH4_API.APL_FUNCTIONS;
+consume {
+    RequestCycle rc = (RequestCycle)input;//token resp
+    RequestCycle og = (RequestCycle)rc.context;//original client req
+    debug(\"Token resp:\"+rc);
+    if(rc.response.statusCode == 200){
+        debug(\"Token:\"+rc);
+        
+        BP_Raw bpRaw  = (BP_Raw)og.context;
+        
+        BP_Root bp = buildBusinessPartner(
+            bpRaw.firstName,              // firstName
+            bpRaw.lastName,         // lastName
+            bpRaw.firstName,         // searchTerm1
+            bpRaw.country,              // country
+            bpRaw.region,              // region
+            bpRaw.cityName,       // cityName
+            bpRaw.postalCode,           // postalCode
+            bpRaw.streetName,    // streetName
+            bpRaw.houseNumber             // houseNumber
+        );
+        // 1. Extract CSRF token
+        string token = listGet(mapGet(rc.response.headers, \"x-csrf-token\"), 0);
+    
+        // 2. Extract raw session cookies directly from response headers
+        list<string> cookieHeader = getCookieHeader(rc);
+        
+        // 3. Encode the BP payload
+        string strBp = jsonEncodeUdr(bp);
+        bytearray baBp;
+        strToBA(baBp, strBp);
+    
+        // 4. Build POST request with the CSRF token and Cookie header
+        RequestCycle reqBp = buildBpCreate(token, baBp, cookieHeader);
+        reqBp.context = og;
+        udrRoute(reqBp,\"bpReq\");
+    }else{
+        
+        ResponseBp resp = createResp(\"Token request failed\",\"failed\",\"\");
+        og.response = udrCreate(Response);
+        string res = jsonEncodeUdr(resp);
+        bytearray ba ;
+        strToBA(ba,res);
+        og.response.body = ba;
+        udrRoute(og,\"toResp\");
+    }
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 610,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "CreateBpOdata",
+        "ID": -480745142,
+        "Classname": "com.digitalroute.http2.client.agent.Http2ClientInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.client.agent.Http2ClientInsp",
+            "Data": {
+              "authenticationType": "Basic",
+              "clientAuthType": "client_secret_basic",
+              "expirationOverride": 0,
+              "grantType": "Client Credentials",
+              "maxPushedConcurrentStreams": 1000,
+              "maxRequestsQueuedPerDestination": 20000,
+              "minConnectionCheckInterval": 30,
+              "minConnections": 0,
+              "monitorPingInterval": 10,
+              "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+              "queueFullMaxRetries": 10,
+              "queueFullRetryInterval": 50,
+              "requestTimeout": 30,
+              "routeErrorUdr": false,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": false,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": false,
+              "useSSLNRF": false,
+              "useServerMonitor": false,
+              "username": "sapcmuser14",
+              "$Type": "dr.HTTP2ClientData",
+              "$Version": 22.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 610,
+          "y": 360,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "BpResp",
+        "ID": -106481934,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.http;
+import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+import apl.SAPCMBATCH4_API.APL_FUNCTIONS;
+consume {
+    
+    RequestCycle rc = (RequestCycle)input;
+    RequestCycle og = (RequestCycle)rc.context;
+    try{
+    debug(\"BP resp:\"+rc);
+    if(rc.response.statusCode == 201){
+        bytearray ba = (bytearray)rc.response.body;
+        string jsonString = baToStr(ba);
+        
+        BP bp = udrCreate(BP);
+        any obj = jsonParse(jsonString);
+        bp.BusinessPartner = (string)obj.d.BusinessPartner;
+        debug(\"Created bp:\"+bp);
+        ResponseBp resp = createResp(\"BP created successfully\",\"suceess\",bp.BusinessPartner);
+        og.response = udrCreate(Response);
+        string res = jsonEncodeUdr(resp);
+        bytearray bA ;
+        strToBA(bA,res);
+        og.response.body = bA;
+        udrRoute(og,\"toResp\");
+    }else{
+        ResponseBp resp = createResp(\"BP creation failed\",\"failed\",\"\");
+        og.response = udrCreate(Response);
+        string res = jsonEncodeUdr(resp);
+        bytearray ba ;
+        strToBA(ba,res);
+        og.response.body = ba;
+        udrRoute(og,\"toResp\");
+       
+    }
+    }catch(ExceptionDetails e){
+        debug(\"Exception :\"+e);
+    }
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 420,
+          "y": 360,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Provisioning",
+        "ID": 608952228,
+        "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+            "Data": {
+              "authLevel": "NONE",
+              "averagePeriod": 10,
+              "characterEncoding": "UTF-8",
+              "clientTimeout": 10,
+              "enableTooManyRequests": false,
+              "gzipLevel": 7,
+              "host": "192.168.2.100",
+              "isTwoWayAuth": false,
+              "maxConcurrentStreams": 500,
+              "numberOfRequests": 1000,
+              "port": 8056,
+              "routeToApl": false,
+              "serverTimeout": 0,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": false,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                },
+                {
+                  "enableFallBack": false,
+                  "enableRegistrationRetry": false,
+                  "nrfAddresses": [],
+                  "numberOfRegistrationRetry": 0,
+                  "openApiProfileList": [],
+                  "secondaryAddressList": [],
+                  "timeIntervalForRegistrationRetry": 0,
+                  "use5g": false,
+                  "$Type": "dr.HTTP2.Support5G",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": false,
+              "waitDuration": 10,
+              "$Type": "dr.HTTP2ServerData",
+              "$Version": 12.1
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "RouteResp",
+        "ID": -325676864,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+    udrRoute(input,\"toClient\");
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 240,
+          "y": 370,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "createTokenReq",
+        "ID": 97398070,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+import ultra.http;
+import apl.SAPCMBATCH4_API.APL_FUNCTIONS;
+
+consume {
+    RequestCycle tokenReq = buildCsrfFetch();
+    tokenReq.context = input;//original client request
+    debug(\"Token req:\"+tokenReq);
+    udrRoute(tokenReq,\"getToken\");
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "decode",
+        "ID": 1748133922,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.http;
+import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+import apl.SAPCMBATCH4_API.APL_FUNCTIONS;
+consume {
+    RequestCycle rc = (RequestCycle)input;
+    try{
+    
+        string jsonString = baToStr(rc.body);
+        BP_Raw bpRaw = udrCreate(BP_Raw);
+        jsonDecodeUdr(jsonString,bpRaw);
+        debug(\"BP_Raw:\"+bpRaw);
+        rc.context = bpRaw;
+        
+        udrRoute(rc,\"toToken\"); 
+    }catch(ExceptionDetails e){
+        ResponseBp resp = createResp(e.message,\"failed\",\"\");
+        rc.response = udrCreate(Response);
+        string res = jsonEncodeUdr(resp);
+        bytearray ba ;
+        strToBA(ba,res);
+        rc.response.body = ba;
+        
+        udrRoute(rc,\"toResp\");
+    }
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 240,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": 186233777,
+        "id": -4,
+        "name": "tokenResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 41227984,
+        "stroke": [
+          {
+            "x": 490,
+            "y": 193,
+            "$Version": 1.0
+          },
+          {
+            "x": 580,
+            "y": 193,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -480745142,
+        "id": -5,
+        "name": "bpReq",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 610,
+            "y": 219,
+            "$Version": 1.0
+          },
+          {
+            "x": 610,
+            "y": 327,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -106481934,
+        "id": -6,
+        "name": "bpResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -480745142,
+        "stroke": [
+          {
+            "x": 580,
+            "y": 353,
+            "$Version": 1.0
+          },
+          {
+            "x": 450,
+            "y": 353,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -325676864,
+        "id": -9,
+        "name": "toResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 580,
+            "y": 207,
+            "$Version": 1.0
+          },
+          {
+            "x": 270,
+            "y": 349,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -325676864,
+        "id": -10,
+        "name": "toResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -106481934,
+        "stroke": [
+          {
+            "x": 390,
+            "y": 355,
+            "$Version": 1.0
+          },
+          {
+            "x": 270,
+            "y": 361,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 608952228,
+        "id": -12,
+        "name": "toClient",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -325676864,
+        "stroke": [
+          {
+            "x": 219,
+            "y": 337,
+            "$Version": 1.0
+          },
+          {
+            "x": 121,
+            "y": 219,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 41227984,
+        "id": -14,
+        "name": "getToken",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 97398070,
+        "stroke": [
+          {
+            "x": 390,
+            "y": 193,
+            "$Version": 1.0
+          },
+          {
+            "x": 430,
+            "y": 193,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1748133922,
+        "id": -15,
+        "name": "toDecode",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 608952228,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 193,
+            "$Version": 1.0
+          },
+          {
+            "x": 210,
+            "y": 193,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 97398070,
+        "id": -16,
+        "name": "toToken",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 1748133922,
+        "stroke": [
+          {
+            "x": 270,
+            "y": 193,
+            "$Version": 1.0
+          },
+          {
+            "x": 330,
+            "y": 193,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -325676864,
+        "id": -17,
+        "name": "toResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 1748133922,
+        "stroke": [
+          {
+            "x": 240,
+            "y": 219,
+            "$Version": 1.0
+          },
+          {
+            "x": 240,
+            "y": 337,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

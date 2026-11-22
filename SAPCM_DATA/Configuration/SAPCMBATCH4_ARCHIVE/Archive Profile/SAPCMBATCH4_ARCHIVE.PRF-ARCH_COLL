@@ -1,0 +1,69 @@
+{
+  "Key": "DR1793459844329",
+  "Name": "PRF-ARCH_COLL",
+  "Type": "Archive Profile",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_ARCHIVE",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Base directories": [
+      "/opt/mz/SAPCM-BATCH4/APL_FUNC_BLOCK/bkp/",
+      "/opt/mz/SAPCM-BATCH4/APL_FUNC_BLOCK/bkp1/"
+    ],
+    "Switch policy": 0,
+    "Template tokens": [
+      {
+        "Text": "WF",
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 3,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 0,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 1,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 5,
+        "$Version": 1.0
+      },
+      {
+        "Special token": 2,
+        "$Version": 1.0
+      }
+    ],
+    "Purge entry": 5,
+    "Keep files": false,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.ArchiveConfig",
+    "$Version": 2.2
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

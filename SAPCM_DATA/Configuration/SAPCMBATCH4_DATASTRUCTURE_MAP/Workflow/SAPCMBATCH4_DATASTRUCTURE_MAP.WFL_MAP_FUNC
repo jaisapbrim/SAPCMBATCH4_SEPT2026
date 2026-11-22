@@ -1,0 +1,212 @@
+{
+  "Key": "DR1792332751341",
+  "Name": "WFL_MAP_FUNC",
+  "Type": "Workflow",
+  "Version": 8,
+  "Folder": "SAPCMBATCH4_DATASTRUCTURE_MAP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Pulse_1",
+        "ID": 33159177,
+        "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+            "Data": {
+              "center": 1.0,
+              "data": "",
+              "dataEntered": true,
+              "dataRandomData": false,
+              "dataRandomOrderSeq": false,
+              "dataRangeEnd": 10,
+              "dataRangeStart": 0,
+              "dataSequentialOrder": true,
+              "dataSequentialRange": false,
+              "dataSize": 1,
+              "dataUnit": "Bytes",
+              "intervalFixed": 1,
+              "intervalType": "Fixed",
+              "poissonRate": 1.0,
+              "rate": 1,
+              "start": 1,
+              "stop": 10,
+              "unit": "MINUTES",
+              "width": 1.0,
+              "$Type": "dr.PulseData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 170,
+          "y": 230,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    map<string,int> mapScore = mapCreate(string,int);
+    
+    mapSet(mapScore,\"Raju\",100);
+    mapSet(mapScore,\"Rani\",90);
+    mapSet(mapScore,\"Vani\",90);
+    mapSet(mapScore,\"Raju\",89);
+    
+    debug(mapScore);
+    //sleep(100);
+    mapRemove(mapScore,\"Raju\");
+    debug(mapScore);
+    
+    if(mapContains(mapScore,\"Vani\")){
+        int vaniScore = mapGet(mapScore,\"Vani\");
+        debug(\"vaniScore:\"+vaniScore);
+    }
+    
+    list<string> liKeys = mapKeys(mapScore);
+    debug(liKeys);
+    
+    list<int> liValues = mapValues(mapScore);
+    debug(liValues);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "PulseUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 33159177,
+        "stroke": [
+          {
+            "x": 200,
+            "y": 211,
+            "$Version": 1.0
+          },
+          {
+            "x": 242,
+            "y": 194,
+            "$Version": 1.0
+          },
+          {
+            "x": 286,
+            "y": 192,
+            "$Version": 1.0
+          },
+          {
+            "x": 330,
+            "y": 204,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

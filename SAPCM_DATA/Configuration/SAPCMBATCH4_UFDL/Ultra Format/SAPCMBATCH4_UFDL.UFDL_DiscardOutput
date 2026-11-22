@@ -1,0 +1,67 @@
+{
+  "Key": "DR1790523051011",
+  "Name": "UFDL_DiscardOutput",
+  "Type": "Ultra Format",
+  "Version": 16,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "
+/*
+Discarding the header of below data
+  
+BP,Service,ConsumptionDate
+BP01,API-001,12-12-2026
+BP02,API-002,12-11-2026
+BP01,API-001,12-12-2025
+BP02,API-002,12-11-2024
+BP01,API-001,12-12-2012
+BP02,API-002,12-11-2021
+BP01,API-001,12-12-2011
+BP02,API-002,12-11-2010
+*/
+external ApiHeader{
+    ascii header : terminated_by(0xA);        
+};
+
+//below in_map will decode the header but it will discard it from decoded data
+in_map iMapApiH : external(ApiHeader),target_internal(ApiHeaderTI),discard_output{automatic;};
+
+external ApiConsExt{
+    ascii BP : terminated_by(0x2C);
+    ascii Service : terminated_by(0x2C);  
+    ascii ConsumptionDate : terminated_by(0xA);        
+};
+//convert externalraw file to internal(UDR/Object) format
+//in_map will be invoked by decoder
+in_map iMapApi : external(ApiConsExt),target_internal(ApiConsTI){automatic;};
+
+decoder apiDecH : in_map(iMapApiH);
+decoder apiDecI : in_map(iMapApi);
+decoder apiDec{
+    decoder apiDecH;
+    decoder apiDecI *;    
+};
+
+external TrailerExt{
+    ascii trailer : terminated_by(0xA);    
+};
+in_map iMapTr : external(TrailerExt),target_internal(TrailerTI){automatic;};
+out_map OMapTr : external(TrailerExt),internal(TrailerTI){automatic;};
+out_map OMapApi : external(ApiConsExt),internal(ApiConsTI){automatic;};
+encoder apiEnc : out_map(OMapApi),out_map(OMapTr);
+",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

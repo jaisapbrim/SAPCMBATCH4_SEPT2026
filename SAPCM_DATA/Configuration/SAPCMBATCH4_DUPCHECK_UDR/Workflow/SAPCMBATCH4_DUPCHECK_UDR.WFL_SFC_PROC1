@@ -1,0 +1,513 @@
+{
+  "Key": "DR1792852772942",
+  "Name": "WFL_SFC_PROC1",
+  "Type": "Workflow",
+  "Version": 4,
+  "Folder": "SAPCMBATCH4_DUPCHECK_UDR",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "2"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Default",
+        "fieldName": "profile",
+        "nodeId": 169118557,
+        "nodeName": "Dup_UDR_1",
+        "section": "Dup UDR",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "folder": "SAPCMBATCH4_DUPCHECK_UDR",
+              "key": "DR1792852613894",
+              "name": "PRF_DupUdr_SFC1",
+              "type": "Duplicate UDR Profile",
+              "$Type": "dr.DRConfiguration",
+              "$Version": 1.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "folder": "SAPCMBATCH4_DUPCHECK_UDR",
+              "key": "DR1792854286425",
+              "name": "PRF_DupUdr_SFC2",
+              "type": "Duplicate UDR Profile",
+              "$Type": "dr.DRConfiguration",
+              "$Version": 1.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 2,
+        "instanceName": "workflow_2",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Disk_1",
+        "ID": 2108931552,
+        "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+            "Data": {
+              "routeFileRef": false,
+              "strategyClasses": [
+                "com.digitalroute.misc.advcoll.impl.DefaultFileInfo",
+                "com.digitalroute.misc.advcoll.impl.DefaultSourceFileHandling"
+              ],
+              "strategyCombinationClass": "com.digitalroute.misc.advcoll.impl.DefaultCollectionStrategy",
+              "strategyConfigs": [
+                {
+                  "baseDir": "/opt/mz/SAPCM-BATCH4/DUPCHECK",
+                  "compType": "No Compression",
+                  "fileRegExp": "SFC.*.proc",
+                  "subfolders": false,
+                  "$Type": "dr.DefaultFileInfoConfig",
+                  "$Version": 10.0
+                },
+                {
+                  "idleTime": 0,
+                  "moveBeforeRetrieval": false,
+                  "moveSuffix": "",
+                  "rbDirectory": "",
+                  "rbKeepInterval": -1,
+                  "rbRenamePrefix": "",
+                  "rbRenameSuffix": "",
+                  "rbReplace": "",
+                  "rbSearch": "",
+                  "rbType": "Ignore",
+                  "$Type": "dr.DefaultSourceFileHandlingConfig",
+                  "$Version": 10.0
+                }
+              ],
+              "$Type": "dr.DiskAdvInputData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNSServiceInsp",
+            "Data": {
+              "enabled": false,
+              "nextSeqNo": {
+                "SeqNo": -1,
+                "SeqNoUpdate": 0,
+                "$Version": 2.0
+              },
+              "nextSeqNoValue": -1,
+              "seqNoChk": 0,
+              "seqNoLen": -1,
+              "shallWarnOnOutOfSequence": false,
+              "startPos": -1,
+              "wrapOnSeqNo": -1,
+              "wrapToSeqNo": -1,
+              "$Type": "dr.DRFNSServiceConfigExtension",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFileInfoSortOrderServiceInsp",
+            "Data": {
+              "enabled": false,
+              "ignoreCase": false,
+              "length": 0,
+              "orderType": "Filename Value",
+              "patternType": "Position",
+              "sortOrder": "Ascending",
+              "sortType": "Alphanumeric",
+              "startPos": 0,
+              "$Type": "dr.DRFileInfoSortOrderServiceConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 40,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decoder_1",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "delimiter": ",",
+                "format": "Custom",
+                "lineBreak": "\\n",
+                "udrType": {
+                  "TypeName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck.SFC_Volumes",
+                  "FormatName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                },
+                "$Type": "dr.CsvDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "CSV Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 160,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck.SFC_Volumes",
+                  "FormatName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 430,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Dup_UDR_1",
+        "ID": 169118557,
+        "Classname": "com.digitalroute.wfc.dupudr2.DupUDRDet2Insp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.dupudr2.DupUDRDet2Insp",
+            "Data": {
+              "duplicateRoute": "dup",
+              "loggedMIMEntries": [
+                "Workflow.Workflow Name",
+                "Workflow.Start Time"
+              ],
+              "profile": {
+                "folder": "SAPCMBATCH4_DUPCHECK_UDR",
+                "key": "DR1792852613894",
+                "name": "PRF_DupUdr_SFC1",
+                "type": "Duplicate UDR Profile",
+                "$Version": 1.0
+              },
+              "suppressWarnings": false,
+              "$Type": "dr.DupUDRDet2Config",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": -1186562757,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck.SFC_Volumes",
+                  "FormatName": "SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 320,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1576094480,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 2108931552,
+        "stroke": [
+          {
+            "x": 70,
+            "y": 171,
+            "$Version": 1.0
+          },
+          {
+            "x": 90,
+            "y": 162,
+            "$Version": 1.0
+          },
+          {
+            "x": 109,
+            "y": 161,
+            "$Version": 1.0
+          },
+          {
+            "x": 130,
+            "y": 167,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 169118557,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 190,
+            "y": 170,
+            "$Version": 1.0
+          },
+          {
+            "x": 220,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 250,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 280,
+            "y": 170,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1186562757,
+        "id": -5,
+        "name": "dup",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 169118557,
+        "stroke": [
+          {
+            "x": 322,
+            "y": 209,
+            "$Version": 1.0
+          },
+          {
+            "x": 335,
+            "y": 235,
+            "$Version": 1.0
+          },
+          {
+            "x": 335,
+            "y": 261,
+            "$Version": 1.0
+          },
+          {
+            "x": 322,
+            "y": 287,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1939312021,
+        "id": -6,
+        "name": "uni",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 169118557,
+        "stroke": [
+          {
+            "x": 340,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 360,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 380,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 400,
+            "y": 168,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 2,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

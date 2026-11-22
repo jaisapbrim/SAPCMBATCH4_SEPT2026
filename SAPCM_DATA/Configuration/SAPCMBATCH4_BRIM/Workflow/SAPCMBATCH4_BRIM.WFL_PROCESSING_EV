@@ -1,0 +1,677 @@
+{
+  "Key": "DR1793818676512",
+  "Name": "WFL_PROCESSING_EV",
+  "Type": "Workflow",
+  "Version": 13,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "FromColl",
+        "ID": 2108931552,
+        "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+            "Data": {
+              "routeFileRef": false,
+              "strategyClasses": [
+                "com.digitalroute.misc.advcoll.impl.DefaultFileInfo",
+                "com.digitalroute.misc.advcoll.impl.DefaultSourceFileHandling"
+              ],
+              "strategyCombinationClass": "com.digitalroute.misc.advcoll.impl.DefaultCollectionStrategy",
+              "strategyConfigs": [
+                {
+                  "baseDir": "/opt/mz/SAPCM-BATCH4/BRIM/RIDE/COLL",
+                  "compType": "No Compression",
+                  "fileRegExp": "RIDE_PAYLOAD_.*.proc",
+                  "subfolders": false,
+                  "$Type": "dr.DefaultFileInfoConfig",
+                  "$Version": 10.0
+                },
+                {
+                  "idleTime": 0,
+                  "moveBeforeRetrieval": false,
+                  "moveSuffix": "",
+                  "rbDirectory": "",
+                  "rbKeepInterval": -1,
+                  "rbRenamePrefix": "PROCESSED_",
+                  "rbRenameSuffix": "",
+                  "rbReplace": "",
+                  "rbSearch": "",
+                  "rbType": "Rename",
+                  "$Type": "dr.DefaultSourceFileHandlingConfig",
+                  "$Version": 10.0
+                }
+              ],
+              "$Type": "dr.DiskAdvInputData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNSServiceInsp",
+            "Data": {
+              "enabled": false,
+              "nextSeqNo": {
+                "SeqNo": -1,
+                "SeqNoUpdate": 0,
+                "$Version": 2.0
+              },
+              "nextSeqNoValue": -1,
+              "seqNoChk": 0,
+              "seqNoLen": -1,
+              "shallWarnOnOutOfSequence": false,
+              "startPos": -1,
+              "wrapOnSeqNo": -1,
+              "wrapToSeqNo": -1,
+              "$Type": "dr.DRFNSServiceConfigExtension",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFileInfoSortOrderServiceInsp",
+            "Data": {
+              "enabled": false,
+              "ignoreCase": false,
+              "length": 0,
+              "orderType": "Filename Value",
+              "patternType": "Position",
+              "sortOrder": "Ascending",
+              "sortType": "Alphanumeric",
+              "startPos": 0,
+              "$Type": "dr.DRFileInfoSortOrderServiceConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 50,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "MZT_Decode",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "outputTypes": [
+                  {
+                    "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.RawPayload",
+                    "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                    "$Type": "dr.UltraClientInfo",
+                    "$Version": 1.0
+                  }
+                ],
+                "$Type": "dr.MZTaggedDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "MZ Tagged Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 150,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "CsvDecode",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS;
+
+consume {
+    debug(input);
+    if(!strStartsWith(strToLower(input.payload),\"vehicle\")){
+        //this condition will only execute for non header records
+        EV_Cons rawIp = decodeEvRawCsv(input);
+        udrRoute(rawIp,\"toValidate\");
+    }
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.RawPayload",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 230,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Validate",
+        "ID": -1186562757,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS;
+
+consume {
+    errorUdr error = validateEvRec(input);
+    if(error == null){
+        //valid record
+        udrRoute(input,\"toCitEn\");
+    }else{
+        udrRoute(input,\"toInvalid\");
+        //invalid record   
+    }
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.EV_Cons",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 340,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "CIT_Mapping",
+        "ID": -1426521943,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE.subUdr;
+import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS;
+import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS_CI;
+
+string ciKey,filename;
+_1FC_BT18_CIT_CREATE_API_UDR ciUdr;
+boolean route = true;
+initialize {
+    ciKey = setCIIntKey(WORKFLOW_NAME);
+    ciUdr = createBt18CitUdr();
+}
+beginBatch{
+    filename = (string)mimGet(\"FromColl\", \"Source Filename\");
+}
+consume {
+    if(instanceOf(input,EV_Cons)){
+       EV_Cons ip = (EV_Cons)input;
+       //ip.VehicleId = \"VEH_101\";
+       _1FC_1BT18_API bt18Udr = setBT18Udr(ip);
+       
+       string fieldName = isCITValid(bt18Udr);
+       if(!isEmpty(fieldName)){
+            string msg = \"EVT_MSG_CIT_VALIDATION_FAILED:\" + fieldName;
+            //dispatchMessage(msg , EVT_CAT_CIT_VALIDATION_FAILED);
+            debug(msg + \"\\n\" + bt18Udr);
+            cancelBatch(msg + \"\\n\" + bt18Udr);
+       }else{
+           listAdd(ciUdr.tableParams.IT_CIT, bt18Udr);
+       }
+    }
+}
+drain{
+    if(listSize(ciUdr.tableParams.IT_CIT) > 0){
+        CI_Int out = createCIIntUdr( ciKey , \"EV_CI_ERR\", false, ciUdr);
+        debug(out);
+        if(route){
+            udrRoute(out, \"toCIEnc\");
+        }
+    }
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.EV_Cons",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 450,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "handleInvalid",
+        "ID": -848288927,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.EV_Cons",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 340,
+          "y": 370,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Inter_Workflow_1",
+        "ID": -730408042,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFOutputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFOutputInsp",
+            "Data": {
+              "myMIMs": [],
+              "myProfile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793879384263",
+                "name": "PRF_IWF_CI",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "myShallCreateEmptyBatches": false,
+              "streamId": "default",
+              "$Type": "dr.InterWFOutputData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 570,
+          "y": 110,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "MZT",
+        "ID": 552215182,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRHeaderServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRTrailerServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 570,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1576094480,
+        "id": -2,
+        "name": "decode",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 2108931552,
+        "stroke": [
+          {
+            "x": 80,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 120,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1939312021,
+        "id": -3,
+        "name": "csv",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 180,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 200,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1186562757,
+        "id": -4,
+        "name": "toValidate",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 260,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1426521943,
+        "id": -5,
+        "name": "toCitEn",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1186562757,
+        "stroke": [
+          {
+            "x": 370,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 420,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -848288927,
+        "id": -6,
+        "name": "toInvalid",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1186562757,
+        "stroke": [
+          {
+            "x": 340,
+            "y": 259,
+            "$Version": 1.0
+          },
+          {
+            "x": 340,
+            "y": 337,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 552215182,
+        "id": -10,
+        "name": "toCIEnc",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1426521943,
+        "stroke": [
+          {
+            "x": 480,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 540,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -730408042,
+        "id": -11,
+        "name": "toFwd",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 552215182,
+        "stroke": [
+          {
+            "x": 570,
+            "y": 207,
+            "$Version": 1.0
+          },
+          {
+            "x": 570,
+            "y": 129,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

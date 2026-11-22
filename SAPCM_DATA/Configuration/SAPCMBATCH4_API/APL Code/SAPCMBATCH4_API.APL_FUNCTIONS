@@ -1,0 +1,186 @@
+{
+  "Key": "DR1794138692825",
+  "Name": "APL_FUNCTIONS",
+  "Type": "APL Code",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_API",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+import ultra.http;
+
+string host = \"saps4hana.expertsoft.in\";
+string port = \"8086\";
+string user = \"sapcmuser14\";
+string pwd  = \"Sapcm@1947\";
+
+// ---------- Builds the BP oData payload structure ----------
+BP_Root buildBusinessPartner(
+        string firstName,
+        string lastName,
+        string searchTerm1,
+        string country,
+        string region,
+        string cityName,
+        string postalCode,
+        string streetName,
+        string houseNumber) {
+
+    BP_Root bp = udrCreate(BP_Root);
+
+    // header (dynamic: names and search term)
+    bp.BusinessPartnerGrouping = \"BP02\";
+    bp.BusinessPartnerCategory = \"1\";
+    bp.FirstName               = firstName;
+    bp.LastName                = lastName;
+    bp.SearchTerm1             = searchTerm1;
+    bp.CorrespondenceLanguage  = \"EN\";
+
+    // roles (static)
+    list<BP_Role> roles = listCreate(BP_Role);
+    addRole(roles, \"MKK\");
+    addRole(roles, \"FLCU01\");
+    addRole(roles, \"FLCU00\");
+    BP_RoleList roleList = udrCreate(BP_RoleList);
+    roleList.results = roles;
+    bp.to_BusinessPartnerRole = roleList;
+
+    // e-mail (static)
+    BP_Email mail = udrCreate(BP_Email);
+    mail.EmailAddress = \"billing@example.com\";
+    list<BP_Email> mails = listCreate(BP_Email);
+    listAdd(mails, mail);
+    BP_EmailList mailList = udrCreate(BP_EmailList);
+    mailList.results = mails;
+
+    // address (dynamic: country to house number; rest static)
+    BP_Address addr = udrCreate(BP_Address);
+    addr.Country         = country;
+    addr.Region          = region;
+    addr.CityName        = cityName;
+    addr.PostalCode      = postalCode;
+    addr.StreetName      = streetName;
+    addr.HouseNumber     = houseNumber;
+    addr.TaxJurisdiction = \"CA00000000\";
+    addr.Language        = \"EN\";
+    addr.to_EmailAddress = mailList;
+
+    list<BP_Address> addrs = listCreate(BP_Address);
+    listAdd(addrs, addr);
+    BP_AddressList addrList = udrCreate(BP_AddressList);
+    addrList.results = addrs;
+    bp.to_BusinessPartnerAddress = addrList;
+
+    // customer and sales area (static)
+    BP_SalesArea sa = udrCreate(BP_SalesArea);
+    sa.SalesOrganization        = \"VJSO\";
+    sa.DistributionChannel      = \"VD\";
+    sa.Division                 = \"VD\";
+    sa.Currency                 = \"USD\";
+    sa.CustomerPaymentTerms     = \"0001\";
+    sa.CustomerPricingProcedure = \"1\";
+    sa.ShippingCondition        = \"01\";
+    list<BP_SalesArea> sas = listCreate(BP_SalesArea);
+    listAdd(sas, sa);
+    BP_SalesAreaList saList = udrCreate(BP_SalesAreaList);
+    saList.results = sas;
+
+    BP_Customer cust = udrCreate(BP_Customer);
+    cust.CustomerAccountGroup = \"CUST\";
+    cust.to_CustomerSalesArea = saList;
+    bp.to_Customer = cust;
+
+    return bp;
+}
+
+
+// Step 1: GET to fetch the CSRF token
+RequestCycle buildCsrfFetch() {
+    RequestCycle rc = udrCreate(RequestCycle);
+    rc.method         = \"GET\";
+    rc.host           = host;
+    rc.port           = port;
+    rc.secure         = true;   // https
+    rc.path           = \"/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner?$top=1&sap-client=100\";
+    rc.username       = user;
+    rc.password       = pwd;
+    rc.requestTimeout = 60000;
+
+    map<string,list<string>> hdrs = mapCreate(string, list<string>);
+    setHeader(hdrs, \"x-csrf-token\", \"fetch\");
+    setHeader(hdrs, \"Accept\", \"application/json\");
+    rc.headers = hdrs;
+    return rc;
+}
+
+list<string> getCookieHeader(RequestCycle rc){
+    string cookieHeader = \"\";
+    if (mapContains(rc.response.headers, \"set-cookie\")) {
+        list<string> setCookies = mapGet(rc.response.headers, \"set-cookie\");        
+        for (string cookie : setCookies) {
+            if(cookieHeader != \"\"){
+                cookieHeader = cookieHeader + \";\"+cookie;
+            }else{
+                cookieHeader = cookie;
+            }      
+        }
+    }  
+    
+    return listCreate(string,cookieHeader); 
+}
+
+RequestCycle buildBpCreate(string csrfToken,bytearray jsonBody,list<string> cook) {
+    RequestCycle rc = udrCreate(RequestCycle);
+    rc.method         = \"POST\";
+    rc.host           = host;
+    rc.port           = port;
+    rc.secure         = true;
+    rc.path           = \"/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner?sap-client=100\";
+    rc.username       = user;
+    rc.password       = pwd;
+    rc.requestTimeout = 60000;
+    rc.body           = jsonBody;
+    rc.cookies = cook;
+    
+    map<string,list<string>> hdrs = mapCreate(string, list<string>);
+    setHeader(hdrs, \"x-csrf-token\", csrfToken);
+    setHeader(hdrs, \"Content-Type\", \"application/json\");
+    setHeader(hdrs, \"Accept\", \"application/json\");
+    rc.headers = hdrs;
+    
+    return rc;
+}
+
+// ---------- helpers ----------
+void setHeader(map<string,list<string>> hdrs, string name, string value) {
+    list<string> v = listCreate(string);
+    listAdd(v, value);
+    mapSet(hdrs, name, v);
+}
+void addRole(list<BP_Role> roles, string roleKey) {
+    BP_Role r = udrCreate(BP_Role);
+    r.BusinessPartnerRole = roleKey;
+    listAdd(roles, r);
+}
+
+ResponseBp createResp(string message,string status,string BP){
+    ResponseBp resp = udrCreate(ResponseBp);
+    resp.status = status;
+    resp.message = message;
+    resp.BP = BP;
+    return resp;
+}",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,54 @@
+{
+  "Key": "DR1792251231821",
+  "Name": "PRF-EXT_NEXT",
+  "Type": "External Reference Profile",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_EXTREF",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Wf Param Profile Type Data": {
+      "File Location": "/opt/mz/SAPCM-BATCH4/EXT_REF/extRefNex.prop",
+      "Property List": [
+        {
+          "Local Key": "AWS_IP_DIR",
+          "Property File Key": "AWS_IP_DIR",
+          "Parameter Type": "String",
+          "$Version": 2.0
+        },
+        {
+          "Local Key": "AWS_OP_DIR",
+          "Property File Key": "AWS_OP_DIR",
+          "Parameter Type": "String",
+          "$Version": 2.0
+        },
+        {
+          "Local Key": "ACCESS_KEY",
+          "Property File Key": "ACCESS_KEY",
+          "Parameter Type": "String",
+          "$Version": 2.0
+        },
+        {
+          "Local Key": "AWS_REGION",
+          "Property File Key": "AWS_REGION",
+          "Parameter Type": "String",
+          "$Version": 2.0
+        }
+      ],
+      "$Type": "dr.ExtRefPropFileTypeData",
+      "$Version": 1.0
+    },
+    "External Reference Type": "Properties File",
+    "$Type": "dr.ExtRefProfileData",
+    "$Version": 0.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

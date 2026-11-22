@@ -1,0 +1,501 @@
+{
+  "Key": "DR1794427390033",
+  "Name": "WFl_ADT_RT",
+  "Type": "Workflow",
+  "Version": 5,
+  "Folder": "SAPCMBATCH4_IWF",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "2"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Instance",
+        "fieldName": "streamId",
+        "nodeId": 497243367,
+        "nodeName": "Inter_Workflow_1",
+        "section": "Inter Workflow",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "S1",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "S2",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 2,
+        "instanceName": "workflow_2",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Decoder_1",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "outputTypes": [
+                  {
+                    "TypeName": "SAPCMBATCH4_IWF.UFL_IWF.TxnSumm",
+                    "FormatName": "SAPCMBATCH4_IWF.UFL_IWF",
+                    "$Type": "dr.UltraClientInfo",
+                    "$Version": 1.0
+                  }
+                ],
+                "$Type": "dr.MZTaggedDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "MZ Tagged Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 150,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "mimPublish(global,\"REQUEST\",string);
+mimPublish(global,\"RESPONSE\",string);
+consume {
+    mimSet(\"REQUEST\",jsonEncodeUdr(input.req));
+    mimSet(\"RESPONSE\",jsonEncodeUdr(input.res));
+    udrRoute(input);
+
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_IWF.UFL_IWF.TxnSumm",
+                  "FormatName": "SAPCMBATCH4_IWF.UFL_IWF",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 250,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Database_1",
+        "ID": 68127630,
+        "Classname": "com.digitalroute.wfc.dbforw.DBForwInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.dbforw.DBForwInsp",
+            "Data": {
+              "assignments": [
+                {
+                  "Column information": {
+                    "Name": "SEQ_NUM",
+                    "Column type": {
+                      "Type in JDBC": -5,
+                      "Name for DBMS": "BIGINT",
+                      "$Version": 1.0
+                    },
+                    "Column size": 19,
+                    "Allow null": false,
+                    "Ordinal Position": 1,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "NULL",
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "RAW_REQUEST",
+                    "Column type": {
+                      "Type in JDBC": 2011,
+                      "Name for DBMS": "NCLOB",
+                      "$Version": 1.0
+                    },
+                    "Column size": 715827882,
+                    "Allow null": true,
+                    "Ordinal Position": 3,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "MIM Entry",
+                    "MIM entry": {
+                      "Name": "Analysis_1.REQUEST",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "RESPONSE",
+                    "Column type": {
+                      "Type in JDBC": 2011,
+                      "Name for DBMS": "NCLOB",
+                      "$Version": 1.0
+                    },
+                    "Column size": 715827882,
+                    "Allow null": true,
+                    "Ordinal Position": 4,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "MIM Entry",
+                    "MIM entry": {
+                      "Name": "Analysis_1.RESPONSE",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "WF_NAME",
+                    "Column type": {
+                      "Type in JDBC": -9,
+                      "Name for DBMS": "NVARCHAR",
+                      "$Version": 1.0
+                    },
+                    "Column size": 255,
+                    "Allow null": true,
+                    "Ordinal Position": 5,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "MIM Entry",
+                    "MIM entry": {
+                      "Name": "Inter_Workflow_1.SOURCE_WF_NAME",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "ADT_STARTTIME",
+                    "Column type": {
+                      "Type in JDBC": 93,
+                      "Name for DBMS": "TIMESTAMP",
+                      "$Version": 1.0
+                    },
+                    "Column size": 27,
+                    "Allow null": true,
+                    "Ordinal Position": 6,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "NULL",
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                }
+              ],
+              "colForTxnId": {
+                "Name": "TXN_ID",
+                "Column type": {
+                  "Type in JDBC": -5,
+                  "Name for DBMS": "BIGINT",
+                  "$Version": 1.0
+                },
+                "Column size": 19,
+                "Allow null": true,
+                "Ordinal Position": 2,
+                "Is Unique Key": false,
+                "$Version": 1.0
+              },
+              "dbProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1792919963496",
+                "name": "PRF_DB_SAPHANA",
+                "type": "Database Profile",
+                "$Version": 1.0
+              },
+              "method": 1,
+              "noOfRowsPerCommit": 1000,
+              "tab": {
+                "Name": "TB_ADT_ORDER",
+                "Catalog": "",
+                "Schema": "SAPCMUSER14",
+                "Object type": 1,
+                "Include Cat In Prefix": true,
+                "$Version": 1.1
+              },
+              "udrTypeIdentifier": {
+                "TypeName": "SAPCMBATCH4_IWF.UFL_IWF.TxnSumm",
+                "FormatName": "SAPCMBATCH4_IWF.UFL_IWF",
+                "$Type": "dr.UltraClientInfo",
+                "$Version": 1.0
+              },
+              "useSchemaFromDB": false,
+              "$Type": "dr.DBForwDataExt",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 380,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Inter_Workflow_1",
+        "ID": 497243367,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+            "Data": {
+              "deactivateOnIdle": false,
+              "myAgeOfOldestBatch": 0,
+              "myMergeType": 1,
+              "myNumberOfBatches": 0,
+              "myNumberOfBytes": 0,
+              "myProfile": {
+                "folder": "SAPCMBATCH4_IWF",
+                "key": "DR1794424092100",
+                "name": "PRF_IWF_RT2BT",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.InterWFInputData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 30,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1939312021,
+        "id": -3,
+        "name": "r_2",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 180,
+            "y": 203,
+            "$Version": 1.0
+          },
+          {
+            "x": 220,
+            "y": 203,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 68127630,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 280,
+            "y": 203,
+            "$Version": 1.0
+          },
+          {
+            "x": 350,
+            "y": 203,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1576094480,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 497243367,
+        "stroke": [
+          {
+            "x": 60,
+            "y": 203,
+            "$Version": 1.0
+          },
+          {
+            "x": 120,
+            "y": 203,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 2,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

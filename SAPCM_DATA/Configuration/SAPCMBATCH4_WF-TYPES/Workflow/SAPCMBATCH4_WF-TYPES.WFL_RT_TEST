@@ -1,0 +1,300 @@
+{
+  "Key": "DR1790436181016",
+  "Name": "WFL_RT_TEST",
+  "Type": "Workflow",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_WF-TYPES",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "3"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Instance",
+        "fieldName": "port",
+        "nodeId": 608952228,
+        "nodeName": "HTTP2_Server_1",
+        "section": "Http2",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": 8087,
+              "$Type": "int"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": 8088,
+              "$Type": "int"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 2,
+        "instanceName": "workflow_2",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": 8089,
+              "$Type": "int"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 3,
+        "instanceName": "workflow_3",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+    udrRoute(input);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 390,
+          "y": 150,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "HTTP2_Server_1",
+        "ID": 608952228,
+        "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+            "Data": {
+              "authLevel": "NONE",
+              "averagePeriod": 10,
+              "characterEncoding": "UTF-8",
+              "clientTimeout": 10,
+              "enableTooManyRequests": false,
+              "gzipLevel": 7,
+              "host": "192.168.2.100",
+              "isTwoWayAuth": false,
+              "maxConcurrentStreams": 500,
+              "numberOfRequests": 1000,
+              "port": 8087,
+              "routeToApl": false,
+              "serverTimeout": 0,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": false,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                },
+                {
+                  "enableFallBack": false,
+                  "enableRegistrationRetry": false,
+                  "nrfAddresses": [],
+                  "numberOfRegistrationRetry": 0,
+                  "openApiProfileList": [],
+                  "secondaryAddressList": [],
+                  "timeIntervalForRegistrationRetry": 0,
+                  "use5g": false,
+                  "$Type": "dr.HTTP2.Support5G",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": false,
+              "waitDuration": 10,
+              "$Type": "dr.HTTP2ServerData",
+              "$Version": 12.1
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 180,
+          "y": 150,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -3,
+        "name": "r_2",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 608952228,
+        "stroke": [
+          {
+            "x": 210,
+            "y": 134,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 118,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 118,
+            "$Version": 1.0
+          },
+          {
+            "x": 360,
+            "y": 134,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 608952228,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 360,
+            "y": 152,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 210,
+            "y": 152,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "queueStrategy": "Blocking queue",
+      "queueWorkerStrategy": "RoundRobin",
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 3,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

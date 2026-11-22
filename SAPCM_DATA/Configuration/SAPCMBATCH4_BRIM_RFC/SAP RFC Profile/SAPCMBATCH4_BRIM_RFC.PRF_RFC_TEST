@@ -1,0 +1,132 @@
+{
+  "Key": "DR1794750027628",
+  "Name": "PRF_RFC_TEST",
+  "Type": "SAP RFC Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_BRIM_RFC",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "HOST": "192.168.2.100",
+    "USERNAME": "SAPCMUSER14",
+    "CLIENT": "100",
+    "PASSWORD": {
+      "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+      "secrets_alias": "",
+      "$Version": 1.0
+    },
+    "SYSTEM": 0,
+    "RFCDATA": [
+      {
+        "Name": "Z_CUSTOM_DATE_STRING_ECHO",
+        "RfcFieldInfo": [
+          {
+            "NAME": "context",
+            "TYPE": {
+              "IsPrimitive": true,
+              "PrimitiveType": 101,
+              "$Version": 1.0
+            },
+            "ORIGINAL_NAME": "context",
+            "$Version": 1.1
+          }
+        ],
+        "isTable": false,
+        "childField": [
+          {
+            "Name": "importParams",
+            "RfcFieldInfo": [
+              {
+                "NAME": "IV_DATE",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 11,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "IV_DATE",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "IV_STRING",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "IV_STRING",
+                "$Version": 1.1
+              }
+            ],
+            "isTable": false,
+            "childField": [],
+            "isParent": false,
+            "udrName": "importParams_Z_CUSTOM_DATE_STRING_ECHO",
+            "$Version": 1.1
+          },
+          {
+            "Name": "exportParams",
+            "RfcFieldInfo": [
+              {
+                "NAME": "EV_DATE",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 11,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "EV_DATE",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "EV_STRING",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "EV_STRING",
+                "$Version": 1.1
+              }
+            ],
+            "isTable": false,
+            "childField": [],
+            "isParent": false,
+            "udrName": "exportParams_Z_CUSTOM_DATE_STRING_ECHO",
+            "$Version": 1.1
+          }
+        ],
+        "isParent": true,
+        "sanitizedName": "Z_CUSTOM_DATE_STRING_ECHO",
+        "$Version": 1.1
+      }
+    ],
+    "FUNCTIONS": [
+      "Z_CUSTOM_DATE_STRING_ECHO"
+    ],
+    "CONFIGHASH": "826076643",
+    "ENABLE_LOADBALANCE": false,
+    "SYSTEMID": "",
+    "MESSAGESERVERHOST": "",
+    "MESSAGESERVERPORT": 0,
+    "GROUPNAME": "",
+    "ENABLE_SNC_MODE": false,
+    "SNC_LIB_PATH": "",
+    "SNC_LVL_PROTECTION": 3,
+    "SNC_NAME": "",
+    "SNC_PARTNER_NAME": "",
+    "ENABLE_SNC_SSO": false,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "com.digitalroute.mz.rfc.profile.RfcProfileData",
+    "$Version": 1.4
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,1872 @@
+{
+  "Key": "DR1794123469309",
+  "Name": "PRF_RFC-CA_CREATE",
+  "Type": "SAP RFC Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "HOST": "192.168.2.100",
+    "USERNAME": "SAPCMUSER14",
+    "CLIENT": "100",
+    "PASSWORD": {
+      "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+      "secrets_alias": "",
+      "$Version": 1.0
+    },
+    "SYSTEM": 0,
+    "RFCDATA": [
+      {
+        "Name": "BAPI_CTRACCONTRACTACCOUNT_CR1",
+        "RfcFieldInfo": [
+          {
+            "NAME": "context",
+            "TYPE": {
+              "IsPrimitive": true,
+              "PrimitiveType": 101,
+              "$Version": 1.0
+            },
+            "ORIGINAL_NAME": "context",
+            "$Version": 1.1
+          }
+        ],
+        "isTable": false,
+        "childField": [
+          {
+            "Name": "importParams",
+            "RfcFieldInfo": [
+              {
+                "NAME": "TESTRUN",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "TESTRUN",
+                "$Version": 1.1
+              },
+              {
+                "NAME": "VALIDFROM",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "VALIDFROM",
+                "$Version": 1.1
+              }
+            ],
+            "isTable": false,
+            "childField": [
+              {
+                "Name": "CTRACCREATEINFO",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "CONT_ACCT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CONT_ACCT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ACCT_CAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACCT_CAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "APPL_AREA",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "APPL_AREA",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LEGACY_ACCT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LEGACY_ACCT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": false,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKCI",
+                "sanitizedName": "CTRACCREATEINFO",
+                "$Version": 1.1
+              },
+              {
+                "Name": "CTRACDETAIL",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "ACCT_NAME",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACCT_NAME",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": false,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKI",
+                "sanitizedName": "CTRACDETAIL",
+                "$Version": 1.1
+              }
+            ],
+            "isParent": false,
+            "udrName": "importParams_BAPI_CTRACCONTRACTACCOUNT_CR1",
+            "$Version": 1.1
+          },
+          {
+            "Name": "exportParams",
+            "RfcFieldInfo": [
+              {
+                "NAME": "CONTRACTACCOUNT",
+                "TYPE": {
+                  "IsPrimitive": true,
+                  "PrimitiveType": 9,
+                  "$Version": 1.0
+                },
+                "ORIGINAL_NAME": "CONTRACTACCOUNT",
+                "$Version": 1.1
+              }
+            ],
+            "isTable": false,
+            "childField": [],
+            "isParent": false,
+            "udrName": "exportParams_BAPI_CTRACCONTRACTACCOUNT_CR1",
+            "$Version": 1.1
+          },
+          {
+            "Name": "tableParams",
+            "RfcFieldInfo": [],
+            "isTable": false,
+            "childField": [
+              {
+                "Name": "CTRACCHARGESDISCOUNTS",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "PROCESSING_MODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PROCESSING_MODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PARTNEREXTERNAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PARTNEREXTERNAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CHARGE_KEY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CHARGE_KEY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CHARGE_DATE_FROM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CHARGE_DATE_FROM",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CHARGE_DATE_TO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CHARGE_DATE_TO",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKP_CHGDISCI",
+                "sanitizedName": "CTRACCHARGESDISCOUNTS",
+                "$Version": 1.1
+              },
+              {
+                "Name": "CTRACCORRRECEIVER",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "PROCESSING_MODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PROCESSING_MODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PARTNEREXTERNAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PARTNEREXTERNAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RECEIVEREXTERNAL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RECEIVEREXTERNAL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CORR_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CORR_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CORR_ROLE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CORR_ROLE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RECEIVER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RECEIVER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBSTITUTE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBSTITUTE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ACTIVITY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACTIVITY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_CORR_RECIPIENT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_CORR_RECIPIENT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_CORR_RECIPIENT_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_CORR_RECIPIENT_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_CORR_RECIPIENT_SET",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_CORR_RECIPIENT_SET",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKCORRI",
+                "sanitizedName": "CTRACCORRRECEIVER",
+                "$Version": 1.1
+              },
+              {
+                "Name": "CTRACLOCKDETAIL",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "PROCESSING_MODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PROCESSING_MODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LOCK_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LOCK_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PROCESS_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PROCESS_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LOCK_REASON",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LOCK_REASON",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "FROM_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "FROM_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TO_DATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TO_DATE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LOCK_OBJECT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LOCK_OBJECT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ACTIVITY_KEY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACTIVITY_KEY",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKLOCKSI1",
+                "sanitizedName": "CTRACLOCKDETAIL",
+                "$Version": 1.1
+              },
+              {
+                "Name": "CTRACPARTNERDETAIL",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "LINE_NUMBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LINE_NUMBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUSPARTNER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUSPARTNER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "REF_NUMBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "REF_NUMBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COMP_CODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COMP_CODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_PAYER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_PAYER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_PAYEE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_PAYEE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_DUNN_RECIP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_DUNN_RECIP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BANK_INC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BANK_INC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BANK_OUTG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BANK_OUTG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "METHOD_INC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "METHOD_INC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "METHOD_OUTG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "METHOD_OUTG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "WU_LIST",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "WU_LIST",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DEL_FLAG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DEL_FLAG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COLL_ACCT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COLL_ACCT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INT_KEY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INT_KEY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DUNN_PROC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DUNN_PROC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DUNN_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DUNN_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PLAN_GRP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PLAN_GRP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ACCT_RELAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACCT_RELAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_NO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_NO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ACCT_PAID_BY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ACCT_PAID_BY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PART_PAID_BY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PART_PAID_BY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_PAYER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_PAYER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_PAYEE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_PAYEE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_DUNN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_DUNN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_BILL_RECIP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_BILL_RECIP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_BILL",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_BILL",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_JURISDICT_CODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_JURISDICT_CODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "AUTHORITYGROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "AUTHORITYGROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TOLER_GROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TOLER_GROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAXJURCODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAXJURCODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CORRESP_VARIANT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CORRESP_VARIANT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TRADE_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TRADE_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ITEMS_TRANSFERED",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ITEMS_TRANSFERED",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CCARD_INC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CCARD_INC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CCARD_OUTG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CCARD_OUTG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALT_CORR_RECIPIENT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALT_CORR_RECIPIENT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CORR_ACTIVITY_KEY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CORR_ACTIVITY_KEY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "W_TAX_CODE_OUT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "W_TAX_CODE_OUT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "W_TAX_CODE_IN",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "W_TAX_CODE_IN",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPT_NO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPT_NO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CORR_DUNN_PROC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CORR_DUNN_PROC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_CATEGORY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_CATEGORY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "REGION",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "REGION",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COUNTY_CDE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COUNTY_CDE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CLEARING_CATEGORY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CLEARING_CATEGORY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "RESTRICT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "RESTRICT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUPCOUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUPCOUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUPCOUNTRY_ISO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUPCOUNTRY_ISO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_BUSPARTNER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_BUSPARTNER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_PAYER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_PAYER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_PAYEE_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_PAYEE_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_DUNN_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_DUNN_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_BILL_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_BILL_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_JURISD_CODE_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_JURISD_CODE_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_PAYER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_PAYER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_PAYEE_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_PAYEE_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_DUNN_RECIP_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_DUNN_RECIP_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ALTER_BILL_RECIP_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ALTER_BILL_RECIP_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXTERNID_INC",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXTERNID_INC",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXTERNID_OUTG",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXTERNID_OUTG",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "WITH_TAX_EXEMPTION",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "WITH_TAX_EXEMPTION",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUAG_GUID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUAG_GUID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "STANDARD_COMP_CODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STANDARD_COMP_CODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "OWNBANKID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "OWNBANKID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "BUS_PLACE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "BUS_PLACE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAXID_TYPE1",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAXID_TYPE1",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAXID_TYPE2",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAXID_TYPE2",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "CM_EX_DAYS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "CM_EX_DAYS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PERS_RESP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PERS_RESP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CATEGORY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CATEGORY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DIRECT_DEBIT_AMOUNT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 6,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DIRECT_DEBIT_AMOUNT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DIRECT_DEBIT_CURRENCY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DIRECT_DEBIT_CURRENCY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DIRECT_DEBIT_CURRENCY_ISO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DIRECT_DEBIT_CURRENCY_ISO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DIRECT_DEBIT_MONTHS",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DIRECT_DEBIT_MONTHS",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "DIRECT_DEBIT_ROLLING",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "DIRECT_DEBIT_ROLLING",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COLLGROUP",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COLLGROUP",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COLLSTRAT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COLLSTRAT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COLLPERSON",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COLLPERSON",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INV_SCHEDULE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INV_SCHEDULE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CYCLE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CYCLE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CYCLE_DAY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CYCLE_DAY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CYCLE_MONTH",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CYCLE_MONTH",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CYCLE_RULE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CYCLE_RULE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CYCLE_START",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 11,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CYCLE_START",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SEPA_MANDATE_ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SEPA_MANDATE_ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CURRENCY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CURRENCY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_FORM_DET_KEY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_FORM_DET_KEY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_CORR_RECIPIENT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_CORR_RECIPIENT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ADDR_ALT_CORR_RECIPIENT_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ADDR_ALT_CORR_RECIPIENT_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_PARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_PARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_PARTNER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_PARTNER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_CONT_ACCT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_CONT_ACCT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_LIST_PARTNER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_LIST_PARTNER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_LIST_PARTNER_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_LIST_PARTNER_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "INVOICING_LIST_CONT_ACCT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "INVOICING_LIST_CONT_ACCT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "AGREEMENT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "AGREEMENT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PARTNER_SETTLEMENT_RULE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PARTNER_SETTLEMENT_RULE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_COUNTRY_ISO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_COUNTRY_ISO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SUBLEDGER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SUBLEDGER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COLLPERSON_EXT",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COLLPERSON_EXT",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPT_NO_EXTEND",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPT_NO_EXTEND",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKPI1",
+                "sanitizedName": "CTRACPARTNERDETAIL",
+                "$Version": 1.1
+              },
+              {
+                "Name": "CTRACTAXEXEMPTION",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "PROCESSING_MODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PROCESSING_MODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "TAX_CODE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TAX_CODE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "COND_TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "COND_TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPTION_START",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPTION_START",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPTION_END",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPTION_END",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPTION_NUMBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPTION_NUMBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "EXEMPTION_RATE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "EXEMPTION_RATE",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIFKKVKTAXI",
+                "sanitizedName": "CTRACTAXEXEMPTION",
+                "$Version": 1.1
+              },
+              {
+                "Name": "EXTENSIONIN",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "STRUCTURE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "STRUCTURE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VALUEPART1",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VALUEPART1",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VALUEPART2",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VALUEPART2",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VALUEPART3",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VALUEPART3",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "VALUEPART4",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "VALUEPART4",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIPAREX",
+                "sanitizedName": "EXTENSIONIN",
+                "$Version": 1.1
+              },
+              {
+                "Name": "RETURN",
+                "RfcFieldInfo": [
+                  {
+                    "NAME": "TYPE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "TYPE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ID",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ID",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "NUMBER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "NUMBER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MESSAGE",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MESSAGE",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LOG_NO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LOG_NO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "LOG_MSG_NO",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 4,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "LOG_MSG_NO",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MESSAGE_V1",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MESSAGE_V1",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MESSAGE_V2",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MESSAGE_V2",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MESSAGE_V3",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MESSAGE_V3",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "MESSAGE_V4",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "MESSAGE_V4",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "PARAMETER",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "PARAMETER",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "ROW",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 2,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "ROW",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "FIELD",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "FIELD",
+                    "$Version": 1.1
+                  },
+                  {
+                    "NAME": "SYSTEM",
+                    "TYPE": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "ORIGINAL_NAME": "SYSTEM",
+                    "$Version": 1.1
+                  }
+                ],
+                "isTable": true,
+                "childField": [],
+                "isParent": false,
+                "udrName": "BAPIRET2",
+                "sanitizedName": "RETURN",
+                "$Version": 1.1
+              }
+            ],
+            "isParent": false,
+            "udrName": "tableParams_BAPI_CTRACCONTRACTACCOUNT_CR1",
+            "$Version": 1.1
+          }
+        ],
+        "isParent": true,
+        "sanitizedName": "BAPI_CTRACCONTRACTACCOUNT_CR1",
+        "$Version": 1.1
+      }
+    ],
+    "FUNCTIONS": [
+      "BAPI_CTRACCONTRACTACCOUNT_CR1"
+    ],
+    "CONFIGHASH": "826076643",
+    "ENABLE_LOADBALANCE": false,
+    "SYSTEMID": "",
+    "MESSAGESERVERHOST": "",
+    "MESSAGESERVERPORT": 0,
+    "GROUPNAME": "",
+    "ENABLE_SNC_MODE": false,
+    "SNC_LIB_PATH": "",
+    "SNC_LVL_PROTECTION": 3,
+    "SNC_NAME": "",
+    "SNC_PARTNER_NAME": "",
+    "ENABLE_SNC_SSO": false,
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "com.digitalroute.mz.rfc.profile.RfcProfileData",
+    "$Version": 1.4
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

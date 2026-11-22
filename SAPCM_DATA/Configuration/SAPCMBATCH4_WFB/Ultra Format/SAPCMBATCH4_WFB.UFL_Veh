@@ -1,0 +1,28 @@
+{
+  "Key": "DR1794475203476",
+  "Name": "UFL_Veh",
+  "Type": "Ultra Format",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_WFB",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal VehCons{
+    string TechRes;
+    double Quantity;
+    string ConsDate;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,31 @@
+{
+  "Key": "DR1794426744858",
+  "Name": "UFL_IWF",
+  "Type": "Ultra Format",
+  "Version": 7,
+  "Folder": "SAPCMBATCH4_IWF",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal TxnSumm{
+    //request and response  
+    boolean status; 
+    openapi.SAPCMBATCH4_IWF.PRF_OPEN_API_ORDER.OrderResp res;
+    openapi.SAPCMBATCH4_IWF.PRF_OPEN_API_ORDER.OrderReq req;
+    
+};
+
+",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

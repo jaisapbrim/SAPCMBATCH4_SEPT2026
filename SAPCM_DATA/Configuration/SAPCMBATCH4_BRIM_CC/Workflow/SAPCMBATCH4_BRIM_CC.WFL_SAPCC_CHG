@@ -1,0 +1,500 @@
+{
+  "Key": "DR1794289469730",
+  "Name": "WFL_SAPCC_CHG",
+  "Type": "Workflow",
+  "Version": 28,
+  "Folder": "SAPCMBATCH4_BRIM_CC",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "HTTP2_Server_1",
+        "ID": 608952228,
+        "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+            "Data": {
+              "authLevel": "NONE",
+              "averagePeriod": 10,
+              "characterEncoding": "UTF-8",
+              "clientTimeout": 10,
+              "enableTooManyRequests": false,
+              "gzipLevel": 7,
+              "host": "192.168.2.100",
+              "isTwoWayAuth": false,
+              "maxConcurrentStreams": 500,
+              "numberOfRequests": 1000,
+              "port": 15000,
+              "routeToApl": false,
+              "securityProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794113593551",
+                "name": "PRF_SECURITY",
+                "type": "Security Profile",
+                "$Version": 1.0
+              },
+              "serverTimeout": 0,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "openApiProfileList": [
+                    {
+                      "folder": "SAPCMBATCH4_BRIM_CC",
+                      "key": "DR1794289201011",
+                      "name": "PRF_OPEN_API_EV",
+                      "type": "Open API Profile",
+                      "$Version": 1.0
+                    }
+                  ],
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": true,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                },
+                {
+                  "enableFallBack": false,
+                  "enableRegistrationRetry": false,
+                  "nrfAddresses": [],
+                  "numberOfRegistrationRetry": 0,
+                  "openApiProfileList": [],
+                  "secondaryAddressList": [],
+                  "timeIntervalForRegistrationRetry": 0,
+                  "use5g": false,
+                  "$Type": "dr.HTTP2.Support5G",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": true,
+              "waitDuration": 10,
+              "$Type": "dr.HTTP2ServerData",
+              "$Version": 12.1
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 80,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "toLogic",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.openapi.SAPCMBATCH4_BRIM_CC.PRF_OPEN_API_EV;
+import ultra.http;
+import ultra.sapcc;
+consume {
+    if(instanceOf(input,RequestCycle)){
+        RequestCycle req = (RequestCycle)input;
+        EvChCons evCons = (EvChCons)req.openAPIUDR;
+        debug(\"Req:\"+req);
+        debug(\"Consumption:\"+evCons);
+        
+        
+        CCCycleUDR ccCycle = createCCCycleUdr(evCons);
+        ccCycle.freeField = req;
+        debug(\"CC Request:\"+ccCycle);
+        udrRoute(ccCycle,\"toCC\");
+        
+    }
+}
+CCCycleUDR createCCCycleUdr(EvChCons evCons){
+    date stDate;
+    strToDate(stDate,evCons.ChargingStartTime,\"dd/MM/yyyy HH:mm:ss\");
+    
+    CCCycleUDR cc = udrCreate(CCCycleUDR);
+    ChargeUDR charge = udrCreate(ChargeUDR);
+    
+    //mandatory fields for charge request
+    charge.chargeableItemName = \"ZEVC\";
+    charge.consumptionDate = stDate;
+    charge.serviceId = \"EVC\";
+    charge.userId = evCons.VehicleId;
+    
+    double totalHrs;
+    strToDouble(totalHrs, evCons.TotalChargingHrs);
+    
+    //CIC properties representing consumption details
+    list<PropertyUDR> propList = listCreate(PropertyUDR);
+    
+    PropertyUDR chSt = udrCreate(PropertyUDR);
+    chSt.name = \"ZZCHG_CHG_ST\";
+    chSt.value = evCons.ChargingStartTime;
+    listAdd(propList,chSt);
+    
+    PropertyUDR chEd = udrCreate(PropertyUDR);
+    chEd.name = \"ZZCHG_CHG_ED\";
+    chEd.value = evCons.ChargingEndTime;
+    listAdd(propList,chEd);
+    
+    
+    PropertyUDR chHrs = udrCreate(PropertyUDR);
+    chHrs.name = \"ZZCHG_HRS\";
+    chHrs.value = totalHrs;
+    listAdd(propList,chHrs);
+    
+    PropertyUDR chVehId = udrCreate(PropertyUDR);
+    chVehId.name = \"ZZVEHICLE_ID\";
+    chVehId.value = evCons.VehicleId;
+    listAdd(propList,chVehId);
+    
+    PropertyUDR chLoc = udrCreate(PropertyUDR);
+    chLoc.name = \"ZZCHG_LOC\";
+    chLoc.value = evCons.ChargingLocation;
+    listAdd(propList,chLoc);
+    
+    PropertyUDR citQty = udrCreate(PropertyUDR);
+    citQty.name = \"CIT_QUANTITY\";
+    
+    citQty.value = totalHrs;
+    listAdd(propList,citQty);
+        
+    charge.ciPropertyList = propList;
+    
+    //charge execution context to control response
+    charge.chargeExecutionContext = udrCreate(ChargeExecutionContextUDR);
+    charge.chargeExecutionContext.resultChargedItemReturned = true;
+    charge.chargeExecutionContext.resultNotificationReturned = true;
+    charge.chargeExecutionContext.outputChargeableItemExported = true;
+    charge.chargeExecutionContext.resultAccountOperationReturned = true;
+    //charge.chargeExecutionContext.resultAllReturned = true;
+    charge.chargeExecutionContext.resultChargeableItemInfoReturned = true;
+    charge.chargeExecutionContext.resultChargingProcessInfoReturned = true;
+    //charge.chargeExecutionContext.resultResponseItemReturned = true;
+    cc.request = charge;
+    return cc;
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 230,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "SAP_CC_Online_1",
+        "ID": -1562588904,
+        "Classname": "com.digitalroute.mediationZoneIntegration.agent.online.SAPCCOnlineProcessorInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.mediationZoneIntegration.agent.online.SAPCCOnlineProcessorInsp",
+            "Data": {
+              "apiAuthentication": true,
+              "convertStr": false,
+              "enableDebug": true,
+              "enableGlobalEvent": false,
+              "enableRARListener": false,
+              "enableSecuredConnection": false,
+              "enableSpendingStatusMonitoring": false,
+              "enableSpotEvent": false,
+              "expectedAvgLatency": 1,
+              "flowControlEnabled": true,
+              "frequency": 1000,
+              "hosts": "s4cc2023.expertsoft.in:2000",
+              "keystorePassword": "DR-4-017BB0B8FB061C1876D43DD75468AA40",
+              "keystorePath": "",
+              "latencyControllerEnable": false,
+              "password": "DR-4-909C54DDB299887846AE2EB7C9577C42",
+              "port": 0,
+              "queueSize": 0,
+              "queueSizeToNotify": 0,
+              "rARListenerId": 1,
+              "sessionCleanupTransactionSetToReturn": "noTransaction",
+              "sessionResolution": "cancel",
+              "sessionTTL": 300,
+              "spendingStatusMonitoringDefaultListenerId": 1,
+              "spendingStatusMonitoringListenerId": 1,
+              "spendingStatusMonitoringSessionDefaultTTL": 86400,
+              "timeout": 3000,
+              "transactionSetToReturn": "noTransaction",
+              "username": "CC_CM_USER1",
+              "$Type": "com.digitalroute.mediationZoneIntegration.agent.online.VersionSafeSAPCCOnlineProcessorConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 360,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ccResp",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.openapi.SAPCMBATCH4_BRIM_CC.PRF_OPEN_API_EV;
+import ultra.http;
+import ultra.sapcc;
+consume {
+    CCCycleUDR cc = (CCCycleUDR)input;
+    debug(\"CC Response:\"+cc);
+    //Original API request
+    RequestCycle req = (RequestCycle)cc.freeField;
+    
+    //Open API response structure
+    ChargingResp chResp = udrCreate(ChargingResp);
+    req.response = udrCreate(Response);
+    req.response.openAPIUDR = chResp;
+    
+    //check if charging was successful or not
+    if(instanceOf(cc.answer,ChargingResultUDR)){
+        //success call
+        ChargingResultUDR chargingResult = (ChargingResultUDR)cc.answer;
+        list<NotificationUDR> liNotif = chargingResult.notifications;
+        
+        double amount;
+        string vehId;
+        string consDate;
+        for(NotificationUDR notifUdr : liNotif){
+            if(notifUdr.code == \"CM_ALERT\"){
+                 list<NotificationArgumentUDR> notifArgList = notifUdr.notifArgList;
+                 
+                 for(NotificationArgumentUDR notifField : notifArgList){
+                     if(notifField.name == \"computed.TOTAL_CHG_AMT\"){
+                         strToDouble(amount, (string)notifField.value);
+                     }
+                     if(notifField.name == \"item.ZZVEHICLE_ID\"){
+                         vehId = (string)notifField.value;
+                     }
+                     if(notifField.name == \"default.consumption_date\"){
+                         consDate = (string)notifField.value;
+                     }
+                 }
+            }
+        }
+        req.response.statusCode = 200;
+        chResp.amount = amount;
+        chResp.status = \"SUCCESS\";
+        chResp.message = \"VehicalId:\"+vehId+\" Consumption date:\"+consDate;
+        
+    }else if(instanceOf(cc.answer,CCExceptionUDR)){
+        CCExceptionUDR exception = (CCExceptionUDR)cc.answer;
+        //failure call
+        chResp.amount = 0;
+        chResp.status = \"FAILED\";
+        chResp.message = exception.message;
+        req.response.statusCode = 500;
+    }
+    debug(\"Http response:\"+req);
+    udrRoute(req,\"toHttpResp\");
+}",
+              "udrTypes": [
+                {
+                  "typeName": "sapcc.CCCycleUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 230,
+          "y": 320,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "toLogic",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 608952228,
+        "stroke": [
+          {
+            "x": 110,
+            "y": 183,
+            "$Version": 1.0
+          },
+          {
+            "x": 200,
+            "y": 183,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1562588904,
+        "id": -4,
+        "name": "toCC",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 260,
+            "y": 183,
+            "$Version": 1.0
+          },
+          {
+            "x": 331,
+            "y": 183,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 186233777,
+        "id": -5,
+        "name": "ccResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1562588904,
+        "stroke": [
+          {
+            "x": 334,
+            "y": 209,
+            "$Version": 1.0
+          },
+          {
+            "x": 256,
+            "y": 287,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 608952228,
+        "id": -6,
+        "name": "toHttpResp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 200,
+            "y": 287,
+            "$Version": 1.0
+          },
+          {
+            "x": 110,
+            "y": 209,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "queueStrategy": "Blocking queue",
+      "queueWorkerStrategy": "RoundRobin",
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "File",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": -1,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

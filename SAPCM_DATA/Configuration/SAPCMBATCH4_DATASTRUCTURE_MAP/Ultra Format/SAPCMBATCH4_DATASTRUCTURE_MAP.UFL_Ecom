@@ -1,0 +1,84 @@
+{
+  "Key": "DR1792313378464",
+  "Name": "UFL_Ecom",
+  "Type": "Ultra Format",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_DATASTRUCTURE_MAP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+Input
+-----
+ECOM_ORDER_TRANSACTION_202610.csv
+
+Order_ID;Customer_ID;Product_Category;Order_Amount;Status
+ORD001;C101;ELECTRONICS;800;COMPLETED
+ORD002;C102;CLOTHING;250;COMPLETED
+ORD003;C101;HOME;500;COMPLETED
+ORD002;C102;CLOTHING;250;COMPLETED
+ORD004;C103;ELECTRONICS;1,200;COMPLETED
+ORD005;C102;HOME;400;CANCELLED
+ORD006;C104;BOOKS;150;COMPLETED
+ORD007;C999;HOME;600;COMPLETED
+
+Configure the below data as constant in CM :
+Customer ID,Threshold
+C101,1000
+C102,500
+C103,1000
+C104,200
+
+Decode the data order data.
+Remove duplicate record using Order_ID as a key and store them in Exclusion file.
+Calculate the total spending of each customer and if it goes above or is equal to Threshold, mark the order aas VIP
+If the Threshold is not configured then exclude the Order.
+
+Output1
+-------
+
+ECOM_ORDER_TRANSACTION_PROCESSED_202610.csv
+
+Customer;Total spending;Threshold;Decision
+C101;1300;1,000;VIP
+C102;250;500;STANDARD
+C103;1,200;1,000;VIP
+C104;150;200;STANDARD
+
+Output2
+-------
+ORD002;C102;CLOTHING;250;COMPLETED,DUPLICATE
+ORD007;C999;HOME;600;COMPLETED;NO_THRESHOLD
+*/
+
+internal EcomOrd{
+    string Order_ID;
+    string Customer_ID;
+    string Product_Category;
+    long Order_Amount;
+    string Status;
+};
+
+internal EcomExclusion : extends(EcomOrd){
+   string ErrorCode;     
+};
+
+internal EcomOut{
+    string Customer;
+    long TotalSpending;
+    long Threshold;
+    string Decision;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

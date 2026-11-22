@@ -1,0 +1,712 @@
+{
+  "Key": "DR1793809396376",
+  "Name": "WFL_COLLECTION_EV",
+  "Type": "Workflow",
+  "Version": 10,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Kafka_2",
+        "ID": -169607507,
+        "Classname": "com.digitalroute.wfc.kafka2.batch.KafkaBatchInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.kafka2.batch.KafkaBatchInputInsp",
+            "Data": {
+              "assignmentMethod": "TopicName",
+              "batchSize": 100,
+              "consumerGroup": "s4hana-analytics",
+              "pattern": "",
+              "topicNames": [
+                "test-s4hana"
+              ],
+              "topicPartitions": [],
+              "topic_partitions": "",
+              "$Type": "dr.KafkaBatchInputData",
+              "$Version": 1.3
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 50,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "DupCheck",
+        "ID": 1271441448,
+        "Classname": "com.digitalroute.wfc.aggregation.AggregationInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.aggregation.AggregationInsp",
+            "Data": {
+              "commitCount": 1,
+              "commitTimeout": 1,
+              "defaultTimeout": 86400,
+              "defragAfterNumberOfBatches": 1,
+              "defragEachBatchTimeLimit": 5,
+              "defragFileAgeLimit": 5,
+              "defragFileAgeLimit_TimeUnit": "MINUTES",
+              "defragTrigger": "None",
+              "intervalTimeout": 1,
+              "mainScript": "import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+sessionInit{
+    KafkaRecord ip = (KafkaRecord)input;
+    session.id = ip.topic;
+    session.lastOffset = -1;
+}
+consume {
+    if (input.offset > session.lastOffset) {
+        session.lastOffset = input.offset;
+        session.timestamp = input.timestamp;
+        
+        RawPayload raw = udrCreate(RawPayload);
+        raw.payload = baToStr(input.value);
+        udrRoute(raw, \"toFile\");
+    } else {
+        udrRoute(input, \"toOffset_dup\");
+    }
+    
+}",
+              "noMatchBehaviour": 0,
+              "noStorageBehaviour": 0,
+              "nullTimeoutBehaviour": 2,
+              "profile": {
+                "dynamicParameters": [],
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793811584623",
+                "name": "PRF_AGG_KAFKADUP",
+                "type": "Aggregation Profile",
+                "$Version": 1.0
+              },
+              "readonly": false,
+              "timeoutDisable": false,
+              "$Type": "dr.AggregationConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 180,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "handleDup",
+        "ID": -1186562757,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+
+}",
+              "udrTypes": [
+                {
+                  "typeName": "kafka.KafkaRecord",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 180,
+          "y": 370,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ToProcess",
+        "ID": 1298438762,
+        "Classname": "com.digitalroute.wfc.diskoutput.DiskOutputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.diskoutput.DiskOutputInsp",
+            "Data": {
+              "arguments": "",
+              "command": "",
+              "compType": "No Compression",
+              "createEmpty": false,
+              "createNonExistingBaseDir": false,
+              "directory": "/opt/mz/SAPCM-BATCH4/BRIM/RIDE/COLL",
+              "inputType": "ByteArray",
+              "$Type": "dr.DiskOutputData",
+              "$Version": 13.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNTServiceInsp",
+            "Data": {
+              "createNonExistDirectories": true,
+              "entries": [
+                {
+                  "User entry": "RIDE_PAYLOAD_",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "Mim entry": "Workflow.Transaction ID",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Trailing separator": "_",
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "Mim entry": "Workflow.Batch End Time",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Date format": "yyyyMMddHHmmss",
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "User entry": ".proc",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                }
+              ],
+              "fNTListEnabled": true,
+              "$Type": "dr.DRFNTServiceConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 430,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Archiving_1",
+        "ID": 1419015372,
+        "Classname": "com.digitalroute.wfc.archiving.ArchivingInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.archiving.ArchivingInsp",
+            "Data": {
+              "agentDirElements": [],
+              "agentMIMElements": [
+                "Workflow.Workflow Name",
+                "Workflow.Batch Start Time",
+                "Kafka_2.Outbound UDRs"
+              ],
+              "compression": "No Compression",
+              "createEmpty": false,
+              "inputType": "ByteArray",
+              "profile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793813872623",
+                "name": "PRF_ARCH_RIDE",
+                "type": "Archive Profile",
+                "$Version": 1.0
+              },
+              "$Type": "dr.ArchivingData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNTServiceInsp",
+            "Data": {
+              "createNonExistDirectories": true,
+              "entries": [
+                {
+                  "User entry": "ARCH_RIDE_",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "Mim entry": "Workflow.Workflow ID",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Trailing separator": "_",
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "Mim entry": "Workflow.Batch Start Time",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Date format": "yyyyMMddHHmmss",
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "User entry": ".csv",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                }
+              ],
+              "fNTListEnabled": true,
+              "$Type": "dr.DRFNTServiceConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 430,
+          "y": 90,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_3",
+        "ID": -1426521943,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+consume {
+    RideArchiveInt arch = udrCreate(RideArchiveInt);
+    debug(input);
+    arch.Offset = input.offset;
+    arch.Timestamp = input.timestamp;
+    arch.Payload = baToStr(input.value);
+   
+    udrRoute(arch);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "kafka.KafkaRecord",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 50,
+          "y": 90,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_2",
+        "ID": -1996542875,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+            "Data": {
+              "encoderConfig": {
+                "delimiter": "|",
+                "format": "Custom",
+                "lineBreak": "\\n",
+                "udrType": {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.RideArchiveInt",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                },
+                "$Type": "dr.CsvencoderConfig",
+                "$Version": 1.0
+              },
+              "encoderName": "CSV Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRHeaderServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRTrailerServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 240,
+          "y": 90,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_3",
+        "ID": 613324305,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRHeaderServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRTrailerServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 300,
+          "y": 240,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": 1271441448,
+        "id": -3,
+        "name": "toDupcheck",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -169607507,
+        "stroke": [
+          {
+            "x": 80,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 150,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1186562757,
+        "id": -4,
+        "name": "toOffset_dup",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 1271441448,
+        "stroke": [
+          {
+            "x": 180,
+            "y": 259,
+            "$Version": 1.0
+          },
+          {
+            "x": 180,
+            "y": 337,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1426521943,
+        "id": -11,
+        "name": "toArch",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -169607507,
+        "stroke": [
+          {
+            "x": 50,
+            "y": 207,
+            "$Version": 1.0
+          },
+          {
+            "x": 50,
+            "y": 109,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1996542875,
+        "id": -14,
+        "name": "toArch",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1426521943,
+        "stroke": [
+          {
+            "x": 80,
+            "y": 83,
+            "$Version": 1.0
+          },
+          {
+            "x": 210,
+            "y": 83,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1419015372,
+        "id": -15,
+        "name": "toArch",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1996542875,
+        "stroke": [
+          {
+            "x": 270,
+            "y": 83,
+            "$Version": 1.0
+          },
+          {
+            "x": 400,
+            "y": 83,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 613324305,
+        "id": -16,
+        "name": "toFile",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 1271441448,
+        "stroke": [
+          {
+            "x": 210,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 270,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1298438762,
+        "id": -17,
+        "name": "toFile",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 613324305,
+        "stroke": [
+          {
+            "x": 330,
+            "y": 233,
+            "$Version": 1.0
+          },
+          {
+            "x": 401,
+            "y": 233,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "kafkaProfile": {
+          "folder": "SAPCMBATCH4_COMMON",
+          "key": "DR1793808877985",
+          "name": "PRF_KAFKA",
+          "type": "Kafka2 Profile",
+          "$Version": 1.0
+        },
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,88 @@
+{
+  "Key": "DR1794663332689",
+  "Name": "PRF_OPEN_API_ORD_V1",
+  "Type": "Open API Profile",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_OPENAPI",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "scheme": "openapi: 3.0.0
+info:
+  title: Simple Order API
+  version: 1.0.0
+paths:
+  /orders:
+    post:
+      summary: Create a basic order
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderReq'
+      responses:
+        '200':
+          description: Order processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResp'
+
+components:
+  schemas:
+    OrderReq:
+      type: object
+      required:
+        - customerId
+        - itemCode
+        - quantity
+      properties:
+        customerId:
+          type: string
+          example: \"CUST-101\"
+        itemCode:
+          type: string
+          example: \"ITEM-A5\"
+        quantity:
+          type: integer
+          example: 2
+        notes :
+          type: string
+          example: \"ITEM-A5\"
+
+    OrderResp:
+      type: object
+      required:
+        - orderId
+        - status
+        - totalAmount
+      properties:
+        orderId:
+          type: string
+          example: \"ORD-9981\"
+        status:
+          type: string
+          example: \"CONFIRMED\"
+        totalAmount:
+          type: number
+          format: double
+          example: 149.99",
+    "fileName": "OrderAPI_V1.yaml",
+    "ext_refs_files": [],
+    "ignore_readonly": true,
+    "enable_additional_properties": false,
+    "$Type": "dr.OpenApiProfileData",
+    "$Version": 1.2
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

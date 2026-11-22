@@ -1,0 +1,448 @@
+{
+  "Key": "DR1794145659595",
+  "Name": "WFL_HTTP2_API",
+  "Type": "Workflow",
+  "Version": 27,
+  "Folder": "SAPCMBATCH4_IWF",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "2"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Instance",
+        "fieldName": "streamId",
+        "nodeId": -1379684195,
+        "nodeName": "Inter_Workflow_1",
+        "section": "Inter Workflow",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "S2",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "S1",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 2,
+        "instanceName": "workflow_2",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "HTTP2_Server_2",
+        "ID": 1094494657,
+        "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+            "Data": {
+              "authLevel": "NONE",
+              "averagePeriod": 10,
+              "characterEncoding": "UTF-8",
+              "clientTimeout": 10,
+              "enableTooManyRequests": true,
+              "gzipLevel": 7,
+              "host": "192.168.2.100",
+              "isTwoWayAuth": false,
+              "maxConcurrentStreams": 500,
+              "numberOfRequests": 1000,
+              "port": 8056,
+              "routeToApl": false,
+              "securityProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794113593551",
+                "name": "PRF_SECURITY",
+                "type": "Security Profile",
+                "$Version": 1.0
+              },
+              "serverTimeout": 0,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "openApiProfileList": [
+                    {
+                      "folder": "SAPCMBATCH4_IWF",
+                      "key": "DR1794424369058",
+                      "name": "PRF_OPEN_API_ORDER",
+                      "type": "Open API Profile",
+                      "$Version": 1.0
+                    }
+                  ],
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": true,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                },
+                {
+                  "enableFallBack": false,
+                  "enableRegistrationRetry": false,
+                  "nrfAddresses": [],
+                  "numberOfRegistrationRetry": 0,
+                  "openApiProfileList": [],
+                  "secondaryAddressList": [],
+                  "timeIntervalForRegistrationRetry": 0,
+                  "use5g": false,
+                  "$Type": "dr.HTTP2.Support5G",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": true,
+              "waitDuration": 10,
+              "$Type": "dr.HTTP2ServerData",
+              "$Version": 12.1
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 140,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.openapi.SAPCMBATCH4_IWF.PRF_OPEN_API_ORDER;
+import ultra.http;
+import ultra.SAPCMBATCH4_IWF.UFL_IWF;
+
+
+
+consume {
+    debug(input);
+    //Payload received
+    OrderReq orderReq = (OrderReq)input.openAPIUDR;
+    debug(\"Payload:\"+orderReq);
+    //vaidation
+    boolean isValid = false;
+    if(orderReq.customerId != null && orderReq.customerId != \"\"){
+        //invalid record send to ECS
+        isValid = true;
+    }
+    
+    
+    OrderResp orderRes = udrCreate(OrderResp);
+    if(isValid){
+        orderRes.orderId = (string)uuidCreateRandom();
+        orderRes.status = \"CONFIRMED\";
+        orderRes.totalAmount = orderReq.quantity * 10;
+    }else{
+        orderRes.orderId = \"INVALID CUSTOMER ID\";
+        orderRes.status = \"FAILED\";
+        orderRes.totalAmount = 0;
+    }
+     debug(\"Response:\"+orderRes);
+    Response res = udrCreate(Response);    
+    res.openAPIUDR = orderRes;
+    res.statusCode = 200;
+    input.response = res;
+    udrRoute(input,\"res\");
+   
+    TxnSumm sum = udrCreate(TxnSumm);
+    sum.req = (orderReq);
+    sum.res = (orderRes);
+    udrRoute(sum,\"toIwf\");
+    
+ 
+}",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Inter_Workflow_1",
+        "ID": -1379684195,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFOutputRTInsp",
+            "Data": {
+              "byteCount": -1,
+              "enableWorkerThread": true,
+              "includeOutstanding": false,
+              "myMIMs": [
+                {
+                  "Name": "SOURCE_WF_NAME",
+                  "Value": "Workflow.Workflow Name",
+                  "$Version": 1.0
+                }
+              ],
+              "profile": {
+                "folder": "SAPCMBATCH4_IWF",
+                "key": "DR1794424092100",
+                "name": "PRF_IWF_RT2BT",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "queueSize": 10000,
+              "sendResponseUdr": false,
+              "streamId": "S2",
+              "timeout": 300,
+              "udrCount": 2,
+              "$Type": "dr.InterWFOutputRTData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 430,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_1",
+        "ID": -510667452,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderRealtimeInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 320,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": 186233777,
+        "id": -2,
+        "name": "req",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1094494657,
+        "stroke": [
+          {
+            "x": 170,
+            "y": 194,
+            "$Version": 1.0
+          },
+          {
+            "x": 207,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 244,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 280,
+            "y": 194,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1094494657,
+        "id": -3,
+        "name": "res",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 280,
+            "y": 214,
+            "$Version": 1.0
+          },
+          {
+            "x": 243,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 207,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 170,
+            "y": 214,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -510667452,
+        "id": -5,
+        "name": "toIwf",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 310,
+            "y": 229,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 287,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1379684195,
+        "id": -6,
+        "name": "toIwf",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -510667452,
+        "stroke": [
+          {
+            "x": 310,
+            "y": 339,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 397,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "queueStrategy": "Blocking queue",
+      "queueWorkerStrategy": "RoundRobin",
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 2,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

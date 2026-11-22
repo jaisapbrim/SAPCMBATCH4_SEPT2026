@@ -1,0 +1,262 @@
+{
+  "Key": "DR1792932822893",
+  "Name": "PracticeQuestions",
+  "Type": "APL Code",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_EXERCISE",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*Practise Questions for UFDL:
+1. Create a simple decoder for decoding csv file using external & internal. Dont create workflow just create ultra and test decoding using 'UDR File Editor'
+
+\tServiceType,ServicePeriod,Usage,Track
+\tStorage,092026,23,Cloud
+\tAPI,092026,45,Interface
+\t
+2. Create a simple decoder for decoding csv file using external and target_internal. Dont create workflow just create ultra and test decoding using 'UDR File Editor'
+
+\tServiceType,ServicePeriod,Usage,Track
+\tStorage,092026,23,Cloud
+\tAPI,092026,45,Interface
+
+3. Create a decoder to decode complex structure like sub structure. Dont create workflow just create ultra and test decoding using 'UDR File Editor' 
+\tUser,BillingDate,PlanDetails
+\tU1,31-01-2026,Golden|30|99
+\tU2,25-01-2026,SILVER|28|79
+\t
+\tAbove example should decode PlanDetails as seperate structure having fields as PlanName,Validity and Price
+\t
+4. Create a decoder to decode list data. Dont create workflow just create ultra and test decoding using 'UDR File Editor'
+\tConsumerNumber,ConsumptionDate,ConsumptionValue,Count,Services
+\tC1,12-12-2026,18,3,Electricity,Gas,Water
+\tC2,09-12-2026,56,2,Water,Gas
+\t
+\tAbove example should decode Services as list and rest fields as normal fields
+\t
+5. Create a workflow to decode the data for Question 1 & 2 using predefined CSVFormat decoder
+6. Create a wokflow to decode below JSON data using predefined JSONFormat decoder
+\t{
+\t\t\"user\" : \"u1\",
+\t\t\"consumptionType\" : \"usage\"
+\t}
+\t{
+\t\t\"user\" : \"u2\",
+\t\t\"consumptionType\" : \"recurring\"
+\t}
+\t{
+\t\t\"user\" : \"u3\",
+\t\t\"consumptionType\" : \"recurring + onetime\"
+\t}
+8. Create a ultra for total/constructed decoder
+
+*/
+
+
+
+/*Practise Questions for Variables & Data type:
+1.Create a workflow to decode simple csv file, count the number of records and debug them.
+Add 5days to the consumtion date for each record.
+Create the output file with same format. 
+
+SubId,SKU,ConsDate
+111,P1,15-09-2026
+111,P2,12-09-2026
+
+2.Create a workflow to decode simple csv file, count the number of records in each batch but the count must hold cumulative sume of
+previous batch as well. Dont encode the file just observe the debug.
+In initialize or beginBatch block try to assign long data type variable to int data type variable and vice versa.
+Define a variable with data type as any and try to assign number/string/boolean values.
+*/
+
+
+
+
+
+/*Practise Questions for MIM(Meta Information Model):
+ 
+Prereqsite: Create the new file with below data on server
+Filename: Hxhibit_J_May'26.csv
+
+LineItem;ResourceUnitDescription;Tower;Owner;BillingUnit;ResourceBaseline
+1;MIPS;Mainframe Services;Bert Stoltz;MIPS;308167.00
+2;DASD;Mainframe Services;Bert Stoltz;Usable PBs;3.04
+3;Physical Tape;Mainframe Services;Bert Stoltz;Usable PBs;15.32
+4;Virtual Tape;Mainframe Services;Bert Stoltz;Usable PBs;22.21
+5;Integrated Facility for Linux ;Mainframe Services;Bert Stoltz;Installed IFL;760.00
+6;Windows Instances (On Prem);Distributed Environment Services;Raghuraj Subramanian;Instances;4995.00
+
+1.Decode the above data using CSVFormat decoder(predefined decoder by CM)
+2.Create 2 output files such that 1st file will only have BillingUnit as 'Usable PBs' and 2nd file will
+have rest BillingUnit.
+3.Set the filename for 'Usable PBs' records like USABLE_totalRecordCount_transactionId_Hxhibit_J_May'26.csv
+4.Set the filename for rest records like NONUSABLE_totalRecordCount_transactionId_Hxhibit_J_May'26.csv
+
+Use MIM to create the filename for both the files
+*/
+
+
+/*Practice Questions for List , Map , Database/SQL agents
+List Example:
+------------
+
+Record_Type;Server_ID;Customer_ID;CPU_vCPU_Hours;RAM_GB_Hours;Storage_GB_Hours;Environment;Period
+S;SRV00001;C10001;120;4800;120000;PRD;202610
+S;SRV00002;C10001;40;2000;50000;DEV;202610
+S;SRV00003;C10002;200;8000;200000;PRD;202610
+S;SRV00004;C10003;0;1000;20000;PRD;202610
+S;SRV00005;C10002;90;3500;75000;TST;202610
+
+Downstream 1: TB_PROCESSING_SUMMARY(FILENAME,CREATED_ON,REC_COUNT,STATUS)
+Downstream 2: TB_PROCESSED_RECORDS(FILENAME,CREATED_ON,REC_TYPE,SERVER,CUST,CPU_H,RAM_H,STORAGE_H,ENV,PERIOD)
+
+Processing logic:
+1. Decode the data
+2. Insert the records in TB_PROCESSED_RECORDS only if the total CPU_vCPU_Hours is above 300.
+3. Filter the records which are not part of Environment [PRD,TST]
+4. Insert the records in TB_PROCESSING_SUMMARY for each file. Mark STATUS as 'Eligible' if the CPU_vCPU_Hours is above 300 or NotEligible
+
+CREATE TABLE TB_PROCESSING_SUMMARY (
+    FILENAME    VARCHAR(255) NOT NULL,
+    CREATED_ON  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    REC_COUNT   BIGINT NOT NULL DEFAULT 0,
+    STATUS      VARCHAR(30) NOT NULL
+);
+
+INSERT INTO public.tb_processing_summary
+(filename, rec_count, status)
+VALUES($(Disk_1.Source Filename), $(UDR.recCount), $(UDR.status));
+
+INSERT INTO public.tb_processed_records
+(filename, rec_type, server, cust, cpu_h, ram_h, storage_h, env, period)
+VALUES($(Disk_1.Source Filename), $(UDR.Record_Type),  $(UDR.Server_ID), $(UDR.Customer_ID), $(UDR.CPU_vCPU_Hours), $(UDR.RAM_GB_Hours),  $(UDR.Storage_GB_Hours),  $(UDR.Environment), $(UDR.Period));
+
+CREATE TABLE TB_PROCESSED_RECORDS (
+    FILENAME    VARCHAR(255) NOT NULL,
+    CREATED_ON  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    REC_TYPE    VARCHAR(20),
+    SERVER      VARCHAR(50),
+    CUST        VARCHAR(50),
+    CPU_H       NUMERIC(15, 2),
+    RAM_H       NUMERIC(15, 2),
+    STORAGE_H   NUMERIC(18, 2),
+    ENV         VARCHAR(20),
+    PERIOD      VARCHAR(6)
+);
+
+
+Map Example:
+-----------
+Input
+-----
+ECOM_ORDER_TRANSACTION_202610.csv
+
+Order_ID;Customer_ID;Product_Category;Order_Amount;Status
+ORD001;C101;ELECTRONICS;800;COMPLETED
+ORD002;C102;CLOTHING;250;COMPLETED
+ORD003;C101;HOME;500;COMPLETED
+ORD002;C102;CLOTHING;250;COMPLETED
+ORD004;C103;ELECTRONICS;1,200;COMPLETED
+ORD005;C102;HOME;400;CANCELLED
+ORD006;C104;BOOKS;150;COMPLETED
+ORD007;C999;HOME;600;COMPLETED
+
+Configure the below data as constant in CM :
+Customer ID,Threshold
+C101,1000
+C102,500
+C103,1000
+C104,200
+
+Decode the data order data.
+Remove duplicate record using Order_ID as a key and store them in Exclusion file.
+Calculate the total spending of each customer and if it goes above or is equal to Threshold, mark the order aas VIP
+If the Threshold is not configured then exclude the Order.
+
+Output1
+-------
+
+ECOM_ORDER_TRANSACTION_PROCESSED_202610.csv
+
+Customer;Eligible orders;Total spending;Threshold;Decision
+C101;ORD001, ORD003;1,300;1,000;VIP
+C102;ORD002;250;500;STANDARD
+C103;ORD004;1,200;1,000;VIP
+C104;ORD006;150;200;STANDARD
+
+Output2
+-------
+ORD002;C102;CLOTHING;250;COMPLETED,DUPLICATE
+ORD007;C999;HOME;600;COMPLETED;NO_THRESHOLD
+
+*/
+
+
+/*
+Practice Question DB/SQL agent
+
+Raw consumption file:
+insurance_premium_items.csv
+BusinessPartner,ContractAccount,CAContract,CAProviderContractItemNumber,CACnsmpnItmID,CACnsmpnItmConsumptionDateTime,CACnsmpnItmQty,CACnsmpnItmQuantityUnit,CACnsmpnItmIDType
+POL-10001,FS-CD-10001,POL-AUTO-001,COV-COLLISION,PREM-202411-001,20241101000000,1,EA,01
+POL-10002,FS-CD-10002,POL-HEALTH-002,COV-DENTAL,PREM-202411-002,20241101000000,2,EA,01
+POL-10003,FS-CD-10003,POL-LIFE-003,COV-BASIC,PREM-202411-003,20241101000000,1,EA,01
+POL-10004,FS-CD-10004,POL-AUTO-004,COV-LIABILITY,PREM-202411-004,20241101000000,1,EA,01
+
+Reference file:(TABLE)
+PolicyholderID,ContractAccount,PolicyNumber,CoverageItem,ProductCode,PolicyType,MonthlyPremium,Currency,PolicyStatus
+POL-10001,FS-CD-10001,POL-AUTO-001,COV-COLLISION,AUTO-COMP,P&C Auto Comprehensive,125.00,USD,ACTIVE
+POL-10002,FS-CD-10002,POL-HEALTH-002,COV-DENTAL,HLTH-DENTAL,Health Dental Rider,45.50,USD,ACTIVE
+POL-10003,FS-CD-10003,POL-LIFE-003,COV-BASIC,LIFE-TERM,Term Life Basic,89.00,USD,ACTIVE
+POL-10004,FS-CD-10004,POL-AUTO-004,COV-LIABILITY,AUTO-LIAB,P&C Auto Liability,67.25,USD,INACTIVE
+
+Logic:
+Process the raw consumption file perform the below validations:
+1. The PolicyNumber and CoverageItem must match the CAContract and CAProviderContractItemNumber from the reference file.
+2. Only upload premiums for ACTIVE policies.
+3. Create the below output format and store it in db as downstream
+
+BusinessPartner,Policy,Coverage,Qty,MonthlyPremium,TotalPremium,BillingPeriod,ItemID
+POL-10001,POL-AUTO-001,COV-COLLISION,1,125.00,125.00,2024-11,POL-AUTO-001-COV-COLLISION-202411
+POL-10002,POL-HEALTH-002,COV-DENTAL,2,45.50,91.00,2024-11,POL-HEALTH-002-COV-DENTAL-202411
+POL-10003,POL-LIFE-003,COV-BASIC,1,89.00,89.00,2024-11,POL-LIFE-003-COV-BASIC-202411
+
+
+CREATE COLUMN TABLE \"INSURANCE_REF_DATA\" (
+    \"TXN_ID\"          BIGINT        ,
+    \"POLICYHOLDERID\"  NVARCHAR(20)  ,
+    \"CONTRACTACCOUNT\" NVARCHAR(20)  ,
+    \"POLICYNUMBER\"    NVARCHAR(30)  ,
+    \"COVERAGEITEM\"    NVARCHAR(30)  ,
+    \"PRODUCTCODE\"     NVARCHAR(20),
+    \"POLICYTYPE\"      NVARCHAR(60),
+    \"MONTHLYPREMIUM\"  NVARCHAR(60),
+    \"CURRENCY\"        NVARCHAR(3),
+    \"POLICYSTATUS\"    NVARCHAR(10)
+);
+
+CREATE TABLE INSURANCE_PER_OP (
+    TXN_ID          BIGINT,
+    BUSINESSPARTNER VARCHAR(50),
+    POLICY          VARCHAR(50),
+    COVERAGE        VARCHAR(50),
+    QTY             VARCHAR(20),
+    MONTHLYPREMIUM  VARCHAR(20),
+    TOTALPREMIUM    VARCHAR(20),
+    BILLINGPERIOD   DATE,
+    ITEMID          VARCHAR(100)
+);
+*/",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

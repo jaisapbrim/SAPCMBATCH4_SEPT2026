@@ -1,0 +1,26 @@
+{
+  "Key": "DR1792849929795",
+  "Name": "PRF_DupCheck_SFC",
+  "Type": "Duplicate Batch Profile",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_DUPCHECK_BATCH",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Cache timeout": 30,
+    "Use CRC": true,
+    "Use byte count": true,
+    "Use MIM": false,
+    "$Type": "dr.DupBatchProfileConfig",
+    "$Version": 1.1
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

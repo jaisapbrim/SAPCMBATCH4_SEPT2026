@@ -1,0 +1,54 @@
+{
+  "Key": "DR1794113593551",
+  "Name": "PRF_SECURITY",
+  "Type": "Security Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_COMMON",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "KeyStoreData": {
+      "KeyStorePath": "/opt/mz/conf/security/sapcm-server.p12",
+      "KeyStorePassword": "DR-4-25FB75239B53E487605912194E971790",
+      "KeyAlias": "sapcm-server",
+      "KeyPassword": "DR-4-25FB75239B53E487605912194E971790",
+      "PublicKeyAlias": "sapcm-server",
+      "$Type": "dr.JavaKeyStoreData",
+      "$Version": 10.1
+    },
+    "TrustStoreData": {
+      "$Type": "dr.TrustStoreAsKeyStore",
+      "$Version": 10.0
+    },
+    "VaultData": {
+      "Alias": "",
+      "$Type": "com.digitalroute.security.azurekeyvault.AzureKeyVaultData",
+      "$Version": 1.0
+    },
+    "TlsData": {
+      "Required": "",
+      "Forbidden": "",
+      "IncludeAllSupported": false,
+      "Protocol": "TLSv1.3",
+      "EnabledProtocols": [
+        "TLSv1.3"
+      ],
+      "IsEnabled": false,
+      "$Version": 10.0
+    },
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.SecurityProfileData",
+    "$Version": 20.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

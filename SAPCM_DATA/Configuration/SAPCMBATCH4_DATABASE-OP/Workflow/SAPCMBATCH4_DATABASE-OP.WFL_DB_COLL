@@ -1,0 +1,360 @@
+{
+  "Key": "DR1793426281080",
+  "Name": "WFL_DB_COLL",
+  "Type": "Workflow",
+  "Version": 19,
+  "Folder": "SAPCMBATCH4_DATABASE-OP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Database_2",
+        "ID": 989278718,
+        "Classname": "com.digitalroute.wfc.dbcoll.DBCollInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.dbcoll.DBCollInsp",
+            "Data": {
+              "assignments": [
+                {
+                  "Column information": {
+                    "Name": "device_id",
+                    "Column type": {
+                      "Type in JDBC": 12,
+                      "Name for DBMS": "varchar",
+                      "$Version": 1.0
+                    },
+                    "Column size": 50,
+                    "Allow null": false,
+                    "Ordinal Position": 1,
+                    "Is Unique Key": true,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "deviceId",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "read_timestamp",
+                    "Column type": {
+                      "Type in JDBC": 93,
+                      "Name for DBMS": "timestamptz",
+                      "$Version": 1.0
+                    },
+                    "Column size": 35,
+                    "Allow null": false,
+                    "Ordinal Position": 2,
+                    "Is Unique Key": true,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "readTime",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 11,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "consumption_kwh",
+                    "Column type": {
+                      "Type in JDBC": 2,
+                      "Name for DBMS": "numeric",
+                      "$Version": 1.0
+                    },
+                    "Column size": 10,
+                    "Allow null": false,
+                    "Ordinal Position": 4,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "consKwh",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 6,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Column information": {
+                    "Name": "status_code",
+                    "Column type": {
+                      "Type in JDBC": 12,
+                      "Name for DBMS": "varchar",
+                      "$Version": 1.0
+                    },
+                    "Column size": 10,
+                    "Allow null": true,
+                    "Ordinal Position": 5,
+                    "Is Unique Key": false,
+                    "$Version": 1.0
+                  },
+                  "Value information": {
+                    "Value type": "UDR Field",
+                    "UDR field": {
+                      "Name": "status",
+                      "Type": {
+                        "IsPrimitive": true,
+                        "PrimitiveType": 9,
+                        "$Version": 1.0
+                      },
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                }
+              ],
+              "colForTxnId": {
+                "Name": "txn_id",
+                "Column type": {
+                  "Type in JDBC": -5,
+                  "Name for DBMS": "int8",
+                  "$Version": 1.0
+                },
+                "Column size": 19,
+                "Allow null": false,
+                "Ordinal Position": 1,
+                "Is Unique Key": false,
+                "$Version": 1.0
+              },
+              "dbProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1792307286445",
+                "name": "PRF_DB_POSTGRES",
+                "type": "Database Profile",
+                "$Version": 1.0
+              },
+              "endBatchTreatment": 1,
+              "noOfRowsPerCommit": 1000,
+              "searchArgAssignments": [
+                {
+                  "Value type": "MIM Entry",
+                  "MIM entry": {
+                    "Name": "Analysis_1.status",
+                    "Type": {
+                      "IsPrimitive": true,
+                      "PrimitiveType": 9,
+                      "$Version": 1.0
+                    },
+                    "$Version": 1.0
+                  },
+                  "$Version": 1.0
+                },
+                {
+                  "Value type": "Constant",
+                  "Constant value": "75",
+                  "$Version": 1.0
+                }
+              ],
+              "sqlWhereStatement": "status_code=? AND consumption_kwh>?",
+              "tab": {
+                "Name": "consumption_log",
+                "Catalog": "",
+                "Schema": "public",
+                "Object type": 1,
+                "Include Cat In Prefix": true,
+                "$Version": 1.1
+              },
+              "udrTypeIdentifier": {
+                "TypeName": "SAPCMBATCH4_DATABASE-OP.UFL_INS.consumptionLog",
+                "FormatName": "SAPCMBATCH4_DATABASE-OP.UFL_INS",
+                "$Type": "dr.UltraClientInfo",
+                "$Version": 1.0
+              },
+              "usePreparedCall": true,
+              "useSchemaFromDB": false,
+              "$Type": "dr.DBCollDataExt",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 110,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "mimPublish(global,\"status\",string);
+initialize{
+    mimSet(\"status\",\"OK\");
+}
+consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_DATABASE-OP.UFL_INS.consumptionLog",
+                  "FormatName": "SAPCMBATCH4_DATABASE-OP.UFL_INS",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 290,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1939312021,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 989278718,
+        "stroke": [
+          {
+            "x": 140,
+            "y": 184,
+            "$Version": 1.0
+          },
+          {
+            "x": 181,
+            "y": 172,
+            "$Version": 1.0
+          },
+          {
+            "x": 221,
+            "y": 174,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 190,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

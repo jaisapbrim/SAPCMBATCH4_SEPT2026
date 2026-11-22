@@ -1,0 +1,31 @@
+{
+  "Key": "DR1795258692978",
+  "Name": "UFL_MT",
+  "Type": "Ultra Format",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_BRIM_CC_WS",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal mtEvLocRate{
+    string id;
+    string location;
+    date stDate;
+    date edDate;
+    double amount;
+    string operation;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

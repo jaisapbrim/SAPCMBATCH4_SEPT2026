@@ -1,0 +1,195 @@
+{
+  "Key": "DR1794756060275",
+  "Name": "WFG_EV_COLLECTION",
+  "Type": "Workflow Group",
+  "Version": 3,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "member list": [
+      {
+        "type": "Batch workflow",
+        "config": {
+          "folder": "SAPCMBATCH4_BRIM",
+          "key": "DR1793809396376",
+          "name": "WFL_COLLECTION_EV",
+          "type": "Workflow",
+          "$Version": 1.0
+        },
+        "wf_instance_id": {
+          "System name": "",
+          "Template name": "SAPCMBATCH4_BRIM.WFL_COLLECTION_EV",
+          "Workflow key": {
+            "TEMPLATE_KEY": "DR1793809396376",
+            "INSTANCE_ID": 1,
+            "$Version": 2.0
+          },
+          "Workflow name": "workflow_1",
+          "Version": 0,
+          "dynamic": 0,
+          "$Version": 1.0
+        },
+        "prereq list": [],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      },
+      {
+        "type": "Batch workflow",
+        "config": {
+          "folder": "SAPCMBATCH4_BRIM",
+          "key": "DR1793818676512",
+          "name": "WFL_PROCESSING_EV",
+          "type": "Workflow",
+          "$Version": 1.0
+        },
+        "wf_instance_id": {
+          "System name": "",
+          "Template name": "SAPCMBATCH4_BRIM.WFL_PROCESSING_EV",
+          "Workflow key": {
+            "TEMPLATE_KEY": "DR1793818676512",
+            "INSTANCE_ID": 1,
+            "$Version": 2.0
+          },
+          "Workflow name": "workflow_1",
+          "Version": 0,
+          "dynamic": 0,
+          "$Version": 1.0
+        },
+        "prereq list": [
+          "DR1793809396376_1"
+        ],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      },
+      {
+        "type": "Group",
+        "config": {
+          "folder": "SAPCM-BATCH3_WFG",
+          "key": "DR1783259983288",
+          "name": "WFG_Collection_Master",
+          "type": "Workflow Group",
+          "$Version": 1.0
+        },
+        "prereq list": [],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      }
+    ],
+    "group sched": {
+      "Dayplans, run": [
+        {
+          "Start t. o. d.": {
+            "Hour": 0,
+            "Minute": 0,
+            "Second": 0,
+            "$Version": 1.0
+          },
+          "Stop t. o. d. ": {
+            "Hour": 23,
+            "Minute": 59,
+            "Second": 59,
+            "$Version": 1.0
+          },
+          "Interval hours": 1,
+          "Interval minutes": 0,
+          "Interval seconds": 3600,
+          "Interval milli seconds": 3600000,
+          "Shall execute ": true,
+          "Start t. o. d seconds": 0,
+          "Start t. o. d milli seconds": 0,
+          "Stop t. o. d seconds": 86399,
+          "Day of week": 2,
+          "$Type": "dr.WeeklyDP",
+          "$Version": 1.0
+        },
+        {
+          "Start t. o. d.": {
+            "Hour": 0,
+            "Minute": 0,
+            "Second": 0,
+            "$Version": 1.0
+          },
+          "Stop t. o. d. ": {
+            "Hour": 23,
+            "Minute": 59,
+            "Second": 59,
+            "$Version": 1.0
+          },
+          "Interval hours": 1,
+          "Interval minutes": 0,
+          "Interval seconds": 3600,
+          "Interval milli seconds": 3600000,
+          "Shall execute ": true,
+          "Start t. o. d seconds": 0,
+          "Start t. o. d milli seconds": 0,
+          "Stop t. o. d seconds": 86399,
+          "Day of week": 7,
+          "$Type": "dr.WeeklyDP",
+          "$Version": 1.0
+        },
+        {
+          "Start t. o. d.": {
+            "Hour": 0,
+            "Minute": 0,
+            "Second": 0,
+            "$Version": 1.0
+          },
+          "Stop t. o. d. ": {
+            "Hour": 23,
+            "Minute": 59,
+            "Second": 59,
+            "$Version": 1.0
+          },
+          "Interval hours": 3,
+          "Interval minutes": 0,
+          "Interval seconds": 10800,
+          "Interval milli seconds": 10800000,
+          "Shall execute ": true,
+          "Start t. o. d seconds": 0,
+          "Start t. o. d milli seconds": 0,
+          "Stop t. o. d seconds": 86399,
+          "Day of week": 3,
+          "$Type": "dr.WeeklyDP",
+          "$Version": 1.0
+        }
+      ],
+      "Dayplans, not run": [],
+      "$Version": 1.0
+    },
+    "max running": 0,
+    "delay": 0,
+    "primary type": "Batch",
+    "exeSetting": {
+      "distributionType": "Round Robin",
+      "enabled": false,
+      "executionGroups": [],
+      "$Version": 1.0
+    },
+    "continuous exec": false,
+    "ecd": "",
+    "$Type": "dr.GroupData",
+    "$Version": 5.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

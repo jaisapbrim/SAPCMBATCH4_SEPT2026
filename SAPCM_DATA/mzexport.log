@@ -1,0 +1,233 @@
+--------------------------------------------------
+Commit and push failed, will try to merge.
+Successfully merged configuration
+Failed to push merge commit, reverting
+Get latest from Repository
+--------------------------------------------------
+No conflicting Configurations
+Export started at 2026-11-22 06:28:51
+Output target is (SAPCMBATCH4_SEPT2026 / main) /SAPCM_DATA
+--------------------------------------------------
+[Configuration/SAPCMBATCH4/WS Profile] - Exporting SAPCMBATCH4.PRFCCWSCATLOG
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AGGREGATION/Aggregation Profile] - Exporting SAPCMBATCH4_AGGREGATION.PRF_AGG3
+[Configuration/SAPCMBATCH4_AGGREGATION/Aggregation Profile] - Exporting SAPCMBATCH4_AGGREGATION.PRF_AGG4
+[Configuration/SAPCMBATCH4_AGGREGATION/Aggregation Profile] - Exporting SAPCMBATCH4_AGGREGATION.PRF_AGG_1
+[Configuration/SAPCMBATCH4_AGGREGATION/Aggregation Profile] - Exporting SAPCMBATCH4_AGGREGATION.PRF_AGG_2
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AGGREGATION/Ultra Format] - Exporting SAPCMBATCH4_AGGREGATION.UFL_Aggregation
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AGGREGATION/Workflow] - Exporting SAPCMBATCH4_AGGREGATION.WFL_AGG_1
+[Configuration/SAPCMBATCH4_AGGREGATION/Workflow] - Exporting SAPCMBATCH4_AGGREGATION.WFL_AGG_2
+[Configuration/SAPCMBATCH4_AGGREGATION/Workflow] - Exporting SAPCMBATCH4_AGGREGATION.WFL_AGG_3
+[Configuration/SAPCMBATCH4_AGGREGATION/Workflow] - Exporting SAPCMBATCH4_AGGREGATION.WFL_AGG_4
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_API/APL Code] - Exporting SAPCMBATCH4_API.APL_FUNCTIONS
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_API/Ultra Format] - Exporting SAPCMBATCH4_API.UFL_MasterDataCreation
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_API/Workflow] - Exporting SAPCMBATCH4_API.WFL_CustomerOnboard
+[Configuration/SAPCMBATCH4_API/Workflow] - Exporting SAPCMBATCH4_API.WFL_HTTP2_SSL
+[Configuration/SAPCMBATCH4_API/Workflow] - Exporting SAPCMBATCH4_API.WFL_RFC_CA
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/APL Code] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.APL_Constants
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.WFL_APL_FUNC_BLOCK
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.WFL_APL_FUNC_BLOCK_EG
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.WFL_Operators
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.WFL_PULSE
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS.WFL_VariablesDataTypes
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS_APL-FUNC/Ultra Format] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS_APL-FUNC.UFDL_EV
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_APL-FUNDAMENTALS_APL-FUNC/Workflow] - Exporting SAPCMBATCH4_APL-FUNDAMENTALS_APL-FUNC.WFL_APL_FUNC_DEMO
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_ARCHIVE/Archive Profile] - Exporting SAPCMBATCH4_ARCHIVE.PRF-ARCH_COLL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_ARCHIVE/Workflow] - Exporting SAPCMBATCH4_ARCHIVE.WFL_ARCHIVE
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AUDIT/Audit Profile] - Exporting SAPCMBATCH4_AUDIT.PRF_ADT_PROC
+[Configuration/SAPCMBATCH4_AUDIT/Audit Profile] - Exporting SAPCMBATCH4_AUDIT.PRF_ADT_STREAM_COLL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AUDIT/Workflow] - Exporting SAPCMBATCH4_AUDIT.WFL_STREAM_COLL
+[Configuration/SAPCMBATCH4_AUDIT/Workflow] - Exporting SAPCMBATCH4_AUDIT.WFL_STREAM_COLL1
+[Configuration/SAPCMBATCH4_AUDIT/Workflow] - Exporting SAPCMBATCH4_AUDIT.WFL_STREAM_PROC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AWS/Amazon Profile] - Exporting SAPCMBATCH4_AWS.PRF_AWS
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_AWS/File System Profile] - Exporting SAPCMBATCH4_AWS.PRF_FS_S3
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Aggregation Profile] - Exporting SAPCMBATCH4_BRIM.PRF_AGG_KAFKADUP
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/APL Code] - Exporting SAPCMBATCH4_BRIM.APL_CONSTANTS
+[Configuration/SAPCMBATCH4_BRIM/APL Code] - Exporting SAPCMBATCH4_BRIM.APL_FUNCTIONS
+[Configuration/SAPCMBATCH4_BRIM/APL Code] - Exporting SAPCMBATCH4_BRIM.APL_FUNCTIONS_CI
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Archive Profile] - Exporting SAPCMBATCH4_BRIM.PRF_ARCH_RIDE
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Inter Workflow Profile] - Exporting SAPCMBATCH4_BRIM.PRF_IWF_CI
+[Configuration/SAPCMBATCH4_BRIM/Inter Workflow Profile] - Exporting SAPCMBATCH4_BRIM.PRF_IWF_ECS
+[Configuration/SAPCMBATCH4_BRIM/Inter Workflow Profile] - Exporting SAPCMBATCH4_BRIM.PRF_IWF_RT_ADT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Ultra Format] - Exporting SAPCMBATCH4_BRIM.UFL_RIDE
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_CI_FORWARDING_EV
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_CIT_TEST
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_COLLECTION_ECS
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_COLLECTION_EV
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_FORWARDING_ECS
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_PROCESSING_EV
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_RFC_TEST
+[Configuration/SAPCMBATCH4_BRIM/Workflow] - Exporting SAPCMBATCH4_BRIM.WFL_RT_AUDIT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM/Workflow Group] - Exporting SAPCMBATCH4_BRIM.WFG_EV_COLLECTION
+[Configuration/SAPCMBATCH4_BRIM/Workflow Group] - Exporting SAPCMBATCH4_BRIM.WFG_EV_PROC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_CC/Open API Profile] - Exporting SAPCMBATCH4_BRIM_CC.PRF_OPEN_API_EV
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_CC/Workflow] - Exporting SAPCMBATCH4_BRIM_CC.WFL_BIT_CREATE_TEST
+[Configuration/SAPCMBATCH4_BRIM_CC/Workflow] - Exporting SAPCMBATCH4_BRIM_CC.WFL_SAPCC_CHG
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_CC_WS/Ultra Format] - Exporting SAPCMBATCH4_BRIM_CC_WS.UFL_MT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_CC_WS/Workflow] - Exporting SAPCMBATCH4_BRIM_CC_WS.WFL_CC_WS_MT_SYNC
+[Configuration/SAPCMBATCH4_BRIM_CC_WS/Workflow] - Exporting SAPCMBATCH4_BRIM_CC_WS.WFL_DB_SYNC_COLL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_CC_WS/Workflow Bridge Profile] - Exporting SAPCMBATCH4_BRIM_CC_WS.PRF_WFB_CC_TB_SYNC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_FICA/JMS Profile] - Exporting SAPCMBATCH4_BRIM_FICA.PRF_JMS_ARTEMIS
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_FICA/Ultra Format] - Exporting SAPCMBATCH4_BRIM_FICA.UFL_PaymentPosting
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_FICA/Workflow] - Exporting SAPCMBATCH4_BRIM_FICA.WFL_Collection
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_RFC/SAP RFC Profile] - Exporting SAPCMBATCH4_BRIM_RFC.PRF_RFC_TEST
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_BRIM_RFC/Workflow] - Exporting SAPCMBATCH4_BRIM_RFC.WFL_RFC_TEST
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_COMMON/Database Profile] - Exporting SAPCMBATCH4_COMMON.PRF_DB_POSTGRES
+[Configuration/SAPCMBATCH4_COMMON/Database Profile] - Exporting SAPCMBATCH4_COMMON.PRF_DB_SAPHANA
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_COMMON/Kafka Profile] - Exporting SAPCMBATCH4_COMMON.PRF_KAFKA
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_COMMON/SAP RFC Profile] - Exporting SAPCMBATCH4_COMMON.PRF_RFC-CA_CREATE
+[Configuration/SAPCMBATCH4_COMMON/SAP RFC Profile] - Exporting SAPCMBATCH4_COMMON.PRF_RFC_BIT_CREATE
+[Configuration/SAPCMBATCH4_COMMON/SAP RFC Profile] - Exporting SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE
+[Configuration/SAPCMBATCH4_COMMON/SAP RFC Profile] - Exporting SAPCMBATCH4_COMMON.PRF_RFC_PAYMENT_POSTING
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_COMMON/Security Profile] - Exporting SAPCMBATCH4_COMMON.PRF_SECURITY
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATABASE-OP/Reference Data Profile] - Exporting SAPCMBATCH4_DATABASE-OP.REF_DATA_PRF
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATABASE-OP/Ultra Format] - Exporting SAPCMBATCH4_DATABASE-OP.UFL_INS
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_COLL_REF_INS
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_COLL_REF_INS_SQL
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_DB_COLL
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_INS_PROC
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_SQL_COLL
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_TB_FUNCTIONS
+[Configuration/SAPCMBATCH4_DATABASE-OP/Workflow] - Exporting SAPCMBATCH4_DATABASE-OP.WFL_TSK_SQL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_LIST/Ultra Format] - Exporting SAPCMBATCH4_DATASTRUCTURE_LIST.UFL_DC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_LIST/Workflow] - Exporting SAPCMBATCH4_DATASTRUCTURE_LIST.WFL_DC_PROC
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_LIST/Workflow] - Exporting SAPCMBATCH4_DATASTRUCTURE_LIST.WFL_LIST_FUNC_DEMO
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_MAP/APL Code] - Exporting SAPCMBATCH4_DATASTRUCTURE_MAP.APL_FUNC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_MAP/Ultra Format] - Exporting SAPCMBATCH4_DATASTRUCTURE_MAP.UFL_Ecom
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_MAP/Workflow] - Exporting SAPCMBATCH4_DATASTRUCTURE_MAP.WFL_Ecom_Proc
+[Configuration/SAPCMBATCH4_DATASTRUCTURE_MAP/Workflow] - Exporting SAPCMBATCH4_DATASTRUCTURE_MAP.WFL_MAP_FUNC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DUPCHECK_BATCH/Duplicate Batch Profile] - Exporting SAPCMBATCH4_DUPCHECK_BATCH.PRF_DupCheck_SFC
+[Configuration/SAPCMBATCH4_DUPCHECK_BATCH/Duplicate Batch Profile] - Exporting SAPCMBATCH4_DUPCHECK_BATCH.PRF_DupCheckSFC1
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DUPCHECK_BATCH/Workflow] - Exporting SAPCMBATCH4_DUPCHECK_BATCH.WFL_Collection_SBC
+[Configuration/SAPCMBATCH4_DUPCHECK_BATCH/Workflow] - Exporting SAPCMBATCH4_DUPCHECK_BATCH.WFL_Collection_SBC1
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DUPCHECK_UDR/Duplicate UDR Profile] - Exporting SAPCMBATCH4_DUPCHECK_UDR.PRF_DupUdr_SFC1
+[Configuration/SAPCMBATCH4_DUPCHECK_UDR/Duplicate UDR Profile] - Exporting SAPCMBATCH4_DUPCHECK_UDR.PRF_DupUdr_SFC2
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DUPCHECK_UDR/Ultra Format] - Exporting SAPCMBATCH4_DUPCHECK_UDR.UFL_DupCheck
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_DUPCHECK_UDR/Workflow] - Exporting SAPCMBATCH4_DUPCHECK_UDR.WFL_SFC_PROC1
+[Configuration/SAPCMBATCH4_DUPCHECK_UDR/Workflow] - Exporting SAPCMBATCH4_DUPCHECK_UDR.WFL_SFC_PROC2
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_ECS_BATCH/Ultra Format] - Exporting SAPCMBATCH4_ECS_BATCH.UFL_ECS
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_ECS_BATCH/Workflow] - Exporting SAPCMBATCH4_ECS_BATCH.WFL_COLLECTION
+[Configuration/SAPCMBATCH4_ECS_BATCH/Workflow] - Exporting SAPCMBATCH4_ECS_BATCH.WFL_COLLECTION1
+[Configuration/SAPCMBATCH4_ECS_BATCH/Workflow] - Exporting SAPCMBATCH4_ECS_BATCH.WFL_ECS_COLLECTION
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_ECS_UDR/Workflow] - Exporting SAPCMBATCH4_ECS_UDR.WFL_AGG_UNMATCHED_ERR
+[Configuration/SAPCMBATCH4_ECS_UDR/Workflow] - Exporting SAPCMBATCH4_ECS_UDR.WFL_ECS_COLL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_EVENTS/Event Notification] - Exporting SAPCMBATCH4_EVENTS.EVT_DB_LOG
+[Configuration/SAPCMBATCH4_EVENTS/Event Notification] - Exporting SAPCMBATCH4_EVENTS.EVT_EMAIL_ABORT
+[Configuration/SAPCMBATCH4_EVENTS/Event Notification] - Exporting SAPCMBATCH4_EVENTS.EVT_EMAIL_ABORT1
+[Configuration/SAPCMBATCH4_EVENTS/Event Notification] - Exporting SAPCMBATCH4_EVENTS.EVT_LOG
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_EVENTS/Workflow] - Exporting SAPCMBATCH4_EVENTS.WFL_EVT_EMAIL_ABORT
+[Configuration/SAPCMBATCH4_EVENTS/Workflow] - Exporting SAPCMBATCH4_EVENTS.WFL_EVT_LOG
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_EXERCISE/APL Code] - Exporting SAPCMBATCH4_EXERCISE.PracticeQuestions
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_EXTREF/External Reference Profile] - Exporting SAPCMBATCH4_EXTREF.PRF-EXT_NEXT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_FILESYSTEM/File System Profile] - Exporting SAPCMBATCH4_FILESYSTEM.FS_GIT_HUB_BATCH4
+[Configuration/SAPCMBATCH4_FILESYSTEM/File System Profile] - Exporting SAPCMBATCH4_FILESYSTEM.FS_GIT_S3
+[Configuration/SAPCMBATCH4_FILESYSTEM/File System Profile] - Exporting SAPCMBATCH4_FILESYSTEM.PRF_FS_GIT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF/Inter Workflow Profile] - Exporting SAPCMBATCH4_IWF.PRF_IWF_RT2BT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF/Open API Profile] - Exporting SAPCMBATCH4_IWF.PRF_OPEN_API_ORDER
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF/Ultra Format] - Exporting SAPCMBATCH4_IWF.UFL_IWF
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF/Workflow] - Exporting SAPCMBATCH4_IWF.WFl_ADT_RT
+[Configuration/SAPCMBATCH4_IWF/Workflow] - Exporting SAPCMBATCH4_IWF.WFL_HTTP2_API
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF_TEST/Inter Workflow Profile] - Exporting SAPCMBATCH4_IWF_TEST.PRF_IWF_V1
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_IWF_TEST/Workflow] - Exporting SAPCMBATCH4_IWF_TEST.WFL_COLL_IWF_BT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_MIM/APL Code] - Exporting SAPCMBATCH4_MIM.APL_FUNC
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_MIM/Ultra Format] - Exporting SAPCMBATCH4_MIM.UFL_NEX
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_MIM/Workflow] - Exporting SAPCMBATCH4_MIM.WFL_JSON_DECODE
+[Configuration/SAPCMBATCH4_MIM/Workflow] - Exporting SAPCMBATCH4_MIM.WFL_NEX_FORWARDING
+[Configuration/SAPCMBATCH4_MIM/Workflow] - Exporting SAPCMBATCH4_MIM.WFL_NEX_PROC
+[Configuration/SAPCMBATCH4_MIM/Workflow] - Exporting SAPCMBATCH4_MIM.WFL_NEX_RU_COLL
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_MIM/Workflow Group] - Exporting SAPCMBATCH4_MIM.WFG_NEX
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_OPENAPI/Open API Profile] - Exporting SAPCMBATCH4_OPENAPI.PRF_OPEN_API_ORD_V1
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_OPENAPI/Workflow] - Exporting SAPCMBATCH4_OPENAPI.WFL_OPEN_API
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.TumiTest
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFDL_ADV
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFDL_DiscardOutput
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFDL_EX
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFDL_PersonUfl
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFDL_TotalDecTel
+[Configuration/SAPCMBATCH4_UFDL/Ultra Format] - Exporting SAPCMBATCH4_UFDL.UFL_ConstructedDec
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_WF-TYPES/Workflow] - Exporting SAPCMBATCH4_WF-TYPES.WFL_FilterRecords
+[Configuration/SAPCMBATCH4_WF-TYPES/Workflow] - Exporting SAPCMBATCH4_WF-TYPES.WFL_RT_TEST
+[Configuration/SAPCMBATCH4_WF-TYPES/Workflow] - Exporting SAPCMBATCH4_WF-TYPES.WFL_TSK_SCRIPT
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_WFB/Ultra Format] - Exporting SAPCMBATCH4_WFB.UFL_Veh
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_WFB/Workflow] - Exporting SAPCMBATCH4_WFB.WFL_BATCH_FWD
+[Configuration/SAPCMBATCH4_WFB/Workflow] - Exporting SAPCMBATCH4_WFB.WFL_RT_COLL
+[Configuration/SAPCMBATCH4_WFB/Workflow] - Exporting SAPCMBATCH4_WFB.WFl_RT_COLL1
+[Configuration/SAPCMBATCH4_WFB/Workflow] - Exporting SAPCMBATCH4_WFB.WFL_TCP_FWD
+--------------------------------------------------
+[Configuration/SAPCMBATCH4_WFB/Workflow Bridge Profile] - Exporting SAPCMBATCH4_WFB.PRF_WFB_1
+[Configuration/SAPCMBATCH4_WFB/Workflow Bridge Profile] - Exporting SAPCMBATCH4_WFB.PRF_WFB_2
+--------------------------------------------------
+Export finished at 2026-11-22 06:28:57

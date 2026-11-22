@@ -1,0 +1,63 @@
+{
+  "Key": "DR1793425201590",
+  "Name": "REF_DATA_PRF",
+  "Type": "Reference Data Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_DATABASE-OP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "DbProfileKey": "DR1792919963496",
+    "DbProfileName": "SAPCMBATCH4_COMMON.PRF_DB_SAPHANA",
+    "DBTables": [
+      {
+        "tableName": "SAPCMUSER14.TB_USAGE",
+        "writeAccess": true,
+        "readAccess": true,
+        "enableLastUpdate": false,
+        "lastUpdateUserCol": "",
+        "lastUpdateTSCol": "",
+        "$Version": 2.0
+      }
+    ],
+    "enhancedLogging": false,
+    "advanced": "# Specifies path where temporary files will be stored. E.g.log files when excesive loogging happens or temporary files for large resultsets, default is $MZ_HOME/tmp
+# filePath=/tmp
+
+# Template name to use for files, the profile name will be appended to the filename
+# fileTeplateName=db_refrence_profile_log
+
+# Specifies the number of files to rotate between.
+# nrOfFiles=10
+
+# Specifies the limit size in MB how large a file can become before switching to a new one.
+# sizeOfFile=null
+
+# Specifies JDBC Prefetch Size e.g. number of records retrieved at once (cached inside JVM).
+# This determines the maximum number of records that can be exported via the Reference Data Management UI. A limit will not be set if prefetchSize=0.
+# prefetchSize=1000
+
+# Specifies number of statements sent for execution at once.
+# importBatchSize=1000
+
+# Specifies number of import sql inserts after which commit has been issued.
+# importCommitSize=1000
+
+# Specifies max number of rows per query/table.
+# maxRowsPerQuery=50000
+
+",
+    "$Type": "dr.dbprofileData",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,536 @@
+{
+  "Key": "DR1792244604733",
+  "Name": "WFL_NEX_RU_COLL",
+  "Type": "Workflow",
+  "Version": 7,
+  "Folder": "SAPCMBATCH4_MIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "externalReferenceProfile": {
+      "folder": "SAPCMBATCH4_EXTREF",
+      "key": "DR1792251231821",
+      "name": "PRF-EXT_NEXT",
+      "type": "External Reference Profile",
+      "$Version": 1.0
+    },
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Instance",
+        "fieldName": "baseDir",
+        "nodeId": -2068385928,
+        "nodeName": "Amazon_S3_1",
+        "section": "Source",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "EXTREF",
+            "value": {
+              "$Value": "AWS_IP_DIR",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Amazon_S3_1",
+        "ID": -2068385928,
+        "Classname": "com.digitalroute.wfc.file.system.agent.collection.s3.AmazonS3BatchCollectorInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.file.system.agent.collection.s3.AmazonS3BatchCollectorInsp",
+            "Data": {
+              "profile": {
+                "dynamicParameters": [],
+                "folder": "SAPCMBATCH4_AWS",
+                "key": "DR1792244510659",
+                "name": "PRF_FS_S3",
+                "type": "File System Profile",
+                "$Version": 1.0
+              },
+              "routeFileRef": false,
+              "strategyClasses": [
+                "com.digitalroute.misc.advcoll.impl.DefaultFileInfo",
+                "com.digitalroute.misc.advcoll.impl.DefaultSourceFileHandling"
+              ],
+              "strategyCombinationClass": "com.digitalroute.misc.advcoll.impl.DefaultCollectionStrategy",
+              "strategyConfigs": [
+                {
+                  "baseDir": "random",
+                  "compType": "No Compression",
+                  "fileRegExp": "NEX.*.csv",
+                  "subfolders": false,
+                  "$Type": "dr.DefaultFileInfoConfig",
+                  "$Version": 10.0
+                },
+                {
+                  "idleTime": 0,
+                  "moveBeforeRetrieval": false,
+                  "moveSuffix": "",
+                  "rbDirectory": "",
+                  "rbKeepInterval": -1,
+                  "rbRenamePrefix": "",
+                  "rbRenameSuffix": "",
+                  "rbReplace": "",
+                  "rbSearch": "",
+                  "rbType": "Ignore",
+                  "$Type": "dr.DefaultSourceFileHandlingConfig",
+                  "$Version": 10.0
+                }
+              ],
+              "$Type": "dr.AbstractFileSystemCollectorConfigData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNSServiceInsp",
+            "Data": {
+              "enabled": false,
+              "nextSeqNo": {
+                "SeqNo": -1,
+                "SeqNoUpdate": 0,
+                "$Version": 2.0
+              },
+              "nextSeqNoValue": -1,
+              "seqNoChk": 0,
+              "seqNoLen": -1,
+              "shallWarnOnOutOfSequence": false,
+              "startPos": -1,
+              "wrapOnSeqNo": -1,
+              "wrapToSeqNo": -1,
+              "$Type": "dr.DRFNSServiceConfigExtension",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFileInfoSortOrderServiceInsp",
+            "Data": {
+              "enabled": false,
+              "ignoreCase": false,
+              "length": 0,
+              "orderType": "Filename Value",
+              "patternType": "Position",
+              "sortOrder": "Ascending",
+              "sortType": "Alphanumeric",
+              "startPos": 0,
+              "$Type": "dr.DRFileInfoSortOrderServiceConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 140,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+    udrRoute(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_MIM.UFL_NEX.NexRu",
+                  "FormatName": "SAPCMBATCH4_MIM.UFL_NEX",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 410,
+          "y": 188,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decoder_1",
+        "ID": 895691725,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "delimiter": ",",
+                "format": "Custom",
+                "lineBreak": "\\n",
+                "udrType": {
+                  "TypeName": "SAPCMBATCH4_MIM.UFL_NEX.NexRu",
+                  "FormatName": "SAPCMBATCH4_MIM.UFL_NEX",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                },
+                "$Type": "dr.CsvDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "CSV Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 279,
+          "y": 193,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_1",
+        "ID": -326514662,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRHeaderServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRTrailerServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 559,
+          "y": 187,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Disk_1",
+        "ID": 1195228203,
+        "Classname": "com.digitalroute.wfc.diskoutput.DiskOutputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.diskoutput.DiskOutputInsp",
+            "Data": {
+              "arguments": "",
+              "command": "",
+              "compType": "No Compression",
+              "createEmpty": false,
+              "createNonExistingBaseDir": false,
+              "directory": "/opt/mz/SAPCM-BATCH4/MIM/proc",
+              "inputType": "ByteArray",
+              "$Type": "dr.DiskOutputData",
+              "$Version": 13.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNTServiceInsp",
+            "Data": {
+              "createNonExistDirectories": true,
+              "entries": [
+                {
+                  "Mim entry": "Amazon_S3_1.Source Filename",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Trailing separator": "_",
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "Mim entry": "Workflow.Transaction ID",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                },
+                {
+                  "User entry": ".proc",
+                  "Size": -1,
+                  "Alignment": 1,
+                  "Delimiter": false,
+                  "$Version": 3.0
+                }
+              ],
+              "fNTListEnabled": true,
+              "$Type": "dr.DRFNTServiceConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 717,
+          "y": 191,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": 895691725,
+        "id": 3467381,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -2068385928,
+        "stroke": [
+          {
+            "x": 170,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 195,
+            "y": 165,
+            "$Version": 1.0
+          },
+          {
+            "x": 222,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 249,
+            "y": 174,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1939312021,
+        "id": 2412087,
+        "name": "r_2",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 895691725,
+        "stroke": [
+          {
+            "x": 309,
+            "y": 171,
+            "$Version": 1.0
+          },
+          {
+            "x": 332,
+            "y": 159,
+            "$Version": 1.0
+          },
+          {
+            "x": 355,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 380,
+            "y": 168,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -326514662,
+        "id": 8511472,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 440,
+            "y": 168,
+            "$Version": 1.0
+          },
+          {
+            "x": 469,
+            "y": 156,
+            "$Version": 1.0
+          },
+          {
+            "x": 499,
+            "y": 155,
+            "$Version": 1.0
+          },
+          {
+            "x": 529,
+            "y": 168,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1195228203,
+        "id": 301028,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -326514662,
+        "stroke": [
+          {
+            "x": 589,
+            "y": 169,
+            "$Version": 1.0
+          },
+          {
+            "x": 623,
+            "y": 157,
+            "$Version": 1.0
+          },
+          {
+            "x": 656,
+            "y": 157,
+            "$Version": 1.0
+          },
+          {
+            "x": 688,
+            "y": 171,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,207 @@
+{
+  "Key": "DR1793872251564",
+  "Name": "APL_FUNCTIONS_CI",
+  "Type": "APL Code",
+  "Version": 19,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_CIT_CREATE.subUdr;
+import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS;
+import apl.SAPCMBATCH4_BRIM.APL_CONSTANTS;
+
+table tbMasterDataEv = tableCreate(PRF_DB,SELECT_MASTERDATA_EV);
+table tbVt = tableCreate(PRF_DB,SELECT_DFKK_VT_I);
+
+
+_1FC_1BT18_API setBT18Udr(EV_Cons ip){
+    debug(ip);
+    date citDateFrom = dateCreateCopy(ip.dtChSt);
+    dateSetDay(citDateFrom,1);
+    
+    date citDateTo = dateCreateCopy(ip.dtChEd);
+    dateAddMonths(citDateTo,1);
+    dateAddDays(citDateTo,-1);
+    
+    debug(\"Dates:\"+citDateFrom+\" \"+citDateTo);
+    _1FC_1BT18_API out  = udrCreate(_1FC_1BT18_API);
+    
+    date dateNow = dateCreateNow();
+    out.ACCESS_SERVICEID = CIT_ACCESS_SERVICEID_EVBILL;
+    out.SRCTATYPE = CIT_SRCTATYPE_01;
+    out.CITDATE = dateNow;
+    out.CITDATE_FROM = citDateFrom;
+    out.CITDATE_TO = citDateTo;
+    out.CITTIME = dateNow;
+    out.CITTIME_FROM = citDateFrom;
+    out.CITTIME_TO = citDateTo;
+    string CONSUMDATE;
+    date consumDate = dateCreateCopy(ip.dtChSt);//tbd
+    if (dateToString(CONSUMDATE, consumDate, CIT_CONSUMDATE_DATE_FORMAT))
+        out.CONSUMDATE = CONSUMDATE;
+    out.CITID = (string)uuidCreateRandom();;
+    out.CITIDTYPE = \"ZEVC\";
+    //out.CITTYPE = \"01\";    
+    strToDouble(out.CIT_QUANTITY ,ip.TotalChargingHrs);
+    out.CIT_QTY_UNIT = \"PC\";   
+    out.CIT_CURR = \"USD\";
+    out.ACCESS_USERID = ip.VehicleId;
+    out.ZZCHG_CHG_ED = ip.ChargingEndTime;
+    out.ZZCHG_CHG_ST = ip.ChargingStartTime;
+    strToFloat(out.ZZCHG_HRS,ip.TotalChargingHrs);
+    out.ZZCHG_LOC = ip.ChargingLocation;
+    out.ZZVEHICLE_ID = ip.VehicleId;
+    setMasterDataEv(out,ip);
+    return out;     
+}
+
+void setMasterDataEv(_1FC_1BT18_API out,EV_Cons ip){
+    debug(ip);
+    table tbFil = tableLookup(tbMasterDataEv,\"TR_OBJ_ID\",\"=\",ip.VehicleId);  
+    if(tbFil != null && tableRowCount(tbFil)>0){
+        out.VTREF = (string)tableGet(tbFil,0,\"CI_CONTRACT_ID\");
+        table tbVtFil = tableLookup(tbVt,\"VTKEY\",\"=\",out.VTREF);
+        
+        if(tbVtFil != null && tableRowCount(tbVtFil)>0){            
+            out.VKONT = (string)tableGet(tbVtFil,0,\"VKONT\");
+            strToLong(out.VTPOS,(string)tableGet(tbVtFil,0,\"VTPOS\"));
+            out.GPART = (string)tableGet(tbVtFil,0,\"CB_BILLTO\");
+        }else{
+            cancelBatch(\"Unable to derive BP/CA master data for data:\"+\"\\n\"+tbVtFil+\"\\n\"+out);
+    
+        }
+        
+    }else{
+        cancelBatch(\"Unable to derive provider contract master data for data:\"+\"\\n\"+tbFil+\"\\n\"+out);
+    }
+}
+
+_1FC_BT18_CIT_CREATE_API_UDR createBt18CitUdr() {
+    _1FC_BT18_CIT_CREATE_API_UDR out = udrCreate(_1FC_BT18_CIT_CREATE_API_UDR);
+    out.tableParams = creatTableParamsBT18CitUdr();
+    out.importParams = createImportParams();
+    return out;   
+}
+ 
+tableParams__1FC_BT18_CIT_CREATE_API creatTableParamsBT18CitUdr() {
+    tableParams__1FC_BT18_CIT_CREATE_API out = udrCreate(tableParams__1FC_BT18_CIT_CREATE_API);
+    out.IT_CIT = createITCit();
+    return out;
+}
+ 
+importParams__1FC_BT18_CIT_CREATE_API createImportParams() {
+    importParams__1FC_BT18_CIT_CREATE_API out = udrCreate(importParams__1FC_BT18_CIT_CREATE_API);
+    out.I_UNRATED = \"X\";
+    return out;
+}
+ 
+list <_1FC_1BT18_API> createITCit() {
+    list <_1FC_1BT18_API> outList = listCreate(_1FC_1BT18_API);
+    return outList;
+}
+ 
+CI_Int createCIIntUdr(string key, string ecsErrorCode, boolean isResent, _1FC_BT18_CIT_CREATE_API_UDR ciUdr) {
+
+    CI_Int out = udrCreate(CI_Int);
+    out.key = key;
+    out.ecsErrorCode = ecsErrorCode;
+    out.CiUdr = ciUdr;
+    out.isResent = isResent;
+    out.inputUdrCount = listSize(ciUdr.tableParams.IT_CIT);
+    //_1FC_1BT18_API bt18Udr = listGet(ciUdr.tableParams.IT_CIT, 0);
+    return out;   
+
+}
+ 
+string setCIIntKey(string wflName) {
+
+   date dateNow = dateCreateNow();
+   string dateNowStr;
+   dateToString(dateNowStr, dateNow, CI_KEY_DATE_FORMAT);
+   string key = CI_KEY_PREFIX + dateNowStr + \"_\" + wflName; 
+   return key; 
+}  
+ 
+string isCITValid(_1FC_1BT18_API out){
+    string field = null;
+    
+    if(isEmpty(out.VKONT)){
+        field = \"VKONT\";
+    }else if(isEmpty(out.GPART)){
+        field = \"GPART\";
+    }else if(isEmpty(out.VTREF)){
+        field = \"VTREF\";
+    }
+    
+    return field;
+}
+
+
+Forw_Realtime_Audit_Int createForwRTAuditIntUdr(string workflowName, string outputKey, 
+    date auditStartTime, date auditEndTime, string destinationSystem,
+    long inputUdrCount, long sentSuccessUdrCount, long sentFailedUdrCount) {
+ 
+    Forw_Realtime_Audit_Int in = udrCreate(Forw_Realtime_Audit_Int);
+    in.workflowName = workflowName;
+    in.outputKey = outputKey;
+    in.auditStartTime = auditStartTime;
+    in.auditEndTime = auditEndTime;
+    in.auditDuration = dateDiff(auditEndTime, auditStartTime);
+    in.destinationSystem = destinationSystem;
+    in.inputUdrCount = inputUdrCount;
+    in.sentSuccessUdrCount = sentSuccessUdrCount;
+    in.sentFailedUdrCount = sentFailedUdrCount;   
+    return in;
+}
+Forw_Realtime_Audit_Int setToCIAudit(CI_Int in, string workflowName, boolean sentSuccess) {
+    long inputUdrCount = 0;
+    long sentSuccessUdrCount = 0;
+    long sentFailedUdrCount = 0;
+    
+    inputUdrCount = in.inputUdrCount;
+    
+    if (sentSuccess) {
+        sentSuccessUdrCount = in.inputUdrCount;    
+    } else {
+        sentFailedUdrCount = in.inputUdrCount;
+    }
+    Forw_Realtime_Audit_Int out = createForwRTAuditIntUdr(workflowName, in.key, 
+        in.sentDate, dateCreateNow(), ADT_TO_CI,
+        inputUdrCount, sentSuccessUdrCount, sentFailedUdrCount);
+    return out;
+\t
+}
+\t
+Forw_Realtime_Audit_Int setCIToECSAudit(CI_Int in, string workflowName) {
+    Forw_Realtime_Audit_Int out = createForwRTAuditIntUdr(workflowName, in.key, 
+        dateCreateNow(), dateCreateNow(), ADT_TO_ECS,
+        in.inputUdrCount, in.inputUdrCount, 0);
+    return out;
+}
+boolean checkCitStatus(_1FC_BT18_CIT_CREATE_API_UDR resp){
+    boolean isSuccess = false;
+    for(FKKBIX_API_MSG msg : resp.tableParams.ET_MESSAGES){
+        if(strREContains(msg.MSGTX,\"unrated\")){
+            isSuccess = true;
+            break;
+        }
+    }
+    
+    return isSuccess;
+}",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

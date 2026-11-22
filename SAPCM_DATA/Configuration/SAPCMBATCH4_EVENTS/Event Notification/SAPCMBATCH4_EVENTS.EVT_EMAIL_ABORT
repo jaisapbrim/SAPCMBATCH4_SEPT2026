@@ -1,0 +1,197 @@
+{
+  "Key": "DR1795335843989",
+  "Name": "EVT_EMAIL_ABORT",
+  "Type": "Event Notification",
+  "Version": 6,
+  "Folder": "SAPCMBATCH4_EVENTS",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Status",
+        "Value": "Disabled"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "Active": false,
+    "Notifier": {
+      "Class name": "com.digitalroute.notification.notifiers.MailNotifier",
+      "DupWindow": 0,
+      "Dynamic config": [
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "Sender",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 0,
+          "Value string": "SAP CM",
+          "$Version": 1.0
+        },
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "Recipient",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 0,
+          "Value string": "jai.sapbrim@gmail.com",
+          "$Version": 1.0
+        },
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "Subject",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 0,
+          "Value string": "SAP CM ALERT!!!",
+          "$Version": 1.0
+        },
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "Message",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 2,
+          "Value string": "Workflow Aborted!!
+
+Workflow name : $wfName
+Timestamp : $time
+Reason : $reason
+
+
+Regards,
+SAP CM OPERATIONS",
+          "$Version": 1.0
+        }
+      ],
+      "$Version": 1.0
+    },
+    "Events": [
+      {
+        "Classname": "com.digitalroute.wf.event.WfStateEvent",
+        "Name": "Workflow State Event",
+        "Matcher": {
+          "Matchers": [
+            {
+              "Classname": "com.digitalroute.wf.event.WfStateEvent",
+              "$Type": "dr.EventClassMatcher",
+              "$Version": 1.0
+            },
+            {
+              "Field": "workflowName",
+              "Values": [
+                "SAPCMBATCH4_EVENTS.WFL_EVT_EMAIL_ABORT.workflow_1"
+              ],
+              "$Type": "dr.StringEventMatcher",
+              "$Version": 1.0
+            },
+            {
+              "Field": "workflowState",
+              "Values": [
+                "Aborted"
+              ],
+              "$Type": "dr.StringEventMatcher",
+              "$Version": 1.0
+            }
+          ],
+          "$Version": 1.0
+        },
+        "Map": [
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Message",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "workflowName",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "wfName",
+            "$Version": 1.0
+          },
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Message",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "timeStamp",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 11,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "time",
+            "$Version": 1.0
+          },
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Message",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "abortReason",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "reason",
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "$Type": "dr.NotificationGroupData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

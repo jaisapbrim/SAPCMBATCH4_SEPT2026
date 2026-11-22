@@ -1,0 +1,36 @@
+{
+  "Key": "DR1792847795018",
+  "Name": "UFL_DupCheck",
+  "Type": "Ultra Format",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_DUPCHECK_UDR",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal SFC_Volumes{
+\tlong RecordSequenceNumber;
+\tstring UsageRecordID;
+\tstring CustomerID;
+\tstring ServerID;
+\tstring CPUHours;
+\tstring MemoryGBHours;
+\tstring StorageGBHours;
+\tstring NetworkGB;
+\tstring Environment;
+\tstring BillingPeriod;
+\tstring RecordTimestamp;
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

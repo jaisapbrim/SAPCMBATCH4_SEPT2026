@@ -1,0 +1,103 @@
+{
+  "Key": "DR1791726950864",
+  "Name": "UFDL_EV",
+  "Type": "Ultra Format",
+  "Version": 6,
+  "Folder": "SAPCMBATCH4_APL-FUNDAMENTALS_APL-FUNC",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+sessionId,customerId,chargerType,energyKWh,startTime,endTime,status,source,chargerPowerKW
+\" ev-mum-1001 \",\"cust001\",\"dc-fast\",\"42.50\",\"2026-10-11 09:00:00\",\"2026-10-11 09:45:00\",\" COMPLETED \",\"MUM-MOBILE-APP\",\"150\"
+\"EV-PUN-1002\",\"CUST002\",\"AC-SLOW\",\"18.00\",\"2026-10-11 10:15:00\",\"2026-10-11 10:45:00\",\"completed\",\"PUN-WEB-PORTAL\",\"22\"
+\"EV-MUM-10X3\",\"CUST003\",\"DC-FAST\",\"invalid\",\"2026-10-11 11:00:00\",\"2026-10-11 11:30:00\",\"COMPLETED\",\"MUM-CHARGER-API\",\"150\"
+\"EV-NAS-1004\",\"CUST004\",\"AC-SLOW\",\"12.00\",\"2026-10-11 12:00:00\",\"2026-10-11 11:50:00\",\"COMPLETED\",\"NAS-MOBILE-APP\",\"22\"
+\"EV-MUM-1005\",\"CUST005\",\"DC-FAST\",\"30.00\",\"2026-10-11 13:00:00\",\"2026-10-11 13:40:00\",\"IN_PROGRESS\",\"MUM-CHARGER-API\",\"150\"
+\"EV-PUN-1006\",\"CUST006\",\"AC-SLOW\",\"0.00\",\"2026-10-11 14:00:00\",\"2026-10-11 14:00:00\",\"COMPLETED\",\"PUN-WEB-PORTAL\",\"22\"
+*/
+
+external EvHeader{
+    ascii header : terminated_by(0xA);    
+};
+in_map hImap : external(EvHeader),target_internal(EvHeaderTI),discard_output{automatic;};
+
+external EvConsExt {
+    ascii sep0 : terminated_by(0x22),external_only;//\"
+    ascii sessionId : terminated_by(0x22);// ev-mum-1001 \"
+
+    ascii sep1 : static_size(2), external_only;//,\"
+    ascii customerId : terminated_by(0x22);//cust001\"
+
+    ascii sep2 : static_size(2), external_only;//,\"
+    ascii chargerType : terminated_by(0x22);//dc-fast\"
+
+    ascii sep3 : static_size(2), external_only;//,\"
+    ascii energyKWh : terminated_by(0x22);//42.50\"
+
+    ascii sep4 : static_size(2), external_only;//,\"
+    ascii startTime : terminated_by(0x22);//2026-10-11 09:00:00\"
+
+    ascii sep5 : static_size(2), external_only;//,\"
+    ascii endTime : terminated_by(0x22);//2026-10-11 09:45:00\"
+
+    ascii sep6 : static_size(2), external_only;//,\"
+    ascii status : terminated_by(0x22);// COMPLETED \"
+
+    ascii sep7 : static_size(2), external_only;//,\"
+    ascii source : terminated_by(0x22);//MUM-MOBILE-APP\"
+
+    ascii sep8 : static_size(2), external_only;//,\"
+    ascii chargerPowerKW : terminated_by(0x22);//150\"
+
+    ascii recordEnd : terminated_by(0x0A), external_only;
+};
+
+internal EvConsInt{
+    double dEnergyKWh;
+    date dtStartTime;
+    date dtEndTime;
+    double dChargerPowerKW;       
+};
+
+in_map eImap : external(EvConsExt),internal(EvConsInt),target_internal(EvConsTI){automatic;};
+
+decoder eDec : in_map(eImap);
+decoder dHed : in_map(hImap);
+decoder evDec{
+    decoder dHed;
+    decoder eDec *;   
+};
+
+
+internal EvOut{
+    string sessionId ;
+    string customerId ;
+    string stationRegion ;
+    string chargerType ;
+    double energyKWh ;
+    double tariffPerKWh ;
+    double chargingCost ;
+    string startTime ;
+    string endTime ;
+    double durationMinutes ;
+    string status ;
+    string sourceRegion ;
+    double chargerPowerKW ;
+    string processedAt ;    
+};
+
+",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

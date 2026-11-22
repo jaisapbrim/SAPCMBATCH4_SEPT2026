@@ -1,0 +1,205 @@
+{
+  "Key": "DR1792940541123",
+  "Name": "WFL_SQL_COLL",
+  "Type": "Workflow",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_DATABASE-OP",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "SQL_1",
+        "ID": 1125290722,
+        "Classname": "com.digitalroute.wfc.sql.coll.SQLCollInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.sql.coll.SQLCollInsp",
+            "Data": {
+              "dbProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1792919963496",
+                "name": "PRF_DB_SAPHANA",
+                "type": "Database Profile",
+                "$Version": 1.0
+              },
+              "resultsetsize": 0,
+              "sql": "select POLICYHOLDERID, CONTRACTACCOUNT, POLICYNUMBER, COVERAGEITEM, PRODUCTCODE, POLICYTYPE, MONTHLYPREMIUM, CURRENCY, POLICYSTATUS  from SAPCMUSER14.INSURANCE_REF_DATA",
+              "udrFields": [
+                "PolicyholderID",
+                "ContractAccount",
+                "PolicyNumber",
+                "CoverageItem",
+                "ProductCode",
+                "PolicyType",
+                "MonthlyPremium",
+                "Currency",
+                "PolicyStatus"
+              ],
+              "udrTypeIdentifier": {
+                "TypeName": "SAPCMBATCH4_DATABASE-OP.UFL_INS.InsRefData",
+                "FormatName": "SAPCMBATCH4_DATABASE-OP.UFL_INS",
+                "$Type": "dr.UltraClientInfo",
+                "$Version": 1.0
+              },
+              "$Type": "dr.SQLCollConfig",
+              "$Version": 8.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 290,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_DATABASE-OP.UFL_INS.InsRefData",
+                  "FormatName": "SAPCMBATCH4_DATABASE-OP.UFL_INS",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 510,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1939312021,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1125290722,
+        "stroke": [
+          {
+            "x": 320,
+            "y": 174,
+            "$Version": 1.0
+          },
+          {
+            "x": 373,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 427,
+            "y": 158,
+            "$Version": 1.0
+          },
+          {
+            "x": 480,
+            "y": 174,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

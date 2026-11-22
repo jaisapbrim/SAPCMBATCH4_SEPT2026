@@ -1,0 +1,244 @@
+{
+  "Key": "DR1792338260014",
+  "Name": "UFDL_EX",
+  "Type": "Ultra Format",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+Record Type → 2 bytes
+Device ID   → 8 bytes
+Duration    → 3 bytes, ASCII decimal
+Country     → 3 bytes
+
+01DEVICE01045USA02DEVICE02090IND03DEVICE03120GBR04DEVICE04075DEU
+*/
+external S1 : static_size(16){
+    ascii recType : static_size(2);
+    ascii deviceId : static_size(8); 
+    ascii duration : static_size(3),int(base10);
+    ascii country : static_size(3);       
+};
+in_map s1Imap : external(S1),target_internal(S1TI){automatic;};
+decoder s1Dec  : in_map(s1Imap);
+
+/*
+00 08 01 48 45 4C 4C 4F
+00 09 02 41 42 43 44 45 46
+00 0A 03 31 32 33 34 35 36 37
+
+┌──────────────┬────────────┬─────────────────┐
+│ Record Len   │ Record Type│ Payload         │
+│ 2 bytes      │ 1 byte     │ variable        │
+│ binary int   │ raw byte   │ length-dependent│
+└──────────────┴────────────┴─────────────────┘
+*/
+
+external S2  {
+    int recLen : static_size(2);
+    bytearray recType : static_size(1); 
+    ascii payload : dynamic_size(recLen-3);
+    
+};
+in_map s2Imap : external(S2),target_internal(S2TI){automatic;};
+decoder s2Dec  : in_map(s2Imap);
+
+/*
+02 00 0D 01 41 42 00 00 00 03 58 59 5A 51
+02 00 0F 02 41 42 00 00 00 04 43 44 00 00 00 05 58 59
+
+Type       : 1 byte
+Length     : 2 bytes
+ItemCount  : 1 byte
+
+Each item:
+    ItemID    : 2 ASCII bytes
+    ItemValue : 4-byte binary integer
+
+Payload:
+    remaining bytes as ASCII
+*/
+
+external S3 : dynamic_size(recLength){
+    int rectype : static_size(1);
+    int recLength : static_size(2);
+    int liSize : static_size(1);
+    list<Item> liItems : element_count(liSize);
+    ascii payload : dynamic_size(remaining_size);    
+};
+
+external Item{  
+    ascii itemId : static_size(2);
+    int itemValue : static_size(4);    
+};
+
+in_map iImap : external(Item),target_internal(ItemTI){automatic;};
+in_map s3Imap : external(S3),target_internal(S3TI){
+    automatic{
+        Item : using in_map iImap;    
+    };
+};
+decoder s3Dec  : in_map(s3Imap);
+
+/*
+AA 55 00 14 01 04 4E 4F 44 45 02 01 F4 7F 99 03 DE AD BE
+*/
+
+external S4 : dynamic_size(totalLen) {
+    int magic    : static_size(2);
+    int totalLen : static_size(2);
+
+    switched_set(pkgId) : dynamic_size(remaining_size) {
+
+        int pkgId : static_size(1);
+        int pkgLen : static_size(1);
+        case(1) {
+            ascii deviceName : dynamic_size(pkgLen);
+        };
+
+        case(2) : include_prefix {
+            SensorPayload sensorData : dynamic_size(4);
+        };
+
+        // Default: Rewinds 2 bytes back to start of pkgId; reads prefix (2) + payload (pkgLen)
+        default : include_prefix {
+            bytearray unhandledPackage : dynamic_size(pkgLen + 2);
+        };
+    };
+};
+external SensorPayload {
+    int sensorTag  : static_size(1);
+    int dataPoints : static_size(2);
+    int checksum   : static_size(1);
+};
+in_map sImap : external(SensorPayload),target_internal(SensorPayloadTI){automatic;};
+in_map s4Imap : external(S4),target_internal(S4TI){
+    automatic{
+       SensorPayload : using in_map  sImap;
+    };    
+};
+decoder s4Dec : in_map(s4Imap);
+
+/*
+ConsumerNumber,ConsumptionDate,Count,Services
+C1,12-12-2026,3,Electricity,Gas,Water
+C2,09-12-2026,2,Water,Gas
+*/
+external HeaderExt{
+    ascii header :   terminated_by(\"\\n\");  
+};
+external UtilityExt : terminated_by(\"\\n\"){
+    ascii ConsumerNumber : terminated_by(\",\");
+    ascii ConsumptionDate : terminated_by(\",\");
+    ascii count : terminated_by(\",\"),int(base10); 
+    list<ServiceExt> services : element_count(count);   
+};
+
+external ServiceExt{
+    ascii service : terminated_by(\",\");    
+};
+in_map serImap : external(ServiceExt),target_internal(ServiceTI){automatic;};
+in_map headImap : external(HeaderExt),target_internal(HeaderExtTI),discard_output{automatic;};
+in_map utImap : external(UtilityExt),target_internal(UtilityTI){
+    automatic{
+       ServiceExt : using in_map serImap;     
+    };
+    
+};
+
+decoder dUtl : in_map(utImap);
+decoder dSer : in_map(serImap);
+decoder dHed : in_map(headImap);
+
+decoder totalUtilDec{
+    decoder dHed;
+    decoder dUtl *;   
+};
+
+/*
+sessionId,customerId,chargerType,energyKWh,startTime,endTime,status,source,chargerPowerKW
+\" ev-mum-1001 \",\"cust001\",\"dc-fast\",\"42.50\",\"2026-10-11 09:00:00\",\"2026-10-11 09:45:00\",\" COMPLETED \",\"MUM-MOBILE-APP\",\"150\"
+\"EV-PUN-1002\",\"CUST002\",\"AC-SLOW\",\"18.00\",\"2026-10-11 10:15:00\",\"2026-10-11 10:45:00\",\"completed\",\"PUN-WEB-PORTAL\",\"22\"
+\"EV-MUM-10X3\",\"CUST003\",\"DC-FAST\",\"invalid\",\"2026-10-11 11:00:00\",\"2026-10-11 11:30:00\",\"COMPLETED\",\"MUM-CHARGER-API\",\"150\"
+\"EV-NAS-1004\",\"CUST004\",\"AC-SLOW\",\"12.00\",\"2026-10-11 12:00:00\",\"2026-10-11 11:50:00\",\"COMPLETED\",\"NAS-MOBILE-APP\",\"22\"
+\"EV-MUM-1005\",\"CUST005\",\"DC-FAST\",\"30.00\",\"2026-10-11 13:00:00\",\"2026-10-11 13:40:00\",\"IN_PROGRESS\",\"MUM-CHARGER-API\",\"150\"
+\"EV-PUN-1006\",\"CUST006\",\"AC-SLOW\",\"0.00\",\"2026-10-11 14:00:00\",\"2026-10-11 14:00:00\",\"COMPLETED\",\"PUN-WEB-PORTAL\",\"22\"
+*/
+external EvConsExt {
+    ascii sep0 : terminated_by(0x22), external_only;//\"
+    ascii sessionId : terminated_by(0x22);// ev-mum-1001 \"
+
+    ascii sep1 : static_size(2), external_only;//,\"
+    ascii customerId : terminated_by(0x22);//cust001\"
+
+    ascii sep2 : static_size(2), external_only;//,\"
+    ascii chargerType : terminated_by(0x22);//dc-fast\"
+
+    ascii sep3 : static_size(2), external_only;//,\"
+    ascii energyKWh : terminated_by(0x22);//42.50\"
+
+    ascii sep4 : static_size(2), external_only;//,\"
+    ascii startTime : terminated_by(0x22);//2026-10-11 09:00:00\"
+
+    ascii sep5 : static_size(2), external_only;//,\"
+    ascii endTime : terminated_by(0x22);//2026-10-11 09:45:00\"
+
+    ascii sep6 : static_size(2), external_only;//,\"
+    ascii status : terminated_by(0x22);// COMPLETED \"
+
+    ascii sep7 : static_size(2), external_only;//,\"
+    ascii source : terminated_by(0x22);//MUM-MOBILE-APP\"
+
+    ascii sep8 : static_size(2), external_only;//,\"
+    ascii chargerPowerKW : terminated_by(0x22);//150\"
+
+    ascii recordEnd : terminated_by(0x0A), external_only;
+};
+
+internal EvConsInt{
+    double dEnergyKWh;
+    date dtStartTime;
+    date dtEndTime;
+    double dChargerPowerKW;
+       
+};
+in_map eImap : external(EvConsExt),target_internal(EvConsTI),internal(EvConsInt){automatic;};
+
+decoder eDec : in_map(eImap);
+decoder evDec{
+    decoder dHed;
+    decoder eDec *;   
+};
+
+internal EvOut{
+    string sessionId ;
+    string customerId ;
+    string stationRegion ;
+    string chargerType ;
+    double energyKWh ;
+    double tariffPerKWh ;
+    double chargingCost ;
+    string startTime ;
+    string endTime ;
+    double durationMinutes ;
+    string status ;
+    string sourceRegion ;
+    double chargerPowerKW ;
+    string processedAt ;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,29 @@
+{
+  "Key": "DR1794249706353",
+  "Name": "UFL_PaymentPosting",
+  "Type": "Ultra Format",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_BRIM_FICA",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "internal Payment{
+    string BP;
+    string CA;
+    long AMOUNT;
+    string DOC;
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

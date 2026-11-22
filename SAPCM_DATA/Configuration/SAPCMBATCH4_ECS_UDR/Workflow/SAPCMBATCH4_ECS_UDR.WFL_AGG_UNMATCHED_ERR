@@ -1,0 +1,600 @@
+{
+  "Key": "DR1794065576581",
+  "Name": "WFL_AGG_UNMATCHED_ERR",
+  "Type": "Workflow",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_ECS_UDR",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "2"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [
+      {
+        "exportAlias": "",
+        "exportDescription": "",
+        "fieldInstanceType": "Instance",
+        "fieldName": "fileRegExp",
+        "nodeId": 2108931552,
+        "nodeName": "Disk_1",
+        "section": "Source",
+        "$Version": 1.0
+      }
+    ],
+    "instances": [
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "TelcoUsageEg1.csv",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      },
+      {
+        "cellValues": [
+          {
+            "type": "VALUE",
+            "value": {
+              "$Value": "empty",
+              "$Type": "string"
+            },
+            "$Version": 1.0
+          }
+        ],
+        "instanceId": 2,
+        "instanceName": "workflow_2",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Disk_1",
+        "ID": 2108931552,
+        "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.diskinput.DiskAdvInputInsp",
+            "Data": {
+              "routeFileRef": false,
+              "strategyClasses": [
+                "com.digitalroute.misc.advcoll.impl.DefaultFileInfo",
+                "com.digitalroute.misc.advcoll.impl.DefaultSourceFileHandling"
+              ],
+              "strategyCombinationClass": "com.digitalroute.misc.advcoll.impl.DefaultCollectionStrategy",
+              "strategyConfigs": [
+                {
+                  "baseDir": "/opt/mz/SAPCM-BATCH4/AGGREGATION",
+                  "compType": "No Compression",
+                  "fileRegExp": "TelcoUsageEg1.csv",
+                  "subfolders": false,
+                  "$Type": "dr.DefaultFileInfoConfig",
+                  "$Version": 10.0
+                },
+                {
+                  "idleTime": 0,
+                  "moveBeforeRetrieval": false,
+                  "moveSuffix": "",
+                  "rbDirectory": "",
+                  "rbKeepInterval": -1,
+                  "rbRenamePrefix": "",
+                  "rbRenameSuffix": "",
+                  "rbReplace": "",
+                  "rbSearch": "",
+                  "rbType": "Ignore",
+                  "$Type": "dr.DefaultSourceFileHandlingConfig",
+                  "$Version": 10.0
+                }
+              ],
+              "$Type": "dr.DiskAdvInputData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFNSServiceInsp",
+            "Data": {
+              "enabled": false,
+              "nextSeqNo": {
+                "SeqNo": -1,
+                "SeqNoUpdate": 0,
+                "$Version": 2.0
+              },
+              "nextSeqNoValue": -1,
+              "seqNoChk": 0,
+              "seqNoLen": -1,
+              "shallWarnOnOutOfSequence": false,
+              "startPos": -1,
+              "wrapOnSeqNo": -1,
+              "wrapToSeqNo": -1,
+              "$Type": "dr.DRFNSServiceConfigExtension",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.wf.DRFileInfoSortOrderServiceInsp",
+            "Data": {
+              "enabled": false,
+              "ignoreCase": false,
+              "length": 0,
+              "orderType": "Filename Value",
+              "patternType": "Position",
+              "sortOrder": "Ascending",
+              "sortType": "Alphanumeric",
+              "startPos": 0,
+              "$Type": "dr.DRFileInfoSortOrderServiceConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 40,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decoder_1",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "delimiter": ",",
+                "format": "Custom",
+                "lineBreak": "\\n",
+                "udrType": {
+                  "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+                  "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                },
+                "$Type": "dr.CsvDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "CSV Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 160,
+          "y": 220,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Aggregation_1",
+        "ID": 1271441448,
+        "Classname": "com.digitalroute.wfc.aggregation.AggregationInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.aggregation.AggregationInsp",
+            "Data": {
+              "commitCount": 1,
+              "commitTimeout": 1,
+              "defaultTimeout": 5,
+              "defragAfterNumberOfBatches": 1,
+              "defragEachBatchTimeLimit": 5,
+              "defragFileAgeLimit": 5,
+              "defragFileAgeLimit_TimeUnit": "MINUTES",
+              "defragTrigger": "None",
+              "intervalTimeout": 1,
+              "mainScript": "import ultra.SAPCMBATCH4_AGGREGATION.UFL_Aggregation;
+sessionInit{
+    debug(\"session created for key:\"+input.subscriber_id+\"_\"+input.service_type);
+    //session.rec = input;
+    sessionTimeout(session,5);
+    
+}
+consume {
+    
+    if(session.rec == null){
+        //session init called and new session was created, initialize data
+        session.rec = input;
+    }else{
+        //already the session was created by some other record(old session exist)
+        //consolidate the current record with session previous data
+        session.rec.consumption =  session.rec.consumption + input.consumption;
+    }
+}
+timeout{
+    //timeout called, remove the aggregated session data
+    debug(\"timeout executed\");
+    telcoUsg data = session.rec;
+    udrRoute(data);
+    sessionRemove(session);
+}",
+              "noMatchBehaviour": 2,
+              "noMatchRouter": "ecs",
+              "noStorageBehaviour": 0,
+              "noStorageRouter": "r_6",
+              "nullTimeoutBehaviour": 2,
+              "profile": {
+                "folder": "SAPCMBATCH4_AGGREGATION",
+                "key": "DR1793546630865",
+                "name": "PRF_AGG_2",
+                "type": "Aggregation Profile",
+                "$Version": 1.0
+              },
+              "readonly": false,
+              "timeoutDisable": false,
+              "$Type": "dr.AggregationConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 380,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": -1186562757,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+                  "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 530,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ECS_1",
+        "ID": -2141972883,
+        "Classname": "com.digitalroute.wfc.ecsforw.EcsForwInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ecsforw.EcsForwInsp",
+            "Data": {
+              "loggedMIM": [
+                "Workflow.Workflow Name",
+                "Workflow.Start Time"
+              ],
+              "$Type": "dr.EcsForwData",
+              "$Version": 1.1
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 370,
+          "y": 390,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_3",
+        "ID": -1426521943,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "consume {
+    udrAddError(input,\"AGGR_UNMATCHED_UDR\",\"Unmatched udr for servicetype\");
+    udrRoute(input);
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsg",
+                  "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 300,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1576094480,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 2108931552,
+        "stroke": [
+          {
+            "x": 70,
+            "y": 213,
+            "$Version": 1.0
+          },
+          {
+            "x": 130,
+            "y": 213,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1186562757,
+        "id": -7,
+        "name": "r_6",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1271441448,
+        "stroke": [
+          {
+            "x": 410,
+            "y": 190,
+            "$Version": 1.0
+          },
+          {
+            "x": 440,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 470,
+            "y": 178,
+            "$Version": 1.0
+          },
+          {
+            "x": 500,
+            "y": 190,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1271441448,
+        "id": -12,
+        "name": "r_11",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 190,
+            "y": 202,
+            "$Version": 1.0
+          },
+          {
+            "x": 242,
+            "y": 184,
+            "$Version": 1.0
+          },
+          {
+            "x": 295,
+            "y": 182,
+            "$Version": 1.0
+          },
+          {
+            "x": 350,
+            "y": 196,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1426521943,
+        "id": -15,
+        "name": "ecs",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1271441448,
+        "stroke": [
+          {
+            "x": 375,
+            "y": 229,
+            "$Version": 1.0
+          },
+          {
+            "x": 370,
+            "y": 257,
+            "$Version": 1.0
+          },
+          {
+            "x": 360,
+            "y": 270,
+            "$Version": 1.0
+          },
+          {
+            "x": 340,
+            "y": 279,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -2141972883,
+        "id": -17,
+        "name": "r_16",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1426521943,
+        "stroke": [
+          {
+            "x": 340,
+            "y": 310,
+            "$Version": 1.0
+          },
+          {
+            "x": 363,
+            "y": 322,
+            "$Version": 1.0
+          },
+          {
+            "x": 367,
+            "y": 326,
+            "$Version": 1.0
+          },
+          {
+            "x": 370,
+            "y": 357,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 2,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

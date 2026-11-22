@@ -1,0 +1,61 @@
+{
+  "Key": "DR1793859860641",
+  "Name": "APL_CONSTANTS",
+  "Type": "APL Code",
+  "Version": 11,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "//PROFILE CONSTANTS
+final string PRF_DB = \"SAPCMBATCH4_COMMON.PRF_DB_SAPHANA\";
+
+//ERROR Constants
+final string ERR_INVALID_VEH_ID = \"ERR_INVALID_VEHICLE_ID\";
+final string ERR_INVALID_CHG_ST = \"ERR_INVALID_CHG_ST_TIME\";
+final string ERR_INVALID_CHG_ED = \"ERR_INVALID_CHG_ED_TIME\";
+final string ERR_INVALID_CHG_LOC = \"ERR_INVALID_CHG_LOC\";
+final string ERR_INVALID_CHG_HRS = \"ERR_INVALID_CHG_HRS\";
+
+final string ERR_MSG_VEH_ID = \"VehicleId invalid\";
+final string ERR_MSG_CHG_ST = \"Charging start time invalid\";
+final string ERR_MSG_CHG_ED = \"Charging end time invalid\";
+final string ERR_MSG_CHG_LOC = \"Charging location invalid\";
+final string ERR_MSG_CHG_HRS = \"Charging hours invalid\";
+
+//CI CONSTANTS
+final string CIT_ACCESS_SERVICEID_EVBILL = \"EV_BILL\";
+final string CIT_SRCTATYPE_01 = \"01\";
+final string CIT_CONSUMDATE_DATE_FORMAT = \"yyyyMMddHHmmss\";
+
+final string CI_KEY_PREFIX = \"CM_CI_\";
+final string CI_KEY_DATE_FORMAT = \"yyyyMMddHHmmssSSS\";
+
+final string ADT_FROM_ECS = \"CM ECS\";
+final string ADT_TO_CI = \"SAP CI\";
+final string ADT_TO_ECS = \"CM ECS\";
+
+final string SELECT_MASTERDATA_EV = \"SELECT tr.TR_OBJ_ID , \" +
+    \"tr.OBJTYPE_H, \" +
+    \"tr.OBJECT_ID, \" +
+    \"tr.NUMBER_INT, \" +
+    \"i.CI_CONTRACT_ID \" +
+    \"FROM \\\"SAPHANADB\\\".\\\"CRMS4D_TECH_RES\\\" tr \" +
+    \"JOIN \\\"SAPHANADB\\\".\\\"CRMS4D_SERV_I\\\" i \" +
+    \"ON i.CLIENT = tr.CLIENT AND i.OBJECT_ID = tr.OBJECT_ID AND i.NUMBER_INT = tr.NUMBER_INT \" +
+    \"WHERE tr.CLIENT = '100' \";
+    
+final string SELECT_DFKK_VT_I = \"SELECT CB_BILLTO,VKONT,VTPOS,VTKEY FROM \\\"SAPHANADB\\\".\\\"DFKK_VT_I\\\"\";",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

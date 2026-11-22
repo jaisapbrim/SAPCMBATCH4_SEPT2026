@@ -1,0 +1,34 @@
+{
+  "Key": "DR1791125533520",
+  "Name": "APL_Constants",
+  "Type": "APL Code",
+  "Version": 4,
+  "Folder": "SAPCMBATCH4_APL-FUNDAMENTALS",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "final string COUNTRY = \"US\";
+string count3;
+
+//define a function
+int checkHighest(int num1,int num2){
+    debug(\"checkHighest executed\");
+    if(num1 > num2){
+        return num1;
+    }else{
+        return num2;    
+    }   
+}",
+    "$Type": "dr.APLProfileData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

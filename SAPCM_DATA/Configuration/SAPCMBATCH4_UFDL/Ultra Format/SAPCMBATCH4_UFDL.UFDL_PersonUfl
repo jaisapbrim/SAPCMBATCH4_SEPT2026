@@ -1,0 +1,73 @@
+{
+  "Key": "DR1790518051458",
+  "Name": "UFDL_PersonUfl",
+  "Type": "Ultra Format",
+  "Version": 11,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+Raw data format:
+
+1,Jai,Mumbai
+2,Raj,Pune
+*/
+
+
+in_map iMapPer : external(PersonExt),internal(PersonInt){automatic;};
+
+decoder perDec : in_map(iMapPer);
+//external for Person raw data
+external PersonExt{
+    ascii id : terminated_by(0x2C);
+    ascii name : terminated_by(0x7C);
+    ascii city : terminated_by(0xA);      
+};
+//internal for Person raw data
+internal PersonInt{
+    int id;
+    string city; 
+    string name;   
+};
+
+
+/*
+BP,Service,ConsumptionDate
+BP01,API-001,12-12-2026
+BP02,API-002,12-11-2026
+BP01,API-001,12-12-2025
+BP02,API-002,12-11-2024
+BP01,API-001,12-12-2012
+BP02,API-002,12-11-2021
+BP01,API-001,12-12-2011
+BP02,API-002,12-11-2010
+*/
+
+external ApiConsExt{
+    ascii BP : terminated_by(0x2C);
+    ascii Service : terminated_by(0x2C);  
+    ascii ConsumptionDate : terminated_by(0xA);        
+};
+//convert externalraw file to internal(UDR/Object) format
+//in_map will be invoked by decoder
+in_map iMapApi : external(ApiConsExt),target_internal(ApiConsTI){automatic;};
+decoder apiDec : in_map(iMapApi);
+
+//convert internal(UDR/Object) to external(raw file) format
+//out_map will be invoked by encoder
+out_map oMapApi : external(ApiConsExt),internal(ApiConsTI){automatic;};
+encoder apiEnc : out_map(oMapApi);",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

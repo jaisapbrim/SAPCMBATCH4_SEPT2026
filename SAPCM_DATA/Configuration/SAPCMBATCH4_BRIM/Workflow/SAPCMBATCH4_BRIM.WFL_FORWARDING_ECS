@@ -1,0 +1,491 @@
+{
+  "Key": "DR1793887101298",
+  "Name": "WFL_FORWARDING_ECS",
+  "Type": "Workflow",
+  "Version": 5,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "auditLogOnCancelBatch": false,
+    "cancelBatchType": "Abort immediately",
+    "consecutiveCount": 0,
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "isErrorBatchTypeECS": false,
+    "nodes": [
+      {
+        "Name": "Inter_Workflow_1",
+        "ID": 497243367,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFInputInsp",
+            "Data": {
+              "deactivateOnIdle": false,
+              "myAgeOfOldestBatch": 0,
+              "myMergeType": 1,
+              "myNumberOfBatches": 0,
+              "myNumberOfBytes": 0,
+              "myProfile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793884899489",
+                "name": "PRF_IWF_ECS",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.InterWFInputData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 100,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -1939312021,
+        "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.StuffyMapperInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAPCMBATCH4_BRIM.UFL_RIDE;
+import apl.SAPCMBATCH4_BRIM.APL_FUNCTIONS_CI;
+string wflName;
+ 
+initialize {
+    wflName = (string) mimGet(\"Workflow\", \"Workflow Name\");    
+}
+ 
+consume {
+    
+    CI_Int out = (CI_Int) input;
+    debug(out);
+    udrAddError(out, \"ECS_SAPCI_ERR\", out.rfcErrorMessage);
+
+    udrRoute(out, \"toECS\");
+    Forw_Realtime_Audit_Int aud = setCIToECSAudit(out, wflName);
+    udrRoute(aud, \"toAuditEncoder\");
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.CI_Int",
+                  "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 340,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decoder_1",
+        "ID": -1576094480,
+        "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraDecoderInsp",
+            "Data": {
+              "decoderConfig": {
+                "outputTypes": [
+                  {
+                    "TypeName": "SAPCMBATCH4_BRIM.UFL_RIDE.CI_Int",
+                    "FormatName": "SAPCMBATCH4_BRIM.UFL_RIDE",
+                    "$Type": "dr.UltraClientInfo",
+                    "$Version": 1.0
+                  }
+                ],
+                "$Type": "dr.MZTaggedDecoderConfig",
+                "$Version": 1.0
+              },
+              "decoderName": "MZ Tagged Format",
+              "doFullDecode": false,
+              "errorMode": 1,
+              "$Type": "dr.UltraDecoderData",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 220,
+          "y": 200,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ECS_1",
+        "ID": -2141972883,
+        "Classname": "com.digitalroute.wfc.ecsforw.EcsForwInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ecsforw.EcsForwInsp",
+            "Data": {
+              "loggedMIM": [],
+              "$Type": "dr.EcsForwData",
+              "$Version": 1.1
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 460,
+          "y": 190,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Encoder_1",
+        "ID": 552215182,
+        "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.ultra.UltraEncoderInsp",
+            "Data": {
+              "encoderName": "MZ Tagged Format",
+              "skipEncoding": false,
+              "$Type": "dr.UltraEncoderData",
+              "$Version": 12.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRHeaderServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRTrailerServiceInsp",
+            "Data": {
+              "entries": [],
+              "suppress": false,
+              "$Type": "dr.HeaderTrailerConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.devkit.hidden.DRThreadBufferInsp",
+            "Data": {
+              "printStats": false,
+              "useOwnThread": false,
+              "$Type": "dr.DRThreadBufferConfig",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 340,
+          "y": 320,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "ADT",
+        "ID": 1608266461,
+        "Classname": "com.digitalroute.wfc.interwf.InterWFOutputInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.interwf.InterWFOutputInsp",
+            "Data": {
+              "myMIMs": [],
+              "myProfile": {
+                "folder": "SAPCMBATCH4_BRIM",
+                "key": "DR1793884876775",
+                "name": "PRF_IWF_RT_ADT",
+                "type": "Inter Workflow Profile",
+                "$Version": 1.0
+              },
+              "myShallCreateEmptyBatches": false,
+              "streamId": "default",
+              "$Type": "dr.InterWFOutputData",
+              "$Version": 3.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 460,
+          "y": 320,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "routes": [
+      {
+        "destinationId": -1576094480,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 497243367,
+        "stroke": [
+          {
+            "x": 130,
+            "y": 188,
+            "$Version": 1.0
+          },
+          {
+            "x": 149,
+            "y": 179,
+            "$Version": 1.0
+          },
+          {
+            "x": 167,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 190,
+            "y": 189,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -1939312021,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1576094480,
+        "stroke": [
+          {
+            "x": 250,
+            "y": 175,
+            "$Version": 1.0
+          },
+          {
+            "x": 273,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 294,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 310,
+            "y": 176,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -2141972883,
+        "id": -7,
+        "name": "toECS",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 370,
+            "y": 175,
+            "$Version": 1.0
+          },
+          {
+            "x": 388,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 410,
+            "y": 164,
+            "$Version": 1.0
+          },
+          {
+            "x": 431,
+            "y": 173,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1608266461,
+        "id": -8,
+        "name": "r_7",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 552215182,
+        "stroke": [
+          {
+            "x": 370,
+            "y": 298,
+            "$Version": 1.0
+          },
+          {
+            "x": 390,
+            "y": 288,
+            "$Version": 1.0
+          },
+          {
+            "x": 410,
+            "y": 288,
+            "$Version": 1.0
+          },
+          {
+            "x": 430,
+            "y": 298,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 552215182,
+        "id": -9,
+        "name": "toAuditEncoder",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -1939312021,
+        "stroke": [
+          {
+            "x": 353,
+            "y": 219,
+            "$Version": 1.0
+          },
+          {
+            "x": 365,
+            "y": 242,
+            "$Version": 1.0
+          },
+          {
+            "x": 365,
+            "y": 264,
+            "$Version": 1.0
+          },
+          {
+            "x": 353,
+            "y": 287,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowBatchData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

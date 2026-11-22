@@ -1,0 +1,306 @@
+{
+  "Key": "DR1794598363345",
+  "Name": "WFL_TCP_FWD",
+  "Type": "Workflow",
+  "Version": 10,
+  "Folder": "SAPCMBATCH4_WFB",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.wfb;
+int loadId = 1;
+synchronized void setLoadId(int id){
+    loadId = id;
+}
+consume {
+    ConsumeCycleUDR cCycle = udrCreate(ConsumeCycleUDR);
+    cCycle.Data = input;
+    cCycle.LoadId = loadId;
+    if(loadId == 1)setLoadId(2); else setLoadId(1);
+    //cCycle.Broadcast = true;
+    debug(cCycle);
+    udrRoute(cCycle);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "bytearray",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 190,
+          "y": 180,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Workflow_Bridge_1",
+        "ID": -1814471984,
+        "Classname": "com.digitalroute.workflowbridge.rt.fwd.WfbRTFwdInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.workflowbridge.rt.fwd.WfbRTFwdInsp",
+            "Data": {
+              "profile": {
+                "folder": "SAPCMBATCH4_WFB",
+                "key": "DR1794598215358",
+                "name": "PRF_WFB_2",
+                "type": "Workflow Bridge Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.WfBridgeFwdData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 300,
+          "y": 180,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "wfb.ConsumeCycleUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "wfb.ErrorCycleUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 420,
+          "y": 180,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "TCP_IP_1",
+        "ID": -2060415568,
+        "Classname": "com.digitalroute.wfc.tcpipcoll.TCPIPCollInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.tcpipcoll.TCPIPCollInsp",
+            "Data": {
+              "host": "192.168.2.100",
+              "maxConnections": 2,
+              "multiple": true,
+              "port": 3210,
+              "response": false,
+              "state": false,
+              "$Type": "dr.TCPIPCollData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          },
+          {
+            "Type": 0,
+            "Classname": "com.digitalroute.wfc.ultra.server.service.RealtimeDecoderInsp",
+            "Data": {
+              "doFullDecode": false,
+              "$Type": "dr.RealtimeDecoderConfig",
+              "$Version": 11.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 60,
+          "y": 180,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -1814471984,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 220,
+            "y": 173,
+            "$Version": 1.0
+          },
+          {
+            "x": 271,
+            "y": 173,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 186233777,
+        "id": -5,
+        "name": "r_4",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -1814471984,
+        "stroke": [
+          {
+            "x": 330,
+            "y": 173,
+            "$Version": 1.0
+          },
+          {
+            "x": 390,
+            "y": 173,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -540133671,
+        "id": -6,
+        "name": "r_5",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -2060415568,
+        "stroke": [
+          {
+            "x": 90,
+            "y": 159,
+            "$Version": 1.0
+          },
+          {
+            "x": 113,
+            "y": 148,
+            "$Version": 1.0
+          },
+          {
+            "x": 137,
+            "y": 148,
+            "$Version": 1.0
+          },
+          {
+            "x": 160,
+            "y": 159,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

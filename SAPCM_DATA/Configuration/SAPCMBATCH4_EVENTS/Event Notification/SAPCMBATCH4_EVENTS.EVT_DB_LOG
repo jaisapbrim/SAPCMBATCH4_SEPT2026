@@ -1,0 +1,141 @@
+{
+  "Key": "DR1795274874732",
+  "Name": "EVT_DB_LOG",
+  "Type": "Event Notification",
+  "Version": 13,
+  "Folder": "SAPCMBATCH4_EVENTS",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Status",
+        "Value": "Disabled"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "Active": false,
+    "Notifier": {
+      "Class name": "com.digitalroute.notification.notifiers.DatabaseNotifier",
+      "DupWindow": 0,
+      "Static config": {
+        "Database": {
+          "folder": "SAPCMBATCH4_COMMON",
+          "key": "DR1792307286445",
+          "name": "PRF_DB_POSTGRES",
+          "type": "Database Profile",
+          "$Version": 1.0
+        },
+        "$Type": "dr.DatabaseNotifierData",
+        "$Version": 1.1
+      },
+      "Dynamic config": [
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "SQL Statement",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 5,
+          "Value string": "INSERT INTO public.\"TB_EVT_LOG\"
+(
+    \"WF_NAME\",
+    \"TIME_STAMP\"
+)
+VALUES
+(
+    ?,
+    ?
+);",
+          "$Version": 1.0
+        }
+      ],
+      "$Version": 1.0
+    },
+    "Events": [
+      {
+        "Classname": "com.digitalroute.wf.event.AgentMessageEvent",
+        "Name": "Agent Message Event",
+        "Matcher": {
+          "Matchers": [
+            {
+              "Classname": "com.digitalroute.wf.event.AgentMessageEvent",
+              "$Type": "dr.EventClassMatcher",
+              "$Version": 1.0
+            },
+            {
+              "Field": "agentMessage",
+              "Values": [
+                "WF_STARTED.*"
+              ],
+              "$Type": "dr.StringEventMatcher",
+              "$Version": 1.0
+            }
+          ],
+          "$Version": 1.0
+        },
+        "Map": [
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "SQL Statement",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "workflowName",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Assignment type": 5,
+            "Variable": "?1",
+            "$Version": 1.0
+          },
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "SQL Statement",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "receiveTimeStamp",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 11,
+              "$Version": 1.0
+            },
+            "Assignment type": 5,
+            "Variable": "?2",
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "$Type": "dr.NotificationGroupData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

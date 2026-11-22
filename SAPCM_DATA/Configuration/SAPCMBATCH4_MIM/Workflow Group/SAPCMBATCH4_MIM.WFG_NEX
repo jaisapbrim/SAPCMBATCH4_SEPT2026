@@ -1,0 +1,136 @@
+{
+  "Key": "DR1792249920764",
+  "Name": "WFG_NEX",
+  "Type": "Workflow Group",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_MIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Batch"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "member list": [
+      {
+        "type": "Batch workflow",
+        "config": {
+          "folder": "SAPCMBATCH4_MIM",
+          "key": "DR1792244604733",
+          "name": "WFL_NEX_RU_COLL",
+          "type": "Workflow",
+          "$Version": 1.0
+        },
+        "wf_instance_id": {
+          "System name": "",
+          "Template name": "SAPCMBATCH4_MIM.WFL_NEX_RU_COLL",
+          "Workflow key": {
+            "TEMPLATE_KEY": "DR1792244604733",
+            "INSTANCE_ID": 1,
+            "$Version": 2.0
+          },
+          "Workflow name": "workflow_1",
+          "Version": 0,
+          "dynamic": 0,
+          "$Version": 1.0
+        },
+        "prereq list": [],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      },
+      {
+        "type": "Batch workflow",
+        "config": {
+          "folder": "SAPCMBATCH4_MIM",
+          "key": "DR1792247008634",
+          "name": "WFL_NEX_PROC",
+          "type": "Workflow",
+          "$Version": 1.0
+        },
+        "wf_instance_id": {
+          "System name": "",
+          "Template name": "SAPCMBATCH4_MIM.WFL_NEX_PROC",
+          "Workflow key": {
+            "TEMPLATE_KEY": "DR1792247008634",
+            "INSTANCE_ID": 1,
+            "$Version": 2.0
+          },
+          "Workflow name": "workflow_1",
+          "Version": 0,
+          "dynamic": 0,
+          "$Version": 1.0
+        },
+        "prereq list": [
+          "DR1792244604733_1"
+        ],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      },
+      {
+        "type": "Batch workflow",
+        "config": {
+          "folder": "SAPCMBATCH4_MIM",
+          "key": "DR1792249557092",
+          "name": "WFL_NEX_FORWARDING",
+          "type": "Workflow",
+          "$Version": 1.0
+        },
+        "wf_instance_id": {
+          "System name": "",
+          "Template name": "SAPCMBATCH4_MIM.WFL_NEX_FORWARDING",
+          "Workflow key": {
+            "TEMPLATE_KEY": "DR1792249557092",
+            "INSTANCE_ID": 1,
+            "$Version": 2.0
+          },
+          "Workflow name": "workflow_1",
+          "Version": 0,
+          "dynamic": 0,
+          "$Version": 1.0
+        },
+        "prereq list": [
+          "DR1792244604733_1",
+          "DR1792247008634_1"
+        ],
+        "valid type": "Not Validated",
+        "is dynamic": false,
+        "$Version": 2.0
+      }
+    ],
+    "group sched": {
+      "Dayplans, run": [],
+      "Dayplans, not run": [],
+      "$Version": 1.0
+    },
+    "max running": 0,
+    "delay": 0,
+    "primary type": "Batch",
+    "exeSetting": {
+      "distributionType": "Round Robin",
+      "enabled": false,
+      "executionGroups": [],
+      "$Version": 1.0
+    },
+    "continuous exec": false,
+    "ecd": "",
+    "$Type": "dr.GroupData",
+    "$Version": 5.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

@@ -1,0 +1,30 @@
+{
+  "Key": "DR1793884899489",
+  "Name": "PRF_IWF_ECS",
+  "Type": "Inter Workflow Profile",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_BRIM",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Version": 0,
+    "Root directory": "/opt/mz/SAPCM-BATCH4/BRIM/IWF",
+    "Max number of bytes": 0,
+    "Max number of batches": 0,
+    "Compressed": false,
+    "Storage Type": "File Storage",
+    "ExtRef Version": 1.0,
+    "ExtRef Map": [],
+    "$Type": "dr.StorageAreaData",
+    "$Version": 7.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

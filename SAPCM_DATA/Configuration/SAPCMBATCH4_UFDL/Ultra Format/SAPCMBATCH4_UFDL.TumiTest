@@ -1,0 +1,69 @@
+{
+  "Key": "DR1790959349495",
+  "Name": "TumiTest",
+  "Type": "Ultra Format",
+  "Version": 4,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "SAPCMUSER30",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_RFC",
+    "ZSAP_CM_RFC",
+    "ZSAP_CM_RFC"
+  ],
+  "Data": {
+    "Definition": "
+/*
+
+Raw data format:
+
+1,Jai,Mumbai
+2,Raj,Pune
+*/
+
+
+
+
+//External for Person raw data
+
+
+external Tumiext{ 
+    
+    ascii id : terminated_by(\",\");
+    
+    ascii name : terminated_by(\",\");
+    
+    ascii city : terminated_by(\"\\n\");
+     
+    };
+    
+ //internal for Person raw data
+ 
+ 
+ internal Tumiint{
+     
+     int id;
+     string name;
+     string city;
+     };
+     
+     
+     in_map Imapper : external(Tumiext),internal (Tumiint){automatic;};
+     
+     decoder perdec : in_map(Imapper);
+     
+     
+        out_map Outmapper : external(Tumiext),internal (Tumiint){automatic;};
+     
+     encoder perEnc : out_map(Outmapper);
+     
+     
+     ",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

@@ -1,0 +1,88 @@
+{
+  "Key": "DR1793456092537",
+  "Name": "PRF_ADT_STREAM_COLL",
+  "Type": "Audit Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_AUDIT",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Database": {
+      "folder": "SAPCMBATCH4_COMMON",
+      "key": "DR1792919963496",
+      "name": "PRF_DB_SAPHANA",
+      "type": "Database Profile",
+      "$Version": 1.0
+    },
+    "Tables": [
+      {
+        "Table name": "SAPCMUSER14.TB_ADT_STREAM_COLL",
+        "Columns": [
+          {
+            "Column name": "COLLECTION_TIME",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": 93,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "INPUT_FILENAME",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": -9,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "INPUT_PATH",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": -9,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "STREAM",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": -9,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "TXN_ID",
+            "Column type": 5,
+            "Key index": 0,
+            "Data type": -5,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "WF_NAME",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": -9,
+            "$Version": 1.0
+          },
+          {
+            "Column name": "WF_TYPE",
+            "Column type": 4,
+            "Key index": 0,
+            "Data type": -9,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "useSchemaFromDB": false,
+    "$Type": "dr.AuditProfileData",
+    "$Version": 2.2
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

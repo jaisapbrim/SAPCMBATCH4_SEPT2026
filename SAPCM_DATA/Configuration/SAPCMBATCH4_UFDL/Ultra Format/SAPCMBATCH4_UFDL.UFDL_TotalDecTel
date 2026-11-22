@@ -1,0 +1,69 @@
+{
+  "Key": "DR1790522341284",
+  "Name": "UFDL_TotalDecTel",
+  "Type": "Ultra Format",
+  "Version": 7,
+  "Folder": "SAPCMBATCH4_UFDL",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+A:BP01,02-02-2025 -->Activation
+U:BP01,02-02-2025,13 --> Usage
+U:BP01,03-02-2025,16 --> Usage
+T:BP01,04-02-2026 --> Termination
+*/
+
+//external for Activation
+external ActivationExt : identified_by(recType == \"A\"){
+    ascii recType : terminated_by(\":\"),external_only;  
+    ascii bp : terminated_by(0x2C);  
+    ascii actDate : terminated_by(0xA);  
+};
+
+//external for Usage
+external UsageExt : identified_by(recType == \"U\"){
+    ascii recType : terminated_by(\":\"),external_only;
+    ascii bp : terminated_by(0x2C);  
+    ascii usgDate : terminated_by(0x2C);  
+    ascii usage : terminated_by(0xA); 
+};
+
+//external for Activation
+external TerminationExt : identified_by(recType == \"T\"){
+    ascii recType : terminated_by(\":\"),external_only;
+    ascii bp : terminated_by(0x2C);  
+    ascii terDate : terminated_by(0xA);  
+};
+
+in_map iMapAct : external(ActivationExt),target_internal(ActivationTI){automatic;};
+in_map iMapUsg : external(UsageExt),target_internal(UsageTI){automatic;};
+in_map iMapTer : external(TerminationExt),target_internal(TerminationTI){automatic;};
+
+decoder actDec : in_map(iMapAct);
+decoder usgDec : in_map(iMapUsg);
+decoder terDec : in_map(iMapTer);
+
+//total decoder will restrict the decoding of records in a particular order defined in the body
+decoder totalDecTel{
+    decoder actDec;
+    decoder usgDec *;
+    decoder terDec;    
+};
+
+
+
+",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

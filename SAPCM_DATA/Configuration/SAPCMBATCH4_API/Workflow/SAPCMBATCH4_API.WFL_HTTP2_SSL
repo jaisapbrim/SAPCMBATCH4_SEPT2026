@@ -1,0 +1,297 @@
+{
+  "Key": "DR1794146436402",
+  "Name": "WFL_HTTP2_SSL",
+  "Type": "Workflow",
+  "Version": 6,
+  "Folder": "SAPCMBATCH4_API",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "HTTP2_Server_2",
+        "ID": 1094494657,
+        "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.http2.server.agent.Http2ServerInsp",
+            "Data": {
+              "authLevel": "REQUIRED",
+              "authPublicKey": "-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsyvB5MrCBGzCf4HjUQ48
+wHqfYVw8efI9ceT8toWUIYDzthjA6wt9Z18dXPrE/fotYaGQnqztKl/MzAIZlU7B
+kc2/aqVSSCbBhm0kvyoiniFO8wSGILM8a62du6Yt4/HaGXL17gE7cKxWgWz0TdN5
+OvfcIe1veMyieuoChlDNHfYGypWqRBNVCJR6gWDwJ+NzYDwshDZ15ZtNGEoMdNaK
+VPIB4g0AMYmo/EetpCaaAjFLsce9dUogZLOvLbEp1UfGMNgL1TiixWRfXk3uGf5X
++vxaxLSLkIL1Dm53nireJKWlaQfAn+1NHXrXQCzu+E3l93JAVYvTi0FrHLenXCso
++QIDAQAB
+-----END PUBLIC KEY-----
+",
+              "averagePeriod": 10,
+              "characterEncoding": "UTF-8",
+              "clientTimeout": 10,
+              "enableTooManyRequests": true,
+              "gzipLevel": 7,
+              "host": "192.168.2.100",
+              "isTwoWayAuth": false,
+              "maxConcurrentStreams": 500,
+              "numberOfRequests": 1000,
+              "port": 8045,
+              "routeToApl": false,
+              "securityProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794113593551",
+                "name": "PRF_SECURITY",
+                "type": "Security Profile",
+                "$Version": 1.0
+              },
+              "serverTimeout": 0,
+              "strategies": [
+                {
+                  "contentType429": "application/problem+json",
+                  "contentType503": "application/problem+json",
+                  "overrideError429": false,
+                  "overrideError503": false,
+                  "statusCode429": 429,
+                  "statusCode503": 503,
+                  "useOpenApi": false,
+                  "validate": false,
+                  "$Type": "dr.HTTP2.OpenAPI",
+                  "$Version": 10.4
+                },
+                {
+                  "enableFallBack": false,
+                  "enableRegistrationRetry": false,
+                  "nrfAddresses": [],
+                  "numberOfRegistrationRetry": 0,
+                  "openApiProfileList": [],
+                  "secondaryAddressList": [],
+                  "timeIntervalForRegistrationRetry": 0,
+                  "use5g": false,
+                  "$Type": "dr.HTTP2.Support5G",
+                  "$Version": 10.4
+                }
+              ],
+              "useSSL": true,
+              "waitDuration": 10,
+              "$Type": "dr.HTTP2ServerData",
+              "$Version": 12.1
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 140,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_2",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.http;
+import ultra.SAPCMBATCH4_API.UFL_MasterDataCreation;
+consume {
+    debug(input);
+    
+    //decoding bytearray received from client
+    bytearray requestBody = input.body;
+    string jsonString = baToStr(requestBody);
+    
+    //udr to store decoded data
+    Person person = udrCreate(Person);
+    jsonDecodeUdr(jsonString,person);
+    debug(\"Decoded data:\"+person);
+    
+    //udr to send response to client
+    PersonResponse perRes = udrCreate(PersonResponse);
+    perRes.message = \"Hello \"+person.name;
+    
+    bytearray baResp;
+    string jsonResp = jsonEncodeUdr (perRes);
+    strToBA(baResp, jsonResp);
+    Response res = udrCreate(Response);   
+    
+      
+    res.body = baResp;//bytearray response
+    res.statusCode = 200;
+    input.response = res;
+    udrRoute(input);
+}
+/*
+[
+    {
+        \"client_name\": \"Portal\",
+        \"client_id\": \"A_RzGFZ1x-wg2ZTGKjBJ_5YkkqHqjyliXBcF\",
+        \"client_secret\": \"j1DqglCayC4FYIXGNbXhDa1iq2sFqccjXzmttgdq5RX-ToQAvA\",
+        \"scope\": \"normal_scope admin_scope\"
+    }
+]
+*/",
+              "udrTypes": [
+                {
+                  "typeName": "http.RequestCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 310,
+          "y": 210,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": 186233777,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1094494657,
+        "stroke": [
+          {
+            "x": 170,
+            "y": 194,
+            "$Version": 1.0
+          },
+          {
+            "x": 207,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 244,
+            "y": 180,
+            "$Version": 1.0
+          },
+          {
+            "x": 280,
+            "y": 194,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1094494657,
+        "id": -3,
+        "name": "r_2",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 186233777,
+        "stroke": [
+          {
+            "x": 280,
+            "y": 214,
+            "$Version": 1.0
+          },
+          {
+            "x": 243,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 207,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 170,
+            "y": 214,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

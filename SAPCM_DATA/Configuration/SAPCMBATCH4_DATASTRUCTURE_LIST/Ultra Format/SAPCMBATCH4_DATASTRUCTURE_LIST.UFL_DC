@@ -1,0 +1,59 @@
+{
+  "Key": "DR1792306039485",
+  "Name": "UFL_DC",
+  "Type": "Ultra Format",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_DATASTRUCTURE_LIST",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Definition": "/*
+List Example:
+------------
+DC_SERVER_RESOURCE_CONSUMPTION_202610.csv
+Record_Type;Server_ID;Customer_ID;CPU_vCPU_Hours;RAM_GB_Hours;Storage_GB_Hours;Environment;Period
+S;SRV00001;C10001;120;4800;120000;PRD;202610
+S;SRV00002;C10001;40;2000;50000;DEV;202610
+S;SRV00003;C10002;200;8000;200000;PRD;202610
+S;SRV00004;C10003;0;1000;20000;PRD;202610
+S;SRV00005;C10002;90;3500;75000;TST;202610
+
+Downstream 1: TB_PROCESSING_SUMMARY(FILENAME,CREATED_ON,REC_COUNT,STATUS)
+Downstream 2: TB_PROCESSED_RECORDS(FILENAME,CREATED_ON,REC_TYPE,SERVER,CUST,CPU_H,RAM_H,STORAGE_H,ENV,PERIOD)
+
+Processing logic:
+1. Decode the data
+2. Insert the records in TB_PROCESSED_RECORDS only if the total CPU_vCPU_Hours is above 300.
+3. Filter the records which are not part of Environment [PRD,TST]
+4. Insert the records in TB_PROCESSING_SUMMARY for each file. Mark STATUS as 'Eligible' if the CPU_vCPU_Hours is above 300 or NotEligible
+*/
+
+internal DC_Int{
+    string Record_Type;
+    string Server_ID;
+    string Customer_ID;
+    long CPU_vCPU_Hours;
+    long RAM_GB_Hours;
+    long Storage_GB_Hours;
+    string Environment;
+    string Period;    
+};
+
+internal Proc_Sum{
+    string filename;
+    long recCount;
+    string status;    
+};",
+    "$Type": "dr.UltraFormatConfig",
+    "$Version": 2.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

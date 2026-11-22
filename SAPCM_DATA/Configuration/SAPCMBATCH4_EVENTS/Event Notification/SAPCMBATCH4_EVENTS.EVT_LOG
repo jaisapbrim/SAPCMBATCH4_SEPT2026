@@ -1,0 +1,156 @@
+{
+  "Key": "DR1795274336036",
+  "Name": "EVT_LOG",
+  "Type": "Event Notification",
+  "Version": 2,
+  "Folder": "SAPCMBATCH4_EVENTS",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Status",
+        "Value": "Disabled"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "Active": false,
+    "Notifier": {
+      "Class name": "com.digitalroute.notification.notifiers.LogFileNotifier",
+      "DupWindow": 0,
+      "Static config": {
+        "Path": "/opt/mz/SAPCM-BATCH4/EVENTS",
+        "Filename": "evtLogWfStart.log",
+        "Use Filesize": false,
+        "Filesize": 0,
+        "Filesizeunit": "kb",
+        "Interval Type": 2,
+        "Rotate Interval": 0,
+        "Separator Type": 1,
+        "This Version": 1.0,
+        "ExtRef Version": 1.0,
+        "$Type": "dr.LogFileNotifierDataExtRef",
+        "$Version": 1.0
+      },
+      "Dynamic config": [
+        {
+          "Notifier field": {
+            "IsReadOnly": false,
+            "FieldName": "Log Line",
+            "IsOptional": false,
+            "Primitive": true,
+            "Type": 9,
+            "$Version": 1.0
+          },
+          "Assignment type": 2,
+          "Value string": "Workflow : $WorkflowName TimeStamp: $time Reason: $reason",
+          "$Version": 1.0
+        }
+      ],
+      "$Version": 1.0
+    },
+    "Events": [
+      {
+        "Classname": "com.digitalroute.wf.event.WfStateEvent",
+        "Name": "Workflow State Event",
+        "Matcher": {
+          "Matchers": [
+            {
+              "Classname": "com.digitalroute.wf.event.WfStateEvent",
+              "$Type": "dr.EventClassMatcher",
+              "$Version": 1.0
+            },
+            {
+              "Field": "workflowState",
+              "Values": [
+                "Aborted"
+              ],
+              "$Type": "dr.StringEventMatcher",
+              "$Version": 1.0
+            }
+          ],
+          "$Version": 1.0
+        },
+        "Map": [
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Log Line",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "workflowName",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "WorkflowName",
+            "$Version": 1.0
+          },
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Log Line",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "receiveTimeStamp",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 11,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "time",
+            "$Version": 1.0
+          },
+          {
+            "Notifier field": {
+              "IsReadOnly": false,
+              "FieldName": "Log Line",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Event field": {
+              "IsReadOnly": true,
+              "FieldName": "abortReason",
+              "IsOptional": false,
+              "Primitive": true,
+              "Type": 9,
+              "$Version": 1.0
+            },
+            "Assignment type": 2,
+            "Variable": "reason",
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "$Type": "dr.NotificationGroupData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

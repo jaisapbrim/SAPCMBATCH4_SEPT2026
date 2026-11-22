@@ -1,0 +1,225 @@
+{
+  "Key": "DR1794547549935",
+  "Name": "WFL_RT_COLL",
+  "Type": "Workflow",
+  "Version": 11,
+  "Folder": "SAPCMBATCH4_WFB",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Workflow_Bridge_1",
+        "ID": 1766570084,
+        "Classname": "com.digitalroute.workflowbridge.rt.coll.WfbRTCollInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.workflowbridge.rt.coll.WfbRTCollInsp",
+            "Data": {
+              "loadID": 1,
+              "port": 3299,
+              "profile": {
+                "folder": "SAPCMBATCH4_WFB",
+                "key": "DR1794474327135",
+                "name": "PRF_WFB_1",
+                "type": "Workflow Bridge Profile",
+                "$Version": 1.0
+              },
+              "streamId": "default",
+              "$Type": "dr.WfBridgeCollData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 190,
+          "y": 260,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    if(instanceOf(input,WorkflowStateUDR)){
+        debug(\"Current state:\"+\"\\n\"+input);
+        udrRoute((WorkflowStateUDR)input,\"ack\");
+    }else if(instanceOf(input,ConsumeCycleUDR)){
+        udrRoute((ConsumeCycleUDR)input,\"ack\");
+        debug(\"Received data at realtime workflow:\"+\"\\n\"+input);
+    }
+}",
+              "udrTypes": [
+                {
+                  "typeName": "wfb.ConsumeCycleUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "wfb.WorkflowStateUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 370,
+          "y": 260,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "data",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 1766570084,
+        "stroke": [
+          {
+            "x": 220,
+            "y": 242,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 300,
+            "y": 228,
+            "$Version": 1.0
+          },
+          {
+            "x": 340,
+            "y": 242,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 1766570084,
+        "id": -3,
+        "name": "ack",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 340,
+            "y": 264,
+            "$Version": 1.0
+          },
+          {
+            "x": 300,
+            "y": 278,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 278,
+            "$Version": 1.0
+          },
+          {
+            "x": 220,
+            "y": 264,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "queueStrategy": "Blocking queue",
+      "queueWorkerStrategy": "RoundRobin",
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

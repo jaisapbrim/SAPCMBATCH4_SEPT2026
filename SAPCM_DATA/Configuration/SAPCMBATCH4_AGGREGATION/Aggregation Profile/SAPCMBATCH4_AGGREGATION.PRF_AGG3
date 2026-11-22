@@ -1,0 +1,74 @@
+{
+  "Key": "DR1794058067019",
+  "Name": "PRF_AGG3",
+  "Type": "Aggregation Profile",
+  "Version": 1,
+  "Folder": "SAPCMBATCH4_AGGREGATION",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Data": {
+    "Association config": [
+      {
+        "UDR type": {
+          "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.telcoUsage2",
+          "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+          "$Type": "dr.UltraClientInfo",
+          "$Version": 1.0
+        },
+        "Association rules": [
+          {
+            "Primary expression": "input.msisdn != \"\" && input.msisdn != null",
+            "ID field list": [
+              "msisdn",
+              "serviceType"
+            ],
+            "Additional expression": "",
+            "Create session on failure": true,
+            "$Version": 1.0
+          },
+          {
+            "Primary expression": "input.subsId != \"\" && input.subsId != null",
+            "ID field list": [
+              "subsId",
+              "serviceType"
+            ],
+            "Additional expression": "",
+            "Create session on failure": true,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "Storage config": {
+      "Directory": "/opt/mz/SAPCM-BATCH4/AGGREGATION/storage",
+      "Partial File Count": 10,
+      "Max Session Count": 100000,
+      "Instance Unique Storage": false,
+      "This Version": 1.0,
+      "ExtRef Version": 1.0,
+      "ExtRef Map": [],
+      "$Type": "dr.FileStorageConfiguratorExtRef",
+      "$Version": 2.0
+    },
+    "UDR Type": {
+      "TypeName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation.sessionTelUsg2",
+      "FormatName": "SAPCMBATCH4_AGGREGATION.UFL_Aggregation",
+      "$Type": "dr.UltraClientInfo",
+      "$Version": 1.0
+    },
+    "$Type": "dr.AggregationProfileConfig",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Dynamic Parameters": [],
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1,
+  "Comment": ""
+}

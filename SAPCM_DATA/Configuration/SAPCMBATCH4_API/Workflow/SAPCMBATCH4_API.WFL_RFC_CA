@@ -1,0 +1,383 @@
+{
+  "Key": "DR1794124554569",
+  "Name": "WFL_RFC_CA",
+  "Type": "Workflow",
+  "Version": 15,
+  "Folder": "SAPCMBATCH4_API",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Pulse_1",
+        "ID": 33159177,
+        "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.mz.pulse.agent.PulseCollectorAgentInspRT",
+            "Data": {
+              "center": 1.0,
+              "data": "",
+              "dataEntered": true,
+              "dataRandomData": false,
+              "dataRandomOrderSeq": false,
+              "dataRangeEnd": 10,
+              "dataRangeStart": 0,
+              "dataSequentialOrder": true,
+              "dataSequentialRange": false,
+              "dataSize": 1,
+              "dataUnit": "Bytes",
+              "intervalFixed": 1,
+              "intervalType": "Single",
+              "poissonRate": 1.0,
+              "rate": 1,
+              "start": 1,
+              "stop": 10,
+              "unit": "HOURS",
+              "width": 1.0,
+              "$Type": "dr.PulseData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 90,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Analysis_1",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC-CA_CREATE;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC-CA_CREATE.subUdr;
+
+string businessPartner = \"1000625\";
+string bpInternal      = \"0001000625\";   // same partner, 10 digits with leading zeros
+string accountCategory = \"CE\";
+string accountName     = \"1000625\";
+string applArea        = \"S\";
+string validFrom       = \"11/08/2026\";
+
+boolean testRun = false;
+
+consume {
+    debug(input);
+
+    if (instanceOf(input, PulseUDR)) {
+
+        BAPI_CTRACCONTRACTACCOUNT_CR1_UDR req =
+            udrCreate(BAPI_CTRACCONTRACTACCOUNT_CR1_UDR);
+
+        req.isTwoPhaseCommit = true;
+
+        // IMPORT PARAMETERS
+        importParams_BAPI_CTRACCONTRACTACCOUNT_CR1 imp =
+            udrCreate(importParams_BAPI_CTRACCONTRACTACCOUNT_CR1);
+
+        BAPIFKKVKCI createInfo = udrCreate(BAPIFKKVKCI);
+        createInfo.BUSPARTNER  = businessPartner;
+        createInfo.ACCT_CAT    = accountCategory;
+        createInfo.APPL_AREA   = applArea;
+        createInfo.CONT_ACCT   = \"\";
+        createInfo.LEGACY_ACCT = \"\";
+        imp.CTRACCREATEINFO = createInfo;
+
+        BAPIFKKVKI detail = udrCreate(BAPIFKKVKI);
+        detail.ACCT_NAME = accountName;
+        imp.CTRACDETAIL = detail;
+
+        imp.VALIDFROM = validFrom;
+        imp.TESTRUN   = testRun ? \"X\" : \"\";
+
+        req.importParams = imp;
+
+        // TABLE PARAMETERS
+        tableParams_BAPI_CTRACCONTRACTACCOUNT_CR1 tbl =
+            udrCreate(tableParams_BAPI_CTRACCONTRACTACCOUNT_CR1);
+
+        list<BAPIFKKVKPI1> partnerDetail = listCreate(BAPIFKKVKPI1);
+
+        BAPIFKKVKPI1 pd = udrCreate(BAPIFKKVKPI1);
+        pd.BUSPARTNER         = bpInternal;   // must match the key in EXTENSIONIN
+        pd.COMP_CODE          = \"VJ01\";
+        pd.STANDARD_COMP_CODE = \"VJC1\";
+        pd.TOLER_GROUP        = \"S001\";
+        pd.ACCT_RELAT         = \"VJ\";
+        listAdd(partnerDetail, pd);
+
+        tbl.CTRACPARTNERDETAIL = partnerDetail;
+        req.tableParams = tbl;
+
+        // EXTENSION: Account Determination ID + Payment Terms
+        int N = 0;   // total length of the includes between BUSPARTNER and KOFIZ_SC
+
+        string v1 = padRight(bpInternal, 10)   // BUSPARTNER (same key as the partner row)
+                  + padRight(\"\", N)            // includes
+                  + padRight(\"02\", 2)          // KOFIZ_SC    Account Determination ID
+                  + padRight(\"0001\", 4)        // ZAHLKOND_SC Payment Terms
+                  + padRight(\"\", 4)            // GSBER_SC    Business Area (empty)
+                  + padRight(\"\", 4);           // KTOKL_SC    Account Class (empty)
+
+        list<BAPIPAREX> ext = listCreate(BAPIPAREX);
+        BAPIPAREX e = udrCreate(BAPIPAREX);
+        e.STRUCTURE  = \"BAPI_TE_FKKVKPI\";
+        e.VALUEPART1 = v1;
+        listAdd(ext, e);
+        tbl.EXTENSIONIN = ext;
+
+        debug(req);
+
+        udrRoute(req);
+    }
+}
+
+// helper: pad a string to a fixed length with spaces
+string padRight(string s, int len) {
+    while (strLength(s) < len) { s = s + \" \"; }
+    return s;
+}",
+              "udrTypes": [
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC-CA_CREATE.BAPI_CTRACCONTRACTACCOUNT_CR1_UDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "PulseUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 230,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "SAP_RFC_Processor_1",
+        "ID": 190809790,
+        "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+            "Data": {
+              "cacheExpiry": 120,
+              "cacheSize": 1000,
+              "enableConnectionPool": false,
+              "enableImmediateStop": false,
+              "executorSize": 5,
+              "jCoPeakLimit": 10,
+              "jCoPoolCapacity": 2,
+              "queueSize": 1000,
+              "rfcProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794123469309",
+                "name": "PRF_RFC-CA_CREATE",
+                "type": "SAP RFC Profile",
+                "$Version": 1.0
+              },
+              "$Type": "rfc.agent.contract",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 410,
+          "y": 180,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": -540133671,
+        "id": -2,
+        "name": "r_1",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 33159177,
+        "stroke": [
+          {
+            "x": 120,
+            "y": 150,
+            "$Version": 1.0
+          },
+          {
+            "x": 146,
+            "y": 139,
+            "$Version": 1.0
+          },
+          {
+            "x": 173,
+            "y": 138,
+            "$Version": 1.0
+          },
+          {
+            "x": 200,
+            "y": 148,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -540133671,
+        "id": -3,
+        "name": "r_2",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": 190809790,
+        "stroke": [
+          {
+            "x": 381,
+            "y": 182,
+            "$Version": 1.0
+          },
+          {
+            "x": 339,
+            "y": 194,
+            "$Version": 1.0
+          },
+          {
+            "x": 299,
+            "y": 192,
+            "$Version": 1.0
+          },
+          {
+            "x": 260,
+            "y": 176,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 190809790,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Bezier",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 260,
+            "y": 154,
+            "$Version": 1.0
+          },
+          {
+            "x": 302,
+            "y": 142,
+            "$Version": 1.0
+          },
+          {
+            "x": 342,
+            "y": 144,
+            "$Version": 1.0
+          },
+          {
+            "x": 381,
+            "y": 161,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}

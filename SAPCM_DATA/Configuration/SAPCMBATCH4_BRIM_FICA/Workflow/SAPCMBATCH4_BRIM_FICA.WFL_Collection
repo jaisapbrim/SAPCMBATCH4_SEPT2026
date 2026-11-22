@@ -1,0 +1,374 @@
+{
+  "Key": "DR1794241063695",
+  "Name": "WFL_Collection",
+  "Type": "Workflow",
+  "Version": 13,
+  "Folder": "SAPCMBATCH4_BRIM_FICA",
+  "Owner": "sapcmuser14",
+  "Is Valid": true,
+  "Access Groups -read -write -execute": [
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL",
+    "ZSAP_CM_ALL"
+  ],
+  "Auxiliary Data": {
+    "Entries": [
+      {
+        "Key": "Type",
+        "Value": "Realtime"
+      },
+      {
+        "Key": "Standalone",
+        "Value": "false"
+      },
+      {
+        "Key": "Count",
+        "Value": "1"
+      },
+      {
+        "Key": "Autostart",
+        "Value": "false"
+      },
+      {
+        "Key": "DynamicConfig",
+        "Value": "false"
+      }
+    ],
+    "$Version": 2.0
+  },
+  "Data": {
+    "dynamicInstances": false,
+    "errorMimNames": [],
+    "fieldTypes": [],
+    "instances": [
+      {
+        "cellValues": [],
+        "instanceId": 1,
+        "instanceName": "workflow_1",
+        "validType": "Valid",
+        "$Version": 1.0
+      }
+    ],
+    "nodes": [
+      {
+        "Name": "Artemis",
+        "ID": 2102417112,
+        "Classname": "com.digitalroute.wfc.jmsagent.col.JMSColInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.jmsagent.col.JMSColInsp",
+            "Data": {
+              "durableID": "",
+              "durableName": "",
+              "enablePreAcknowledge": false,
+              "password": "DR-4-42641A8794A37690B862EB94A25020A9",
+              "profile": {
+                "folder": "SAPCMBATCH4_BRIM_FICA",
+                "key": "DR1794240980726",
+                "name": "PRF_JMS_ARTEMIS",
+                "type": "JMS Profile",
+                "$Version": 1.0
+              },
+              "useDurable": false,
+              "userName": "admin",
+              "$Type": "dr.JMSColData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 40,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "RFC",
+        "ID": -540133671,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_PAYMENT_POSTING;
+import ultra.SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_PAYMENT_POSTING.subUdr;
+consume {
+    debug(input);
+    ZFKK_CM_PAYMENT_UDR rfc = udrCreate(ZFKK_CM_PAYMENT_UDR);
+    rfc.importParams = udrCreate(importParams_ZFKK_CM_PAYMENT);
+    rfc.importParams.IV_AMOUNT = input.AMOUNT;
+    rfc.importParams.IV_CONTACCT = input.CA;
+    rfc.importParams.IV_FIKEY = \"TESTKEY\";
+    rfc.importParams.IV_PARTNER = input.BP;
+    rfc.importParams.IV_REFDOC = input.DOC;
+    
+    /*
+    {
+    \"BP\": \"1007120\",
+    \"CA\": \"200000000300\",
+    \"AMOUNT\": 20,
+    \"DOC\": \"100100000109\"
+    }
+    */
+    
+    debug(rfc);
+    udrRoute(rfc);
+    
+}",
+              "udrTypes": [
+                {
+                  "TypeName": "SAPCMBATCH4_BRIM_FICA.UFL_PaymentPosting.Payment",
+                  "FormatName": "SAPCMBATCH4_BRIM_FICA.UFL_PaymentPosting",
+                  "$Type": "dr.UltraClientInfo",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 320,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "FicaPosting",
+        "ID": 190809790,
+        "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.rfc.agent.SAPJCoRFCAgentInsp",
+            "Data": {
+              "cacheExpiry": 120,
+              "cacheSize": 1000,
+              "enableConnectionPool": false,
+              "enableImmediateStop": false,
+              "executorSize": 5,
+              "jCoPeakLimit": 10,
+              "jCoPoolCapacity": 2,
+              "queueSize": 1000,
+              "rfcProfile": {
+                "folder": "SAPCMBATCH4_COMMON",
+                "key": "DR1794236661066",
+                "name": "PRF_RFC_PAYMENT_POSTING",
+                "type": "SAP RFC Profile",
+                "$Version": 1.0
+              },
+              "$Type": "rfc.agent.contract",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 470,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Resp",
+        "ID": 186233777,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "consume {
+    debug(input);
+}",
+              "udrTypes": [
+                {
+                  "typeName": "RfcErrorUDR",
+                  "$Version": 1.0
+                },
+                {
+                  "typeName": "SAP_RFC.SAPCMBATCH4_COMMON.PRF_RFC_PAYMENT_POSTING.ZFKK_CM_PAYMENT_UDR",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 470,
+          "y": 330,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      },
+      {
+        "Name": "Decode",
+        "ID": -106481934,
+        "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+        "Configuration": [
+          {
+            "Type": 1,
+            "Classname": "com.digitalroute.wfc.analysis.AnalysisRealtimeInsp",
+            "Data": {
+              "sourceCode": "import ultra.SAPCMBATCH4_BRIM_FICA.UFL_PaymentPosting;
+consume {
+    string req = (string)input.Request;
+    debug(\"Request:\"+req);
+    Payment pay = udrCreate(Payment);
+    jsonDecodeUdr(req,pay);
+    
+    debug(\"DecodedData :\"+ pay);
+    udrRoute(pay);
+    
+    
+}",
+              "udrTypes": [
+                {
+                  "typeName": "JMSCycle",
+                  "$Version": 1.0
+                }
+              ],
+              "$Type": "dr.StuffyMapperData",
+              "$Version": 10.0
+            },
+            "$Version": 1.0
+          }
+        ],
+        "XYposition": {
+          "x": 180,
+          "y": 170,
+          "$Version": 1.0
+        },
+        "$Version": 2.0
+      }
+    ],
+    "persistentData": {
+      "$Version": 10.0
+    },
+    "routes": [
+      {
+        "destinationId": 190809790,
+        "id": -3,
+        "name": "toFica",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -540133671,
+        "stroke": [
+          {
+            "x": 350,
+            "y": 163,
+            "$Version": 1.0
+          },
+          {
+            "x": 441,
+            "y": 163,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": 186233777,
+        "id": -4,
+        "name": "r_3",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 190809790,
+        "stroke": [
+          {
+            "x": 470,
+            "y": 189,
+            "$Version": 1.0
+          },
+          {
+            "x": 470,
+            "y": 297,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -106481934,
+        "id": -5,
+        "name": "toDecode",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": 2102417112,
+        "stroke": [
+          {
+            "x": 70,
+            "y": 163,
+            "$Version": 1.0
+          },
+          {
+            "x": 150,
+            "y": 163,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      },
+      {
+        "destinationId": -540133671,
+        "id": -6,
+        "name": "rfcMapp",
+        "realtimeMode": "Not set",
+        "routeStyle": "Straight",
+        "sourceId": -106481934,
+        "stroke": [
+          {
+            "x": 210,
+            "y": 163,
+            "$Version": 1.0
+          },
+          {
+            "x": 290,
+            "y": 163,
+            "$Version": 1.0
+          }
+        ],
+        "$Version": 1.0
+      }
+    ],
+    "services": [],
+    "templateValid": true,
+    "threadData": {
+      "countInterval": 1,
+      "queueSize": 1000,
+      "standalone": false,
+      "threads": 8,
+      "$Version": 10.0
+    },
+    "wfExecutionConfig": {
+      "debugType": "Event",
+      "executionSettings": {
+        "distributionType": "Round Robin",
+        "enabled": false,
+        "executionGroups": [],
+        "$Version": 1.0
+      },
+      "noOfFilesToKeep": 0,
+      "txnHandler": "Default Handler",
+      "$Version": 10.0
+    },
+    "wfIdCounter": 1,
+    "$Type": "dr.WorkflowRealtimeData",
+    "$Version": 1.0
+  },
+  "documentation": "",
+  "Is Dry Run": false,
+  "$Type": "dr.Configuration",
+  "$Version": 10.1
+}
