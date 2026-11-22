@@ -1,0 +1,32 @@
+SKILLS  
+SAP Convergent MediationZone by Digital Route, SAP BRIM, Analysis Programming  
+Language(APL), Advance UFDL, Integration with S/4 HANA (SAP CC/SAP SOM/SAP CI), SAP HANA DB, 
+Rest API, Active/Passive Mediation, Decoding/Encoding, Webservices, Archiving, Auditing, Event 
+Notification, GIT Integration, AWS-S3 Integration, SAP CC Functional, SAP CI Functional, Linux  
+
+Formats worked: Sequential Format/Delimited Format/Excel/XML/JSON 
+
+Agents worked: Disk agents, Decoder, Encoder, Analysis, Database agents, SQL agents, MergeFiles, 
+Aggregation, ECS ,Pulse, DupBatch, DupUDR, Excel Decoder, Interworkflow, Workflow bridge, Archive, 
+HTTPD, Rest , Webservice, SAP CC, SAP RFC, TCP/IP 
+
+
+
+Experience
+
+• Worked on batch mediation systems for processing Excel and CSV files. 
+• Involved in requirement gathering and SDD preparation with clients. 
+• Provided production support, including bug fixes and query resolution. 
+• Handled SAP CM – SAP CI integration for data exchange and processing. 
+
+
+• Gathered requirements and translated them into technical SAP CM solutions. 
+• Debugged and resolved production issues across SAP CM, CC, and CI modules. 
+• Managed deployments, bug fixes, and support activities. 
+• Developed workflows integrating SAP CM with SAP CC and CI for rating, rerating, and CIT upload. 
+• Built data migration flows between SAP HANA and AWS Redshift
+
+• Configured SAP Convergent Mediation (CM) for real-time and batch data processing in telecom billing. 
+• Developed mediation rules for event validation, filtering, and enrichment. 
+• Integrated SAP CM with TIBCO and SAP CC web services. 
+• Implemented JMS-based integration for asynchronous data collection and processing. 
